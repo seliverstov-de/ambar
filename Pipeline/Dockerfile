@@ -1,4 +1,4 @@
-FROM python:3.6.6-stretch
+FROM python:3.7.9-stretch
 
 RUN apt-get update && apt-get install -y \
     curl \
@@ -13,14 +13,11 @@ RUN apt-get update && apt-get install -y \
     tesseract-ocr-rus \
     tesseract-ocr-ita \
     tesseract-ocr-deu \
-    tesseract-ocr-fra \
-    tesseract-ocr-spa \
-    tesseract-ocr-nld \
     tesseract-ocr-pol \
     default-jre \
     default-jdk \
     readpst
-    
+
 # Set timezone
 ENV TZ=UTC
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
@@ -28,7 +25,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 COPY . .
 
 RUN pip install --no-cache-dir -r requirements.txt
-RUN pip install git+git://github.com/kivy/pyjnius.git
+RUN pip install git+https://github.com/kivy/pyjnius.git
 
 RUN mv jars/* /usr/lib/jvm/default-java/jre/lib/ext/
 
@@ -38,5 +35,5 @@ ENV JAVA_HOME /usr/lib/jvm/default-java
 
 CMD python ./pipeline.py
 
-HEALTHCHECK --interval=5s --timeout=30s --retries=50 \
+HEALTHCHECK --interval=15s --timeout=30s --retries=50 \
   CMD if (pidof -x python > /dev/null) then (exit 0) else (exit 1) fi

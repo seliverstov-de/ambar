@@ -61,7 +61,7 @@
     }
   },
   "author": "RD17 <hello@ambar.cloud> (https://ambar.cloud)",
-  "license": "Fair Source",
+  "license": "MIT",
   "dependencies": {
     "@blueprintjs/core": "^1.32.0",
     "babel-cli": "^6.5.1",

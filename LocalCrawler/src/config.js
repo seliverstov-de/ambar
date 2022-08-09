@@ -1,13 +1,13 @@
 const defaultConfig = {
 	"port": 8082,
-	"bodyLimit": "10mb",	
+	"bodyLimit": "10mb",
 	"crawlPath": "/usr/data",
-	"apiUrl": "http://serviceapi:8080",
+	"apiUrl": "http://serviceapi:8081",
 	"ignoreFolders": "**/test/**",
 	"ignoreExtensions": ".{exe,dll}",
-	"ignoreFileNames": "~*",	
+	"ignoreFileNames": "~*",
 	"name": "localhost",
-	"maxFileSize": "300mb",	
+	"maxFileSize": "300mb",
 	"rabbitHost": "amqp://rabbit"
 }
 
@@ -24,5 +24,3 @@ export default (() => {
 		? init()
 		: config
 })()
-
-

@@ -1,16 +1,15 @@
-[![Version](https://img.shields.io/badge/Version-v2.1.19-brightgreen.svg)](https://ambar.cloud)
-[![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/RD17/ambar/blob/master/License.txt)
+[![License](./License-MIT-blue.svg)](./License.txt)
 
 :mag: Ambar: Document Search Engine
 ================================
+_A fork of [RD17/Ambar](https://github.com/RD17/ambar) with various fixes and upgrades_
 
-![Ambar Search](https://ambar.cloud/img/search.gif)
-
-**⚠️ PROJECT ARCHIVED ⚠️**
+![Ambar Search](./search.gif)
 
 Ambar is an open-source document search engine with automated crawling, OCR, tagging and instant full-text search.
 
 Ambar defines a new way to implement full-text document search into your workflow.
+
 - Easily deploy Ambar with a single `docker-compose` file
 - Perform Google-like search through your documents and contents of your images
 - Tag your documents
@@ -19,21 +18,22 @@ Ambar defines a new way to implement full-text document search into your workflo
 ## Features
 
 ### Search
+
 [Tutorial: Mastering Ambar Search Queries](https://ambar.cloud/blog/2017/03/24/mastering-search-queries/)
 
-* Fuzzy Search (John~3)
-* Phrase Search ("John Smith")
-* Search By Author (author:John)
-* Search By File Path (filename:\*.txt)
-* Search By Date (when: yesterday, today, lastweek, etc)
-* Search By Size (size>1M)
-* Search By Tags (tags:ocr)
-* Search As You Type
-* Supported language analyzers: English `ambar_en`, Russian `ambar_ru`, German `ambar_de`, Italian `ambar_it`, Polish `ambar_pl`, Chinese `ambar_cn`, CJK `ambar_cjk`
+- Fuzzy Search (John~3)
+- Phrase Search ("John Smith")
+- Search By Author (author:John)
+- Search By File Path (filename:\*.txt)
+- Search By Date (when: yesterday, today, lastweek, etc)
+- Search By Size (size>1M)
+- Search By Tags (tags:ocr)
+- Search As You Type
+- Supported language analyzers: English `ambar_en`, Russian `ambar_ru`, German `ambar_de`, Italian `ambar_it`, Polish `ambar_pl`, Chinese `ambar_cn`, CJK `ambar_cjk`
 
 ### Crawling
 
-Ambar 2.0 only supports local fs crawling, if you need to crawl an SMB share of an FTP location - just mount it using standard linux tools.
+Ambar only supports local fs crawling, if you need to crawl an SMB share of an FTP location - just mount it using standard linux tools.
 Crawling is automatic, no schedule is needed due to crawlers monitor file system events and automatically process new, changed and removed files.
 
 ### Content Extraction
@@ -41,58 +41,31 @@ Crawling is automatic, no schedule is needed due to crawlers monitor file system
 **Ambar supports large files (>30MB)**
 
 Supported file types:
-* ZIP archives
-* Mail archives (PST)
-* MS Office documents (Word, Excel, Powerpoint, Visio, Publisher)
-* OCR over images
-* Email messages with attachments
-* Adobe PDF (with OCR)
-* OCR languages: Eng, Rus, Ita, Deu, Fra, Spa, Pl, Nld
-* OpenOffice documents
-* RTF, Plaintext
-* HTML / XHTML
-* Multithread processing
 
-## Installation
+- ZIP archives
+- Mail archives (PST)
+- MS Office documents (Word, Excel, Powerpoint, Visio, Publisher)
+- OCR over images
+- Email messages with attachments
+- Adobe PDF (with OCR)
+- OCR languages: Eng, Deu, Fra, Por
+- OpenOffice documents
+- RTF, Plaintext
+- HTML / XHTML
+- Multithread processing
+
+## Build & Run
 
 **Notice**: Ambar requires Docker to run
 
-You can build Docker images by yourself
-
-* Tutorial on how to build images from scratch see below
-
-## Building the images yourself
+If you want to see how Ambar works w/o installing it, try our [live demo](https://app.ambar.cloud/). No signup required.
 
 All the images required to run Ambar can be built locally. In general, each image can be built by navigating into the directory of the component in question, performing the compilation steps required and building the image like that:
 
-```
+```shell
 # From project root
-$ cd FrontEnd
-$ docker build . -t <image_name>
+docker compose up --build
 ```
-
-The resulting image can be referred to by the name specified, and run by the containerization tooling of your choice.
-
-In order to use a local Dockerfile with `docker-compose`, simply change the `image` option to `build`, setting the value to the relative path of the directory containing the Dockerfile. Then run `docker-compose build` to build the relevant images. For example:
-
-```
-# docker-compose.yml from project root, referencing local dockerfiles
-pipeline0:
-  build: ./Pipeline/
-image: chazu/ambar-pipeline
-  localcrawler:
-    image: ./LocalCrawler/
-```
-
-Note that some of the components require compilation or other build steps be performed _on the host_ before the docker images can be built. For example, `FrontEnd`:
-
-```
-# Assuming a suitable version of node.js is installed (docker uses 8.10)
-$ npm install
-$ npm run compile
-```
-
-Then follow this instructions -> https://ambar.cloud/docs/installation
 
 ## FAQ
 ### Is it open-source?
@@ -101,11 +74,12 @@ Yes, it's fully open-source.
 ### Is it free?
 Yes, it is forever free and open-source.
 
-### Does it perform OCR? 
+### Does it perform OCR?
 Yes, it performs OCR on images (jpg, tiff, bmp, etc) and PDF's. OCR is perfomed by well-known open-source library Tesseract. We tuned it to achieve best perfomance and quality on scanned documents. You can easily find all files on which OCR was perfomed with `tags:ocr` query
 
 ### Which languages are supported for OCR?
 Supported languages: Eng, Rus, Ita, Deu, Fra, Spa, Pl, Nld.
+See [this commit](https://github.com/Yavari/ambar/commit/0dd5e0edba8b32e283659ae32fff3246048a6740) for an example how to add new languages.
 
 ### Does it support tagging?
 Yes!
@@ -114,19 +88,10 @@ Yes!
 Yes, it can search through any PDF, even badly encoded or with scans inside. We did our best to make search over any kind of pdf document smooth.
 
 ### What is the maximum file size it can handle?
-It's limited by amount of RAM on your machine, typically it's 500MB. It's an awesome result, as typical document managment systems offer 30MB maximum file size to be processed.  
-
-## Sponsors
-
-- [IFIC.co.uk](http://www.ific.co.uk/)
-
-## Change Log
-[Change Log](https://github.com/RD17/ambar/blob/master/CHANGELOG.md)
+It's limited by amount of RAM on your machine, typically it's 500MB. It's an awesome result, as typical document managment systems offer 30MB maximum file size to be processed.
 
 ## Privacy Policy
-[Privacy Policy](https://github.com/RD17/ambar/blob/master/privacy-policy.md)
+[Privacy Policy](./privacy-policy.md)
 
 ## License
-[MIT License](https://github.com/RD17/ambar/blob/master/license.txt)
-
-
+[MIT License](./License.txt)
