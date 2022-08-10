@@ -1,12 +1,12 @@
-import moment from 'moment'
+import { lightFormat } from 'date-fns'
 import chokidar from 'chokidar'
 import path from 'path'
-import config from '../config'
+import config from '../config.js'
 import bytes from 'bytes'
 import minimatch from 'minimatch'
 
-import * as ApiProxy from './ApiProxy'
-import * as QueueProxy from './QueueProxy'
+import * as ApiProxy from './ApiProxy.js'
+import * as QueueProxy from './QueueProxy.js'
 
 export const startWatch = () => {
     chokidar.watch(config.crawlPath, { usePolling: true, awaitWriteFinish: true })
@@ -74,8 +74,8 @@ const addTask = (event, pathToFile, stat) => {
 
     const meta = {
         full_name: normalizedPath,
-        updated_datetime: !stat ? '' : moment(stat.mtime).format('YYYY-MM-DD HH:mm:ss.SSS'),
-        created_datetime: !stat ? '' : moment(stat.atime).format('YYYY-MM-DD HH:mm:ss.SSS'),
+        updated_datetime: !stat ? '' : lightFormat(stat.mtime, 'yyyy-MM-dd HH:mm:ss.SSS'),
+        created_datetime: !stat ? '' : lightFormat(stat.atime, 'yyyy-MM-dd HH:mm:ss.SSS'),
         source_id: config.name,
         short_name: path.basename(normalizedPath),
         extension: path.extname(normalizedPath),

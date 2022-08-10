@@ -1,19 +1,20 @@
-import { version, name, description } from '../../package.json'
 import { Router } from 'express'
 import fs from 'fs'
 import path from 'path'
-import config from '../config'
+import config from '../config.js'
 
-import * as ApiProxy from '../services/ApiProxy'
+import * as ApiProxy from '../services/ApiProxy.js'
 
 export default () => {
 	let api = Router()
 
-	api.get('/', (req, res) => {
+	api.get('/', async (req, res) => {
+		// Use JSON imports once they're stable within Node
+		const meta = JSON.parse(fs.readFileSync('../../package.json', 'utf8'))
 		res.json({
-			name: name,
-			version: version,
-			description: description
+			name: meta.name,
+			version: meta.version,
+			description: meta.description
 		})
 	})
 

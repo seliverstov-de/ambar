@@ -2,17 +2,16 @@ import http from 'http'
 import express from 'express'
 import cors from 'cors'
 import bodyParser from 'body-parser'
-import api from './api'
-import config from './config'
+import api from './api/index.js'
+import config from './config.js'
 import cluster from 'cluster'
 
-import 'babel-core/register'
-import 'idempotent-babel-polyfill'
-
-import { FileWatchService, ApiProxy, QueueProxy } from './services'
+import * as QueueProxy from './services/QueueProxy.js'
+import * as FileWatchService from './services/FileWatchService.js'
+import * as ApiProxy from './services/ApiProxy.js'
 
 let app = null
-if (cluster.isMaster) {
+if (cluster.isPrimary) {
 	ApiProxy.logData(config.name, 'info', 'API runs on master thread')
 	ApiProxy.logData(config.name, 'info', 'Creating fork for the file-watcher process')
 
@@ -56,4 +55,3 @@ if (cluster.isMaster) {
 }
 
 export default app
-

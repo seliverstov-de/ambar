@@ -1,5 +1,5 @@
 import amqp from 'amqplib'
-import config from '../config'
+import config from '../config.js'
 
 const AMBAR_PIPELINE_EXCHANGE = "AMBAR_PIPELINE_EXCHANGE"
 
@@ -31,4 +31,3 @@ export const initRabbit = (onError) => new Promise((resolve, reject) => {
         })
         .catch(err => reject(err))
 })
-
