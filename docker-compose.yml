@@ -52,8 +52,6 @@ services:
     networks:
       - internal_network
     build: ./Redis
-    expose:
-      - "6379"
   serviceapi:
     depends_on:
       redis:
