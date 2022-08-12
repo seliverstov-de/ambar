@@ -1,8 +1,8 @@
-import config from '../../config'
-import { DateTimeService } from '../index'
-import * as EsQueryBuilder from '../../utils/EsQueryBuilder'
-import * as AmbarLogMapping from './AmbarLogMapping.json'
-import * as AmbarFileDataMapping from './AmbarFileDataMapping.json'
+import config from '../../config.js'
+import * as DateTimeService from '../DateTimeService.js'
+import * as EsQueryBuilder from '../../utils/EsQueryBuilder.js'
+import * as AmbarLogMapping from './AmbarLogMapping.js'
+import * as AmbarFileDataMapping from './AmbarFileDataMapping.js'
 
 const MAPPING_ANALYZER_REGEX = /\$\{ANALYZER\}/g
 
@@ -128,8 +128,8 @@ export const getTagsStat = (esClient) => new Promise((resolve, reject) =>
         type: ES_FILE_TAG_TYPE_NAME,
         body: EsQueryBuilder.getTagsStatsQuery()
     })
-        .then(result => {
-            resolve(transformTagsStat(result))
+        .then(({ body }) => {
+            resolve(transformTagsStat(body))
         })
         .catch(err => reject(err))
 )
@@ -145,7 +145,7 @@ export const checkIfMetaIdExists = (esClient, metaId) => new Promise((resolve, r
             }
         }
     })
-        .then(result => resolve(result.hits.total > 0 ? true : false))
+        .then(({ body }) => resolve(body.hits.total > 0 ? true : false))
         .catch(err => reject(err))
 })
 
@@ -161,7 +161,7 @@ export const getFileBySha = (esClient, sha) => new Promise((resolve, reject) => 
             }
         }
     })
-        .then(result => resolve(result.hits.total > 0 ? normalizeHitContentHighlights(transformHit(result.hits.hits[0])) : null))
+        .then(({ body }) => resolve(body.hits.total > 0 ? normalizeHitContentHighlights(transformHit(body.hits.hits[0])) : null))
         .catch(err => reject(err))
 })
 
@@ -175,7 +175,7 @@ export const indexTag = (esClient, fileId, tag) => new Promise((resolve, reject)
         id: tag.id,
         body: tag
     })
-        .then(res => resolve(res))
+        .then(({ body }) => resolve(body))
         .catch(err => reject(err))
 })
 
@@ -211,13 +211,13 @@ export const createFilesIndex = (esClient) => new Promise((resolve, reject) => {
         index: ES_FILE_INDEX_NAME,
         body: mappings
     })
-        .then(result => resolve(result))
+        .then(({ body }) => resolve(body))
         .catch(err => reject(err))
 })
 
 export const deleteAutoTags = (esClient, fileId) => new Promise((resolve, reject) => {
     removeAutoTags(esClient, fileId)
-        .then(result => resolve(result))
+        .then(({ body }) => resolve(body))
         .catch(err => reject(err))
 })
 
@@ -256,6 +256,6 @@ const removeAutoTags = (esClient, fileId) => new Promise((resolve, reject) => {
             }
         }
     })
-        .then(res => resolve(res))
+        .then(({ body }) => resolve(body))
         .catch(err => reject(err))
 })

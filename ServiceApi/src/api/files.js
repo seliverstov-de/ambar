@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import ErrorResponse from '../utils/ErrorResponse'
+import ErrorResponse from '../utils/ErrorResponse.js'
 import {
     CryptoService,
     EsLowLevelProxy,
@@ -8,8 +8,8 @@ import {
     GridFsProxy,
     FileUploader,
     QueueProxy
-} from '../services'
-import * as MetaBuilder from '../utils/MetaBuilder'
+} from '../services/index.js'
+import * as MetaBuilder from '../utils/MetaBuilder.js'
 
 const generateMetaId = (source_id, full_name, created_datetime, updated_datetime) => {
     return CryptoService.getSha256(`${source_id}${full_name}${created_datetime}${updated_datetime}`)
@@ -104,7 +104,7 @@ export default ({ storage }) => {
 
         const fileName = generateExtractedTextFileName(sha)
 
-        GridFsProxy.checkIfFileExist(storage.mongoDb, fileName)
+        GridFsProxy.checkIfFileExists(storage.mongoDb, fileName)
             .then(found => found ? sha : null)
             .then(sha => {
                 if (!sha) {
@@ -122,7 +122,7 @@ export default ({ storage }) => {
      */
     api.post('/content/:sha', FileUploader, (req, res, next) => {
         let { params: { sha: clientHash }, files } = req
-        const fileContent = (Buffer.isBuffer(files[0].buffer) && Buffer.byteLength(files[0].buffer) > 0) ? files[0].buffer : new Buffer(0)
+        const fileContent = (Buffer.isBuffer(files[0].buffer) && Buffer.byteLength(files[0].buffer) > 0) ? files[0].buffer : Buffer.alloc(0)
         const serverHash = CryptoService.getSha256(fileContent)
 
         if (serverHash.toLowerCase() !== clientHash.toLowerCase()) {
@@ -130,7 +130,7 @@ export default ({ storage }) => {
             return
         }
 
-        GridFsProxy.checkIfFileExist(storage.mongoDb, serverHash)
+        GridFsProxy.checkIfFileExists(storage.mongoDb, serverHash)
             .then(found => {
                 if (found) {
                     res.sendStatus(302)
@@ -150,7 +150,7 @@ export default ({ storage }) => {
     api.get('/content/:sha', (req, res, next) => {
         const sha = req.params.sha
 
-        GridFsProxy.checkIfFileExist(storage.mongoDb, sha)
+        GridFsProxy.checkIfFileExists(storage.mongoDb, sha)
             .then(found => found ? sha : null)
             .then(sha => {
                 if (!sha) {
@@ -176,7 +176,7 @@ export default ({ storage }) => {
     api.delete('/content/:sha', (req, res, next) => {
         const sha = req.params.sha
 
-        GridFsProxy.checkIfFileExist(storage.mongoDb, sha)
+        GridFsProxy.checkIfFileExists(storage.mongoDb, sha)
             .then(found => found ? sha : null)
             .then(sha => {
                 if (!sha) {
@@ -198,7 +198,7 @@ export default ({ storage }) => {
 
         const fileName = generateExtractedTextFileName(sha)
 
-        GridFsProxy.checkIfFileExist(storage.mongoDb, fileName)
+        GridFsProxy.checkIfFileExists(storage.mongoDb, fileName)
             .then(found => found ? fileName : null)
             .then(fileName => {
                 if (!fileName) {
@@ -242,7 +242,7 @@ export default ({ storage }) => {
     api.post('/file/:fileId/processed', FileUploader, (req, res, next) => {
         const { params: { fileId }, files } = req
 
-        const file = (Buffer.isBuffer(files[0].buffer) && Buffer.byteLength(files[0].buffer) > 0) ? files[0].buffer : new Buffer(0)
+        const file = (Buffer.isBuffer(files[0].buffer) && Buffer.byteLength(files[0].buffer) > 0) ? files[0].buffer : Buffer.alloc(0)
 
         EsLowLevelProxy.updateFile(fileId, file)
             .then((result) => {
@@ -269,7 +269,7 @@ export default ({ storage }) => {
 
         const extractedTextFileName = generateExtractedTextFileName(sha)
 
-        const file = (Buffer.isBuffer(files[0].buffer) && Buffer.byteLength(files[0].buffer) > 0) ? files[0].buffer : new Buffer(0)
+        const file = (Buffer.isBuffer(files[0].buffer) && Buffer.byteLength(files[0].buffer) > 0) ? files[0].buffer : Buffer.alloc(0)
 
         GridFsProxy.uploadPlainTextFile(storage.mongoDb, extractedTextFileName, file)
             .then(() => {

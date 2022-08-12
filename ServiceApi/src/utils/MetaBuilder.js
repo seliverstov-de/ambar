@@ -1,4 +1,4 @@
-import { CryptoService, DateTimeService } from '../services'
+import { CryptoService, DateTimeService } from '../services/index.js'
 
 const FILE_EXTENSION_REGEX = /(?:\.([^.]+))?$/
 

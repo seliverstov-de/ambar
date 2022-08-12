@@ -1,11 +1,10 @@
 import http from 'http'
 import express from 'express'
-import cors from 'cors'
 import bodyParser from 'body-parser'
-import api from './api'
-import config from './config'
-import slao from 'slao'
-import { ErrorHandlerService, EsProxy, MongoProxy, StorageService } from './services'
+import morgan from 'morgan'
+import api from './api/index.js'
+import config from './config.js'
+import { ErrorHandlerService, EsProxy, MongoProxy, StorageService } from './services/index.js'
 
 const createLogRecord = (type, message) => ({
 	type: type,
@@ -17,16 +16,11 @@ let app = express()
 
 app.server = http.createServer(app)
 
-app.use(slao.init({ appName: 'ambar-serviceapi' }))
-
-app.use(cors({
-	credentials: true,
-	origin: true
-}))
-
 app.use(bodyParser.json({
 	limit: config.bodyLimit
 }))
+
+app.use(morgan('dev'))
 
 // connect to storage
 StorageService.initializeStorage()

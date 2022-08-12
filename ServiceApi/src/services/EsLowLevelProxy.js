@@ -1,5 +1,5 @@
-import request from 'request'
-import config from '../config'
+import axios from 'axios'
+import config from '../config.js'
 import { createReadStream } from 'streamifier'
 import combinedStream from 'combined-stream2'
 
@@ -38,26 +38,19 @@ export const updateFile = (fileId, data) => {
     const bodyStream = bodyToStream(body, contentToken, data)
 
     return new Promise((resolve, reject) => {
-        bodyStream.pipe(request.post({
-            url: `${config.elasticSearchUrl}/${ES_FILE_INDEX_NAME}/${ES_FILE_TYPE_NAME}/${fileId}/_update?retry_on_conflict=5&refresh=true`,
+        axios.post(`${config.elasticSearchUrl}/${ES_FILE_INDEX_NAME}/${ES_FILE_TYPE_NAME}/${fileId}/_update?retry_on_conflict=5&refresh=true`, bodyStream, {
             headers: {
                 'Content-Type': 'application/json'
             }
-        }, (err, resp) => {
-            if (err) {
-                reject(err)
-                return
-            }
-
-            const response = JSON.parse(resp.body)
+        }).then((resp) => {
+            const response = resp.data
             
             if (response.result === 'updated' || response.result === 'created') {
                 resolve(response.result)
-                return
+            } else {
+                reject(response)
             }
-
-            reject(response)
         }
-        ))
+        ).catch((err) => reject(err))
     })
 }

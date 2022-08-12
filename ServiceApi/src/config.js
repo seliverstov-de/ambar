@@ -2,7 +2,7 @@ const defaultConfig = {
 	"localPort": 8081,
 	"bodyLimit": "1024mb",
 	"corsHeaders": ["Link"],
-	"mongoDbUrl": "mongodb://ambar:27017/ambar_data",
+	"mongoDbUrl": "mongodb://ambar:27017/",
 	"elasticSearchUrl": "http://ambar:9200",
 	"redisHost": "ambar",
 	"redisPort": "6379",	

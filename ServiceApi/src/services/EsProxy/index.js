@@ -1,1 +1,1 @@
-export * from './EsProxy'
+export * from './EsProxy.js'

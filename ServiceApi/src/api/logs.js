@@ -1,6 +1,6 @@
 import { Router } from 'express'
-import ErrorResponse from '../utils/ErrorResponse'
-import { EsProxy } from '../services'
+import ErrorResponse from '../utils/ErrorResponse.js'
+import * as EsProxy from '../services/EsProxy/EsProxy.js'
 
 export default ({ storage }) => {
     let api = Router()

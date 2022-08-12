@@ -65,14 +65,12 @@ services:
     expose:
       - "8081"
     environment:
-      - mongoDbUrl=mongodb://db:27017/ambar_data
+      - mongoDbUrl=mongodb://db:27017/
       - elasticSearchUrl=http://es:9200
       - redisHost=redis
       - redisPort=6379
       - rabbitHost=amqp://rabbit
-      - langAnalyzer=${langAnalyzer}  
-      - SLAO_HOSTNAME=ambar 
-      - SLAO_API_KEY=
+      - langAnalyzer=${langAnalyzer}
   webapi:
     depends_on:
       serviceapi:

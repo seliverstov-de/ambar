@@ -1,10 +1,10 @@
 import { Router } from 'express'
-import ErrorResponse from '../utils/ErrorResponse'
+import ErrorResponse from '../utils/ErrorResponse.js'
 import {
     CryptoService,
     MongoProxy,
     CacheProxy
-} from '../services'
+} from '../services/index.js'
 
 const AUTO_TAG_TYPE = 'auto'
 const SOURCE_TAG_TYPE = 'source'

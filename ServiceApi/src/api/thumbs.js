@@ -1,6 +1,6 @@
 import { Router } from 'express'
-import ErrorResponse from '../utils/ErrorResponse'
-import { MongoProxy, FileUploader } from '../services'
+import ErrorResponse from '../utils/ErrorResponse.js'
+import { MongoProxy, FileUploader } from '../services/index.js'
 
 export default ({ storage }) => {
     let api = Router()
@@ -16,7 +16,7 @@ export default ({ storage }) => {
             return
         }
 
-        const fileContent = Buffer.byteLength(files[0].buffer) > 0 ? files[0].buffer : new Buffer(0)
+        const fileContent = Buffer.byteLength(files[0].buffer) > 0 ? files[0].buffer : Buffer.alloc(0)
 
         MongoProxy.createThumbnail(storage.mongoDb, thumbId, fileContent)
             .then(() => {
