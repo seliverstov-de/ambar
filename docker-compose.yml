@@ -79,20 +79,16 @@ services:
     networks:
       - internal_network
     build: ./WebApi
-    expose:
-      - "8080"
     ports:
       - "127.0.0.1:8080:8080"
     environment:
       - uiLang=en
-      - mongoDbUrl=mongodb://db:27017/ambar_data
+      - mongoDbUrl=mongodb://db:27017/
       - elasticSearchUrl=http://es:9200
       - redisHost=redis
       - redisPort=6379
       - serviceApiUrl=http://serviceapi:8081
-      - rabbitHost=amqp://rabbit  
-      - SLAO_HOSTNAME=ambar
-      - SLAO_API_KEY=  
+      - rabbitHost=amqp://rabbit
   frontend:
     depends_on:
       webapi:

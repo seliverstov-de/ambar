@@ -1,28 +1,22 @@
 import crypto from 'crypto'
-import bluebird from 'bluebird'
 
-const pbkdf2 = bluebird.promisify(crypto.pbkdf2);
-
-const DOWNLOAD_URI_CIPHER_KEY = 'BfeZp2UV'
+const DOWNLOAD_URI_CIPHER_KEY = Buffer.from('635266556A586E327235753778214125442A472D4B6150645367566B59703373', 'hex')
 
 export const getSha256 = (data) => crypto.createHash('sha256').update(data).digest('hex')
 export const getSha1 = (data) => crypto.createHash('sha1').update(data).digest('hex')
 
-export const getPasswordHash = (password, salt) => pbkdf2(password, salt, 8192, 512, 'sha512').then((hash) => hash.toString('hex'))
-
-export const generateRandom = (length = 256) => crypto.randomBytes(length).toString('hex')
-
 export const encryptDownloadUri = (fileId) => {
-    const cipher = crypto.createCipher('aes192', DOWNLOAD_URI_CIPHER_KEY)
-    const uri = { fileId: fileId }
-
-    return cipher.update(JSON.stringify(uri), 'utf8', 'hex') + cipher.final('hex')
+    const iv = crypto.randomBytes(16);
+    const cipher = crypto.createCipheriv('aes256', DOWNLOAD_URI_CIPHER_KEY, iv)
+    let encrypted = cipher.update(JSON.stringify({ fileId: fileId }))
+    encrypted = Buffer.concat([encrypted, cipher.final()])
+    return iv.toString('hex') + ':' + encrypted.toString('hex')
 }
 
 export const decryptDownloadUri = (uri) => {
-    const decipher = crypto.createDecipher('aes192', DOWNLOAD_URI_CIPHER_KEY)
-    const decryptedUri = decipher.update(uri, 'hex', 'utf8') + decipher.final('utf8')
-
-    return JSON.parse(decryptedUri)
+    const [iv, payload] = uri.split(':')
+    const decipher = crypto.createDecipheriv('aes256', DOWNLOAD_URI_CIPHER_KEY, Buffer.from(iv, 'hex'))
+    let decrypted = decipher.update(payload)
+    decrypted = Buffer.concat([decrypted, decipher.final()])
+    return JSON.parse(decrypted.toString('utf-8'))
 }
-

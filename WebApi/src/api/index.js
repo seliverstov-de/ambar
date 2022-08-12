@@ -1,11 +1,11 @@
-import { version } from '../../package.json'
 import { Router } from 'express'
-import files from './files'
-import logs from './logs'
-import search from './search'
-import stats from './stats'
-import thumbs from './thumbs'
-import tags from './tags'
+import fs from 'fs'
+import files from './files.js'
+import logs from './logs.js'
+import search from './search.js'
+import stats from './stats.js'
+import thumbs from './thumbs.js'
+import tags from './tags.js'
 
 export default ({ config, storage }) => {
 	let api = Router()
@@ -18,8 +18,10 @@ export default ({ config, storage }) => {
 	api.use('/tags', tags({ config, storage }))
 
 	api.get('/', (req, res) => {
+		// Use JSON imports once they're stable within Node
+		const meta = JSON.parse(fs.readFileSync('../../package.json', 'utf8'))
 		res.json({
-			version: version,							
+			version: meta.version,							
 			uiLang: config.uiLang,
 			rawConfig: config
 		})

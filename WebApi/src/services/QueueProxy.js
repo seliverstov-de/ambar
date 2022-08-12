@@ -1,5 +1,5 @@
 import amqp from 'amqplib'
-import config from '../config'
+import config from '../config.js'
 
 export const AMBAR_PIPELINE_EXCHANGE = "AMBAR_PIPELINE_EXCHANGE"
 
@@ -29,7 +29,6 @@ export const initRabbit = new Promise((resolve, reject) => {
 	amqp.connect(`${config.rabbitHost}?heartbeat=0`)
 		.then((conn) => {
 			conn.on('error', (err) => {			
-				//eslint-disable-next-line no-console	
 				console.error('Rabbit error!') 
 				throw err
 			})

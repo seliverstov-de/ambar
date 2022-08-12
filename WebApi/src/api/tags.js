@@ -1,9 +1,9 @@
 import { Router } from 'express'
-import ErrorResponse from '../utils/ErrorResponse'
+import ErrorResponse from '../utils/ErrorResponse.js'
 import {
     CryptoService,
     CacheProxy
-} from '../services'
+} from '../services/index.js'
 
 const MANUAL_TAG_TYPE = 'manual'
 

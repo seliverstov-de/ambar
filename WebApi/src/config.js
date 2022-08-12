@@ -4,7 +4,7 @@ const defaultConfig = {
 	"localPort": 8080,
 	"bodyLimit": "1024mb",
 	"corsHeaders": ["Link"],
-	"mongoDbUrl": "mongodb://ambar:27017/ambar_data",
+	"mongoDbUrl": "mongodb://ambar:27017/",
 	"elasticSearchUrl": "http://ambar:9200",
 	"redisHost": "ambar",
 	"redisPort": "6379",
@@ -22,7 +22,7 @@ let config = null
 const init = () => {
 	const options = parseArgs(process.argv.slice(2))
 
-	const receivedConfig = options.config && options.config != '' ? JSON.parse(new Buffer(options.config, 'base64').toString('utf8')) : {}
+	const receivedConfig = options.config && options.config != '' ? JSON.parse(Buffer.from(options.config, 'base64').toString('utf8')) : {}
 
 	Object.keys(receivedConfig).forEach(key => {
 		if (intParamsList.includes(key)) {

@@ -1,7 +1,7 @@
 import { Router } from 'express'
-import { MongoProxy } from '../services'
+import * as MongoProxy from '../services/MongoProxy.js'
 
-export default ({ storage}) => {
+export default ({ storage }) => {
     let api = Router()
    
     /**     

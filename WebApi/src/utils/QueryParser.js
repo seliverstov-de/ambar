@@ -1,4 +1,4 @@
-import { DateTimeService } from '../services'
+import * as DateTimeService from '../services/DateTimeService.js'
 
 const FILE_NAME_QUERY = /((^|\s)filename:)([^\s]*)/im
 

@@ -1,6 +1,6 @@
-import moment from 'moment'
-import { DateTimeService, CryptoService } from '../index'
-import * as EsQueryBuilder from '../../utils/EsQueryBuilder'
+import { lightFormat, startOfDay, isSameDay, fromUnixTime, subDays, subMonths, isSameMonth } from 'date-fns'
+import { DateTimeService, CryptoService } from '../index.js'
+import * as EsQueryBuilder from '../../utils/EsQueryBuilder.js'
 
 const MIN_THRESHOLD_EXTENSION = 0.03
 
@@ -255,9 +255,7 @@ export const getShortStats = (esClient) => new Promise((resolve, reject) =>
         type: ES_FILE_TYPE_NAME,
         body: EsQueryBuilder.getShortStatsQuery()
     })
-        .then(result => {
-            resolve(result)
-        })
+        .then(({ body }) => resolve(body))
         .catch(err => reject(err))
 )
 
@@ -267,9 +265,7 @@ export const getTagsStat = (esClient) => new Promise((resolve, reject) =>
         type: ES_FILE_TAG_TYPE_NAME,
         body: EsQueryBuilder.getTagsStatsQuery()
     })
-        .then(result => {
-            resolve(transformTagsStat(result))
-        })
+        .then(({ body }) => resolve(transformTagsStat(body)))
         .catch(err => reject(err))
 )
 
@@ -279,7 +275,7 @@ export const getFilesTreeByQuery = (esClient, request) => new Promise((resolve, 
         type: ES_FILE_TYPE_NAME,
         body: EsQueryBuilder.getFilesTreeQuery(request)
     })
-        .then(result => resolve(normalizeTreeAggregationResult(result)))
+        .then(({ body }) => resolve(normalizeTreeAggregationResult(body)))
         .catch(err => reject(err))
 })
 
@@ -289,7 +285,7 @@ export const getFilesStatsByQuery = (esClient, request, maxItemsToRetrieve) => n
         type: ES_FILE_TYPE_NAME,
         body: EsQueryBuilder.getFilesStatsQuery(request, maxItemsToRetrieve)
     })
-        .then(result => resolve(normalizeStatsAggregationResult(result)))
+        .then(({ body }) => resolve(normalizeStatsAggregationResult(body)))
         .catch(err => reject(err))
 })
 
@@ -305,8 +301,8 @@ export const searchFiles = (esClient, request, from, size) => {
         esClient.msearch({
             body: requests
         })
-            .then(results => {
-                const result = results.responses
+            .then(({ body }) => {
+                const result = body.responses
                 const maxScore = Math.max(result[0].hits.max_score, result[1].hits.max_score)
 
                 const resultHits = normalizeHitsScore(result[0].hits.hits, maxScore)
@@ -339,11 +335,11 @@ export const getFileHighlightByFileId = (esClient, request, fileId) => new Promi
         type: ES_FILE_TYPE_NAME,
         body: EsQueryBuilder.getFileHighlightQuery(request, fileId)
     })
-        .then(result => {
-            if (result.hits.hits && result.hits.hits.length === 1) {
+        .then(({ body }) => {
+            if (body.hits.hits && body.hits.hits.length === 1) {
                 resolve(
                     normalizeHitContentHighlights(
-                        transformHit(result.hits.hits[0])
+                        transformHit(body.hits.hits[0])
                     )
                 )
             }
@@ -360,10 +356,10 @@ export const getFullFileHighlightByFileId = (esClient, request, fileId) => new P
         type: ES_FILE_TYPE_NAME,
         body: EsQueryBuilder.getFullFileHighlightQuery(request, fileId)
     })
-        .then(result => {
-            if (result.hits.hits && result.hits.hits.length === 1) {
+        .then(({ body }) => {
+            if (body.hits.hits && body.hits.hits.length === 1) {
                 resolve(
-                    normalizeHitContentHighlights(transformHit(result.hits.hits[0]))
+                    normalizeHitContentHighlights(transformHit(body.hits.hits[0]))
                 )
             }
             else {
@@ -380,9 +376,7 @@ export const checkIfFileExists = (esClient, fileId) => new Promise((resolve, rej
         _source: false,
         id: fileId
     })
-        .then(result => {
-            resolve(result.found)
-        })
+        .then(({ body }) => resolve(body.found))
         .catch(err => {
             if (err.statusCode == 404) {
                 resolve(false)
@@ -427,7 +421,7 @@ export const getFileByFileId = (esClient, fileId, includeChildren = false) => ne
             }
         }
     })
-        .then(result => resolve(result.hits.total > 0 ? normalizeHitContentHighlights(transformHit(result.hits.hits[0])) : null))
+        .then(({ body }) => resolve(body.hits.total > 0 ? normalizeHitContentHighlights(transformHit(body.hits.hits[0])) : null))
         .catch(err => reject(err))
 })
 
@@ -445,7 +439,7 @@ export const hideFile = (esClient, fileId) => new Promise((resolve, reject) => {
         id: hiddenMark.id,
         body: hiddenMark
     })
-        .then(res => resolve(res))
+        .then(({ body }) => resolve(body))
         .catch(err => reject(err))
 })
 
@@ -459,7 +453,7 @@ export const unHideFile = (esClient, fileId) => new Promise((resolve, reject) =>
         refresh: true,
         id: hiddenMarkId
     })
-        .then(res => resolve(res))
+        .then(({ body }) => resolve(body))
         .catch(err => reject(err))
 })
 
@@ -473,7 +467,7 @@ export const indexTag = (esClient, fileId, tag) => new Promise((resolve, reject)
         id: tag.id,
         body: tag
     })
-        .then(res => resolve(res))
+        .then(({ body }) => resolve(body))
         .catch(err => reject(err))
 })
 
@@ -485,7 +479,7 @@ export const deleteTag = (esClient, fileId, tagId) => new Promise((resolve, reje
         refresh: true,
         id: tagId
     })
-        .then(res => resolve(res))
+        .then(({ body }) => resolve(body))
         .catch(err => reject(err))
 })
 
@@ -511,7 +505,7 @@ export const getLastLogRecords = (esClient, numberOfRecords) => new Promise((res
         type: ES_LOG_TYPE_NAME,
         body: query
     })
-        .then(result => resolve(result.hits.hits.map(hit => hit._source).reverse()))
+        .then(({ body }) => resolve(body.hits.hits.map(hit => hit._source).reverse()))
         .catch(err => reject(err))
 })
 
@@ -521,9 +515,7 @@ export const getStats = (esClient) => new Promise((resolve, reject) =>
         type: ES_FILE_TYPE_NAME,
         body: EsQueryBuilder.getStatsQuery()
     })
-        .then(result => {
-            resolve(result)
-        })
+        .then(({ body }) => resolve(body))
         .catch(err => reject(err))
 )
 
@@ -537,19 +529,19 @@ const normalizeProcessingStats = (esResponse) => {
     }
 
     const dates = []
-    let dateSpan = ITEMS_COUNT - 1
-    while (dateSpan >= 0) {
-        dates.push(moment().startOf('day').add(-dateSpan, 'days'))
-        dateSpan--
+    const startOfToday = startOfDay(new Date())
+    for (let dateSpan = ITEMS_COUNT - 1; dateSpan >= 0; dateSpan--) {
+        dates.push(subDays(startOfToday, dateSpan))
     }
+
     dates.forEach((date) => {
         const dateItem = {
-            date: date.format('DD.MM.YYYY'),
+            date: lightFormat(date, 'dd.MM.yyyy'),
             count: 0,
             size: 0
         }
 
-        const esDateBucket = esResponse.aggregations.days.buckets.find((bucket) => (moment(bucket.key).startOf('day').isSame(date)))
+        const esDateBucket = esResponse.aggregations.days.buckets.find((bucket) => isSameDay(fromUnixTime(bucket.key / 1000), date))
         if (esDateBucket) {
             dateItem.count = esDateBucket.doc_count
             dateItem.size = esDateBucket.size.value
@@ -559,19 +551,18 @@ const normalizeProcessingStats = (esResponse) => {
     })
 
     const months = []
-    let monthsSpan = ITEMS_COUNT - 1
-    while (monthsSpan >= 0) {
-        months.push(moment().startOf('month').add(-monthsSpan, 'months'))
-        monthsSpan--
+    const startOfMonth = startOfMonth(new Date())
+    for (let monthsSpan = ITEMS_COUNT - 1; monthsSpan >= 0; monthsSpan--) {
+        months.push(subMonths(startOfToday, monthsSpan))
     }
     months.forEach((month) => {
         const monthItem = {
-            date: month.format('MM.YYYY'),
+            date: lightFormat(month, 'MM.yyyy'),
             count: 0,
             size: 0
         }
 
-        const esDateBucket = esResponse.aggregations.months.buckets.find((bucket) => (moment(bucket.key).startOf('day').isSame(month)))
+        const esDateBucket = esResponse.aggregations.months.buckets.find((bucket) => isSameMonth(fromUnixTime(bucket.key / 1000), month))
         if (esDateBucket) {
             monthItem.count = esDateBucket.doc_count
             monthItem.size = esDateBucket.size.value
@@ -589,8 +580,6 @@ export const getProcessingStats = (esClient) => new Promise((resolve, reject) =>
         type: ES_FILE_TYPE_NAME,
         body: EsQueryBuilder.getProcessingStatsQuery()
     })
-        .then(result => {
-            resolve(normalizeProcessingStats(result))
-        })
+        .then(({ body }) => resolve(normalizeProcessingStats(body)))
         .catch(err => reject(err))
 )

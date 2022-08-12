@@ -1,9 +1,8 @@
-import { EsProxy, DateTimeService } from './index'
-import ErrorResponse from '../utils/ErrorResponse'
+import { EsProxy, DateTimeService } from './index.js'
+import ErrorResponse from '../utils/ErrorResponse.js'
 
 export default (esClient) => (err, req, res, next) => {
     
-    //eslint-disable-next-line no-console
     console.error(err)
 
     const message = (err instanceof Error) 

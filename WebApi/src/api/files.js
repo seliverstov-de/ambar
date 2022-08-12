@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import ErrorResponse from '../utils/ErrorResponse'
+import ErrorResponse from '../utils/ErrorResponse.js'
 import {
     CryptoService,
     EsProxy,
@@ -8,12 +8,15 @@ import {
     FileUploader,
     QueueProxy,
     CacheProxy
-} from '../services'
+} from '../services/index.js'
 
-import * as MetaBuilder from '../utils/MetaBuilder'
+import * as MetaBuilder from '../utils/MetaBuilder.js'
 
-import config from '../config'
-import request from 'request'
+import config from '../config.js'
+import axios from 'axios'
+import { promisify } from 'util';
+import * as stream from 'stream'
+import { basename } from 'path'
 
 const DOWNLOAD_URL_REGEX = /^\/\/([^/]+)\/(.*)$/i
 
@@ -66,15 +69,22 @@ export default ({ storage }) => {
                 return
             }
 
-            const { 1: crawlerName, 2: crawlerFilePath } = match
+            const [, crawlerName, crawlerFilePath] = match
 
-            request
-                .get(`http://${crawlerName}:${config.crawlerPort}/api/download?path=${encodeURIComponent(crawlerFilePath)}`)
-                .on('error', (err) => {
-                    console.log('err during downloading by path', err)
-                    res.end()
+            const crawlerFileName = basename(crawlerFilePath)
+
+            res.writeHead(200, {
+                'Content-Type': 'application/octet-stream',
+                'Content-Disposition': `attachment; filename*=UTF-8''${crawlerFileName}`
+            })
+
+            axios
+                .get(`http://${crawlerName}:${config.crawlerPort}/api/download?path=${encodeURIComponent(crawlerFilePath)}`, { responseType: 'stream' })
+                .then(response  => {
+                    response.data.pipe(res)
+                    return promisify(stream.finished)
                 })
-                .pipe(res)
+                .catch(next)
         }
     })
 
@@ -220,7 +230,7 @@ export default ({ storage }) => {
         let { params: { fileName: fileName }, files } = req
 
         const sourceId = 'ui-upload'
-        const fileContent = (Buffer.isBuffer(files[0].buffer) && Buffer.byteLength(files[0].buffer) > 0) ? files[0].buffer : new Buffer(0)
+        const fileContent = (Buffer.isBuffer(files[0].buffer) && Buffer.byteLength(files[0].buffer) > 0) ? files[0].buffer : Buffer.alloc(0)
         const size = Buffer.byteLength(fileContent)
 
         if (size == 0) {

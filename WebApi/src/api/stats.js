@@ -1,7 +1,7 @@
 import { Router } from 'express'
-import moment from 'moment'
-import * as QueryParser from '../utils/QueryParser'
-import { EsProxy } from '../services'
+import { fromUnixTime, isSameDay, lightFormat, startOfDay, subDays } from 'date-fns'
+import * as QueryParser from '../utils/QueryParser.js'
+import * as EsProxy from '../services/EsProxy/EsProxy.js'
 
 const MIN_THRESHOLD_CONTENT_TYPE = 0.05
 const DAYS_SPAN = 30
@@ -26,19 +26,18 @@ export default ({ storage }) => {
 
         procRate.names = Array.from(names)
 
-        let dateSpan = DAYS_SPAN - 1
-        while (dateSpan >= 0) {
-            dates.push(moment().startOf('day').add(-dateSpan, 'days'))
-            dateSpan--
+        const startOfToday = startOfDay(new Date())
+        for (let dateSpan = DAYS_SPAN - 1; dateSpan >= 0; dateSpan--) {
+            dates.push(subDays(startOfToday, dateSpan))
         }
 
         dates.forEach((date) => {
             const dateItem = {
-                date: date.format('YYYY-MM-DD')
+                date: lightFormat(date, 'yyyy-MM-dd')
             }
             names.forEach((name) => {
                 dateItem[name] = 0
-                const esDateBucket = esResponse.proc_rate.buckets.find((bucket) => (moment(bucket.key).startOf('day').isSame(date)))
+                const esDateBucket = esResponse.proc_rate.buckets.find((bucket) => isSameDay(fromUnixTime(bucket.key / 1000), date))
                 if (esDateBucket) {
                     const esNameBucket = esDateBucket.source.buckets.find((bucket) => (bucket.key == name))
                     if (esNameBucket) {

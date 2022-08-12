@@ -1,7 +1,7 @@
 import { Router } from 'express'
-import ErrorResponse from '../utils/ErrorResponse'
-import * as QueryParser from '../utils/QueryParser'
-import { EsProxy, CryptoService } from '../services'
+import ErrorResponse from '../utils/ErrorResponse.js'
+import * as QueryParser from '../utils/QueryParser.js'
+import { EsProxy, CryptoService } from '../services/index.js'
 
 const DEFAULT_PAGE = 0
 const DEFAULT_SIZE = 10

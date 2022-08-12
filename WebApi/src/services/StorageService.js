@@ -1,38 +1,34 @@
 import { MongoClient } from 'mongodb'
-import elasticsearch from 'elasticsearch'
-import redis from 'redis'
-import bluebird from 'bluebird'
+import { Client } from '@elastic/elasticsearch'
+import { createClient } from 'redis'
 import { QueueProxy } from './index.js'
-import config from '../config'
+import config from '../config.js'
 
-export const initializeStorage = () => new Promise((resolve, reject) => {
-	const esClient = new elasticsearch.Client({
-		host: config.elasticSearchUrl
+export const initializeStorage = async () => {
+	const esClient = new Client({
+		node: config.elasticSearchUrl
 	})
 
-	bluebird.promisifyAll(redis.RedisClient.prototype)
-	bluebird.promisifyAll(redis.Multi.prototype)
+	const redisClient = createClient({ url: `redis://${config.redisHost}:${config.redisPort}` })
 
-	const redisClient = redis.createClient({ host: config.redisHost, port: config.redisPort })
+	await redisClient.connect()
+	await redisClient.ping()
 
-	const mongoPromise = new Promise((resolve, reject) => {
-		MongoClient.connect(config.mongoDbUrl, (err, db) => {
-			if (err) {				
+	const mongoConnection = await new Promise((resolve, reject) => {
+		MongoClient.connect(config.mongoDbUrl, (err, connection) => {
+			if (err) {
 				reject(err)
 			}
-			resolve(db)
+			resolve(connection.db('ambar_data'))
 		})
 	})
 
-	Promise.all([mongoPromise, QueueProxy.initRabbit])
-		.then(([mongoConnection, rabbitConnection]) => {
-			const result = {
-				elasticSearch: esClient,
-				mongoDb: mongoConnection,
-				redis: redisClient,
-				rabbit: rabbitConnection
-			}
-			resolve(result)
-		})
-		.catch(err => reject(err))
-})
+	const rabbitConnection = await QueueProxy.initRabbit
+
+	return {
+		elasticSearch: esClient,
+		mongoDb: mongoConnection,
+		redis: redisClient,
+		rabbit: rabbitConnection
+	}
+}

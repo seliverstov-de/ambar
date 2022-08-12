@@ -1,23 +1,13 @@
-import moment from 'moment'
-import parser from 'cron-parser'
+import { lightFormat, subDays, startOfDay, startOfISOWeek, startOfMonth, startOfYear, parse } from 'date-fns'
 
-const DATETIME_FORMAT = 'YYYY-MM-DD HH:mm:ss.SSS'
+const DATETIME_FORMAT = 'yyyy-MM-dd HH:mm:ss.SSS'
+const formatDateTime = (d) => lightFormat(d, DATETIME_FORMAT)
 
-export const getCurrentDateTime = () => moment().format(DATETIME_FORMAT)
-export const getCurrentDateTimeAddDays = (days) => moment().add(days, 'days').format(DATETIME_FORMAT)
-export const getCurrentDateTimeMinusMinutes = (minutes) => moment().subtract({ minutes: minutes }).format(DATETIME_FORMAT)
-export const getStartOfToday = () => moment().startOf('day').format(DATETIME_FORMAT)
-export const getStartOfYesterday = () => moment().subtract({ days: 1 }).startOf('day').format(DATETIME_FORMAT)
-export const getStartOfThisWeek = () => moment().startOf('isoWeek').format(DATETIME_FORMAT)
-export const getStartOfThisMonth = () => moment().startOf('month').format(DATETIME_FORMAT)
-export const getStartOfThisYear = () => moment().startOf('year').format(DATETIME_FORMAT)
-export const parseDateTime = (dateStr) => moment(dateStr, DATETIME_FORMAT, true)
-export const getDateTimeDifferenceFromNowInHumanForm = (dateStr) => moment.duration(moment().diff(moment(dateStr, DATETIME_FORMAT, true))).humanize()
-export const getDateTimeDifferenceFromNow = (dateStr) => moment().diff(moment(dateStr, DATETIME_FORMAT, true))
+export const getCurrentDateTime = () => formatDateTime(new Date())
+export const getStartOfToday = () => formatDateTime(startOfDay(new Date()))
+export const getStartOfYesterday = () => formatDateTime(startOfDay(subDays(new Date(), 1)))
+export const getStartOfThisWeek = () => formatDateTime(startOfISOWeek(new Date()))
+export const getStartOfThisMonth = () => formatDateTime(startOfMonth(new Date()))
+export const getStartOfThisYear = () => formatDateTime(startOfYear(new Date()))
+export const parseDateTime = (dateStr) => parse(dateStr, DATETIME_FORMAT, new Date())
 export const isSame = (dateA, dateB) => parseDateTime(dateA).isSame(parseDateTime(dateB))
-export const getCronIntervalInMs = (cronSchedule) => {
-    const interval = parser.parseExpression(cronSchedule)
-    const nextRun = interval.next()._date
-    const nextNextRun = interval.next()._date
-    return moment(nextNextRun).diff(nextRun)
-}
