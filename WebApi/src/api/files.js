@@ -113,7 +113,7 @@ export default ({ storage }) => {
 
         const { fileId } = result
 
-        EsProxy.getFileByFileId(storage.elasticSearch, fileId, false)
+        EsProxy.getFileByFileId(storage.elasticSearch, fileId)
             .then(file => {
                 if (file === null) {
                     res.status(404).json(new ErrorResponse('File meta not found'))
@@ -169,7 +169,7 @@ export default ({ storage }) => {
 
         const { fileId } = result
 
-        EsProxy.getFileByFileId(storage.elasticSearch, fileId, false)
+        EsProxy.getFileByFileId(storage.elasticSearch, fileId)
             .then(file => {
                 if (file === null) {
                     res.status(404).json(new ErrorResponse('File meta not found'))

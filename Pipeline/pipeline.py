@@ -264,6 +264,8 @@ def ProcessFile(message):
         ambarFile['meta'] = fileMeta.Dict
         ambarFile['sha256'] = sha
         ambarFile['file_id'] = fileId
+        ambarFile['hidden'] = False
+        ambarFile['tags'] = []
         ambarFile['indexed_datetime'] = datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
 
         apiResp = apiProxy.SubmitProcessedFile(fileId, json.dumps(dict(ambarFile)).encode(encoding='utf_8', errors='ignore'))

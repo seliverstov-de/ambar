@@ -14,8 +14,6 @@ services:
     networks:
       - internal_network
     build: ./ElasticSearch
-    expose:
-      - "9200"
     environment:
       - cluster.name=ambar-es
       - ES_JAVA_OPTS=-Xms2g -Xmx2g
@@ -28,8 +26,6 @@ services:
         hard: 65536
     cap_add:
       - IPC_LOCK
-    volumes:
-      - ${dataPath}/es:/usr/share/elasticsearch/data
   rabbit:
     restart: unless-stopped
     networks:

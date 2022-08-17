@@ -35,8 +35,7 @@ class TableRowResult extends Component {
             sha256: sha256,
             tags: tags,
             file_id: fileId,
-            isHidden: isHidden,
-            hidden_mark: hidden_mark
+            hidden: hidden
             },
             allTags,
             searchQuery,
@@ -80,7 +79,7 @@ class TableRowResult extends Component {
                     <UpdatedDateTimeLabel meta={meta} searchQuery={searchQuery} formatFunc={getFormattedTime} />
                 </TableRowColumn>
                 <TableRowColumn style={{ width: '220px' }}>
-                    {!hidden_mark && meta.source_id != 'ui-upload' && !meta.extra.some(item => item.key === 'from_container') && <IconButton onTouchTap={() => { window.open(downloadUri) }}
+                    {!hidden && meta.source_id != 'ui-upload' && !meta.extra.some(item => item.key === 'from_container') && <IconButton onTouchTap={() => { window.open(downloadUri) }}
                         title={localization.searchPage.downloadDescriptionLabel}>
                         <FileDownloadIcon color='#00bcd4' hoverColor='#80deea' />
                     </IconButton>}                 
@@ -92,7 +91,7 @@ class TableRowResult extends Component {
                         title={localization.searchPage.imagePreviewLabel}>
                         <ImagePreviewIcon color='#00bcd4' hoverColor='#80deea' />
                     </IconButton>
-                    {!hidden_mark && <IconButton onTouchTap={() => hideFile(fileId)} title={localization.searchPage.removeLabel}>
+                    {!hidden && <IconButton onTouchTap={() => hideFile(fileId)} title={localization.searchPage.removeLabel}>
                         <DeleteIcon color='#00bcd4' hoverColor='#80deea' />
                     </IconButton>}                   
                 </TableRowColumn>

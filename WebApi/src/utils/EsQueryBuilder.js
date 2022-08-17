@@ -3,16 +3,7 @@ const FRAGMENT_SIZE = 500
 const NUMBER_OF_FRAGMENTS = 50
 const PHRASE_LIMIT = 1024
 const LARGE_FILE_SIZE_BYTES = 50000000
-const MAX_TAGS_TO_RETRIEVE = 200
 const MAX_TAGS_TO_RETRIEVE_IN_AGG = 50
-
-const ES_FILE_INDEX_NAME = "ambar_file_data"
-const ES_FILE_TAG_TYPE_NAME = "ambar_file_tag"
-const ES_FILE_HIDDEN_MARK_TYPE_NAME = "ambar_file_hidden_mark"
-
-/////////////////////////////////////// Index Name /////////////////////////////////////////////////////////
-
-export const AMBAR_FILE_INDEX_PREFIX = `${ES_FILE_INDEX_NAME}_`
 
 /////////////////////////////////////// Tags queries ///////////////////////////////////////////////////////
 
@@ -22,8 +13,13 @@ export const getTagsStatsQuery = () => (
         size: 0,
         aggs: {
             tags: {
-                terms: { field: 'name', size: MAX_TAGS_TO_RETRIEVE },
-                aggs: { type: { terms: { field: 'type' } } }
+                nested: { path: 'tags' },
+                aggs: {
+                    tags: {
+                        terms: { field: 'tags.name' },
+                        aggs: { type: { terms: { field: 'tags.type' } } }
+                    }
+                }
             }
         }
     })
@@ -32,40 +28,28 @@ export const getTagsStatsQuery = () => (
 
 export const getStatsQuery = () => (
     {
-        "from": 0,
-        "size": 0,
-        "aggs": {
-            "content_type": {
-                "terms": { "field": "content.type" },
-                "aggs": {
-                    "size": { "stats": { "field": "content.size" } }
+        from: 0,
+        size: 0,
+        aggs: {
+            content_type: {
+                terms: { field: "content.type" },
+                aggs: {
+                    size: { stats: { field: "content.size" } }
                 }
             },
-            "proc_rate": {
-                "date_histogram": {
-                    "field": "indexed_datetime",
-                    "interval": "day"
+            proc_rate: {
+                date_histogram: {
+                    field: "indexed_datetime",
+                    calendar_interval: "day"
                 },
-                "aggs": {
-                    "source": {
-                        "terms": { "field": "meta.source_id" }
+                aggs: {
+                    source: {
+                        terms: { field: "meta.source_id" }
                     }
                 }
             },
-            "proc_total": {
-                "stats": { "field": "content.size" }
-            }
-        }
-    }
-)
-
-export const getShortStatsQuery = () => (
-    {
-        "from": 0,
-        "size": 0,
-        "aggs": {
-            "proc_total": {
-                "stats": { "field": "content.size" }
+            proc_total: {
+                stats: { field: "content.size" }
             }
         }
     }
@@ -73,45 +57,45 @@ export const getShortStatsQuery = () => (
 
 export const getProcessingStatsQuery = () => (
     {
-        "from": 0,
-        "size": 0,
-        "aggs": {
-            "hours": {
-                "date_histogram": {
-                    "field": "indexed_datetime",
-                    "interval": "hour",
-                    "format": "HH dd.MM.yyyy",
-                    "order": { "_key": "desc" }
+        from: 0,
+        size: 0,
+        aggs: {
+            hours: {
+                date_histogram: {
+                    field: "indexed_datetime",
+                    calendar_interval: "hour",
+                    format: "HH dd.MM.yyyy",
+                    order: { "_key": "desc" }
                 },
-                "aggs": {
-                    "size": {
-                        "sum": { "field": "content.size" }
+                aggs: {
+                    size: {
+                        sum: { field: "content.size" }
                     }
                 }
             },
-            "days": {
-                "date_histogram": {
-                    "field": "indexed_datetime",
-                    "interval": "day",
-                    "format": "dd.MM.yyyy",
-                    "order": { "_key": "desc" }
+            days: {
+                date_histogram: {
+                    field: "indexed_datetime",
+                    calendar_interval: "day",
+                    format: "dd.MM.yyyy",
+                    order: { _key: "desc" }
                 },
-                "aggs": {
-                    "size": {
-                        "sum": { "field": "content.size" }
+                ggs: {
+                    size: {
+                        sum: { field: "content.size" }
                     }
                 }
             },
-            "months": {
-                "date_histogram": {
-                    "field": "indexed_datetime",
-                    "interval": "month",
-                    "format": "MM.yyyy",
-                    "order": { "_key": "desc" }
+            months: {
+                date_histogram: {
+                    field: "indexed_datetime",
+                    calendar_interval: "month",
+                    format: "MM.yyyy",
+                    order: { _key: "desc" }
                 },
-                "aggs": {
-                    "size": {
-                        "sum": { "field": "content.size" }
+                aggs: {
+                    size: {
+                        sum: { field: "content.size" }
                     }
                 }
             }
@@ -193,19 +177,17 @@ export const getFilesStatsQuery = (request, maxItemsToRetrieve) => {
                 stats: { field: "content.size" }
             },
             tags: {
-                children: {
-                    type: ES_FILE_TAG_TYPE_NAME
-                },
+                nested: { path: 'tags' },
                 aggs: {
                     names: {
                         terms: {
-                            field: 'name',
-                            size: maxItemsToRetrieve ? maxItemsToRetrieve : MAX_TAGS_TO_RETRIEVE_IN_AGG
+                            field: 'tags.name',
+                            size: maxItemsToRetrieve ?? MAX_TAGS_TO_RETRIEVE_IN_AGG
                         },
                         aggs: {
                             types: {
                                 terms: {
-                                    field: 'type',
+                                    field: 'tags.type',
                                     size: 1
                                 }
                             }
@@ -222,7 +204,7 @@ const isWildcardQuery = (query) => /[*?]/g.test(query)
 const getBoolSubqueries = (queries, onlySmallFiles, onlyLargeFiles, fileId = null) => {
     const mustList = []
     const contentShouldList = []
-    const tagQueriesList = []
+    let tagQuery = undefined
 
     if (queries.content && queries.content != '') {
         contentShouldList.push({
@@ -283,23 +265,17 @@ const getBoolSubqueries = (queries, onlySmallFiles, onlyLargeFiles, fileId = nul
     }
 
     if (queries.tags && queries.tags.length > 0) {
-        queries.tags.forEach(tag => {
-            tagQueriesList.push({
-                term: {
-                    name: tag
-                }
-            })
-        })
-    }
+        tagQuery = {
+            terms: {
+                'tags.name': queries.tags
+            }
+        }
 
-    if (tagQueriesList.length > 0) {
-        tagQueriesList.forEach(tagQuery => {
-            mustList.push({
-                has_child: {
-                    type: ES_FILE_TAG_TYPE_NAME,
-                    query: tagQuery
-                }
-            })
+        mustList.push({
+            nested: {
+                path: 'tags',
+                query: tagQuery
+            },
         })
     }
 
@@ -314,34 +290,16 @@ const getBoolSubqueries = (queries, onlySmallFiles, onlyLargeFiles, fileId = nul
 
     if (queries.withoutHiddenMarkOnly) {
         mustList.push({
-            bool: {
-                must: [
-                    {
-                        has_child: {
-                            type: ES_FILE_HIDDEN_MARK_TYPE_NAME,
-                            query: {
-                                match_all: {}
-                            }
-                        }
-                    }
-                ]
+            term: {
+                hidden: true
             }
         })
     }
 
     if (queries.withHiddenMarkOnly) {
         mustList.push({
-            bool: {
-                must_not: [
-                    {
-                        has_child: {
-                            type: ES_FILE_HIDDEN_MARK_TYPE_NAME,
-                            query: {
-                                match_all: {}
-                            }
-                        }
-                    }
-                ]
+            term: {
+                hidden: false
             }
         })
     }
@@ -349,12 +307,12 @@ const getBoolSubqueries = (queries, onlySmallFiles, onlyLargeFiles, fileId = nul
     return {
         mustList,
         contentShouldList,
-        tagQueriesList
+        tagQuery
     }
 }
 
 const getFilesQuery = (queries, from, size, onlySmallFiles, onlyLargeFiles, includeContentHighlight, fileId = null, fullFileHighlight = false) => {
-    const { mustList, contentShouldList, tagQueriesList } = getBoolSubqueries(queries, onlySmallFiles, onlyLargeFiles, fileId)
+    const { mustList, contentShouldList, tagQuery } = getBoolSubqueries(queries, onlySmallFiles, onlyLargeFiles, fileId)
 
     let highlightFields = {
         'content.author': {
@@ -413,7 +371,7 @@ const getFilesQuery = (queries, from, size, onlySmallFiles, onlyLargeFiles, incl
         }
     }
 
-    const resultingQuery = {
+    return {
         from: from,
         size: size,
         query: {
@@ -421,26 +379,21 @@ const getFilesQuery = (queries, from, size, onlySmallFiles, onlyLargeFiles, incl
                 must: mustList,
                 should: [
                     {
-                        has_child: {
-                            type: ES_FILE_TAG_TYPE_NAME,
+                        nested: {
+                            path: 'tags',
                             query: {
                                 match_all: {}
                             },
                             inner_hits: {
                                 from: 0,
-                                size: MAX_TAGS_TO_RETRIEVE,
                                 highlight: {
                                     fields: {
-                                        'name': {
+                                        'tags.name': {
                                             pre_tags: [''],
                                             post_tags: [''],
                                             fragment_size: FRAGMENT_SIZE,
                                             number_of_fragments: NUMBER_OF_FRAGMENTS,
-                                            highlight_query: {
-                                                bool: {
-                                                    should: tagQueriesList
-                                                }
-                                            }
+                                            highlight_query: tagQuery
                                         }
                                     },
                                     require_field_match: true
@@ -448,18 +401,6 @@ const getFilesQuery = (queries, from, size, onlySmallFiles, onlyLargeFiles, incl
                             }
                         }
                     },
-                    {
-                        has_child: {
-                            type: ES_FILE_HIDDEN_MARK_TYPE_NAME,
-                            query: {
-                                match_all: {}
-                            },
-                            inner_hits: {
-                                from: 0,
-                                size: 1
-                            }
-                        }
-                    }
                 ],
                 minimum_should_match: 0
             }
@@ -470,8 +411,6 @@ const getFilesQuery = (queries, from, size, onlySmallFiles, onlyLargeFiles, incl
             require_field_match: true
         }
     }
-
-    return resultingQuery
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////

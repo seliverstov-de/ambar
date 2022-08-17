@@ -2,7 +2,6 @@ import { Router } from 'express'
 import ErrorResponse from '../utils/ErrorResponse.js'
 import {
     CryptoService,
-    EsLowLevelProxy,
     EsProxy,
     CacheProxy,
     GridFsProxy,
@@ -244,7 +243,7 @@ export default ({ storage }) => {
 
         const file = (Buffer.isBuffer(files[0].buffer) && Buffer.byteLength(files[0].buffer) > 0) ? files[0].buffer : Buffer.alloc(0)
 
-        EsLowLevelProxy.updateFile(fileId, file)
+        EsProxy.updateFile(storage.elasticSearch, fileId, file)
             .then((result) => {
                 if (result === 'created') {
                     res.sendStatus(201)

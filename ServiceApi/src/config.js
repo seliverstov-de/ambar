@@ -11,7 +11,7 @@ const defaultConfig = {
 	"defaultAccountEmail": "admin",
 	"defaultAccountRole": "admin",
 	"langAnalyzer": "ambar_en",
-	"defaultTaggingRules": []	
+	"defaultTaggingRules": []
 }
 
 let config = null

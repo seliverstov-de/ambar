@@ -1,17 +1,11 @@
 import { lightFormat, startOfDay, isSameDay, fromUnixTime, subDays, subMonths, isSameMonth } from 'date-fns'
-import { DateTimeService, CryptoService } from '../index.js'
+import { DateTimeService } from '../index.js'
 import * as EsQueryBuilder from '../../utils/EsQueryBuilder.js'
 
 const MIN_THRESHOLD_EXTENSION = 0.03
 
-const ES_LOG_INDEX_NAME = "ambar_log_record_data"
-const ES_LOG_TYPE_NAME = "ambar_log_record"
-const ES_FILE_INDEX_NAME = "ambar_file_data"
-const ES_FILE_TYPE_NAME = "ambar_file"
-const ES_FILE_TAG_TYPE_NAME = "ambar_file_tag"
-const ES_FILE_HIDDEN_MARK_TYPE_NAME = "ambar_file_hidden_mark"
-
-const getHiddenMarkId = (fileId) => CryptoService.getSha256(`hiddenmark_${fileId}`)
+const ES_LOG_INDEX = 'ambar_log_record'
+const ES_FILE_INDEX = 'ambar_file'
 
 const normalizeHitsScore = (hits, maxScore) => hits.map(hit => ({
     ...hit,
@@ -21,7 +15,7 @@ const normalizeHitsScore = (hits, maxScore) => hits.map(hit => ({
 const transformTagsStat = (esResponse) => {
     const resp = []
 
-    esResponse.aggregations.tags.buckets.forEach(tag => {
+    esResponse.aggregations.tags.tags.buckets.forEach(tag => {
         tag.type.buckets.forEach(tagType => {
             resp.push({ name: tag.key, type: tagType.key, filesCount: tagType.doc_count })
         })
@@ -91,26 +85,24 @@ const normalizeHitContentHighlights = (hit) => {
 const transformHit = (hit) => {
     const transformedHit = {
         ...hit._source,
-        tags: [],
-        score: hit._score,
-        hidden_mark: undefined
+        score: hit._score
     }
 
     const highlight = mergeAnalyzedFieldsHighlight(hit.highlight)
 
     if (highlight) {
-        Object.keys(highlight).forEach(key => {
+        Object.entries(highlight).forEach(([key, value]) => {
             if (key.startsWith('meta.')) {
                 if (!transformedHit.meta.highlight) {
                     transformedHit.meta.highlight = {}
                 }
-                transformedHit.meta.highlight[key.replace('meta.', '')] = highlight[key]
+                transformedHit.meta.highlight[key.replace('meta.', '')] = value
             }
             if (key.startsWith('content.')) {
                 if (!transformedHit.content.highlight) {
                     transformedHit.content.highlight = {}
                 }
-                transformedHit.content.highlight[key.replace('content.', '')] = highlight[key]
+                transformedHit.content.highlight[key.replace('content.', '')] = value
             }
         })
     }
@@ -119,10 +111,6 @@ const transformHit = (hit) => {
         transformedHit.tags = hit.inner_hits.ambar_file_tag.hits.hits.map(hit => {
             return hit.highlight ? { ...hit._source, highlight: hit.highlight } : hit._source
         })
-    }
-
-    if (hit.inner_hits && hit.inner_hits.ambar_file_hidden_mark && hit.inner_hits.ambar_file_hidden_mark.hits.hits.length > 0) {
-        transformedHit.hidden_mark = hit.inner_hits.ambar_file_hidden_mark.hits.hits[0]._source
     }
 
     return transformedHit
@@ -144,7 +132,7 @@ const calculateTreeNodeChildrenCount = (treeNode) => treeNode.children.length > 
 
 const normalizeTreeAggregationResult = (esResult) => {
     const result = {
-        total: esResult.hits.total,
+        total: esResult.hits.total.value,
         tree: []
     }
 
@@ -204,38 +192,34 @@ const normalizeTreeAggregationResult = (esResult) => {
 }
 
 const normalizeStatsAggregationResult = (esResult) => {
-    const result = {
-        total: esResult.hits.total,
-        summary: {},
-        tags: {}
-    }
-
-    result.summary = {
+    const summary = {
         data: esResult.aggregations.summary
     }
 
-    result.extensions = {
-        total: esResult.hits.total,
+    const total = esResult.hits.total.value
+
+    const extensions = {
+        total: total,
         data: esResult.aggregations.extensions.buckets
-            .filter(bucket => bucket.doc_count > MIN_THRESHOLD_EXTENSION * esResult.hits.total)
+            .filter(bucket => bucket.doc_count > MIN_THRESHOLD_EXTENSION * total)
             .map(bucket => ({
                 extension: bucket.key,
-                hits_percent: bucket.doc_count / esResult.hits.total * 100,
+                hits_percent: bucket.doc_count / total * 100,
                 hits_count: bucket.doc_count,
                 size: bucket.size.sum
             }))
     }
-    const presentExtensionsHitsCount = result.extensions.data.reduce((sum, bucket) => sum + bucket.hits_count, 0)
-    if (presentExtensionsHitsCount < esResult.hits.total) {
-        result.extensions.data.push({
+    const presentExtensionsHitsCount = extensions.data.reduce((sum, bucket) => sum + bucket.hits_count, 0)
+    if (presentExtensionsHitsCount < total) {
+        extensions.data.push({
             extension: 'Others',
-            hits_percent: (esResult.hits.total - presentExtensionsHitsCount) / esResult.hits.total * 100,
-            hits_count: esResult.hits.total - presentExtensionsHitsCount,
+            hits_percent: (total - presentExtensionsHitsCount) / total * 100,
+            hits_count: total - presentExtensionsHitsCount,
             size: 0
         })
     }
 
-    result.tags = {
+    const tags = {
         total: esResult.aggregations.tags.doc_count,
         data: esResult.aggregations.tags.names.buckets
             .map(bucket => ({
@@ -246,278 +230,205 @@ const normalizeStatsAggregationResult = (esResult) => {
             }))
     }
 
-    return result
+    return {
+        total,
+        extensions,
+        summary,
+        tags
+    }
 }
 
-export const getShortStats = (esClient) => new Promise((resolve, reject) =>
-    esClient.search({
-        index: ES_FILE_INDEX_NAME,
-        type: ES_FILE_TYPE_NAME,
-        body: EsQueryBuilder.getShortStatsQuery()
+export const getTagsStat = async (esClient) => {
+    const body = await esClient.search({
+        index: ES_FILE_INDEX,
+        ...(EsQueryBuilder.getTagsStatsQuery())
     })
-        .then(({ body }) => resolve(body))
-        .catch(err => reject(err))
-)
+    return transformTagsStat(body)
+}
 
-export const getTagsStat = (esClient) => new Promise((resolve, reject) =>
-    esClient.search({
-        index: ES_FILE_INDEX_NAME,
-        type: ES_FILE_TAG_TYPE_NAME,
-        body: EsQueryBuilder.getTagsStatsQuery()
+export const getFilesTreeByQuery = async (esClient, request) => {
+    const body = await esClient.search({
+        index: ES_FILE_INDEX,
+        ...(EsQueryBuilder.getFilesTreeQuery(request))
     })
-        .then(({ body }) => resolve(transformTagsStat(body)))
-        .catch(err => reject(err))
-)
+    return normalizeTreeAggregationResult(body)
+}
 
-export const getFilesTreeByQuery = (esClient, request) => new Promise((resolve, reject) => {
-    esClient.search({
-        index: ES_FILE_INDEX_NAME,
-        type: ES_FILE_TYPE_NAME,
-        body: EsQueryBuilder.getFilesTreeQuery(request)
+export const getFilesStatsByQuery = async (esClient, request, maxItemsToRetrieve) => {
+    const body = await esClient.search({
+        index: ES_FILE_INDEX,
+        ...(EsQueryBuilder.getFilesStatsQuery(request, maxItemsToRetrieve))
     })
-        .then(({ body }) => resolve(normalizeTreeAggregationResult(body)))
-        .catch(err => reject(err))
-})
+    return normalizeStatsAggregationResult(body)
+}
 
-export const getFilesStatsByQuery = (esClient, request, maxItemsToRetrieve) => new Promise((resolve, reject) => {
-    esClient.search({
-        index: ES_FILE_INDEX_NAME,
-        type: ES_FILE_TYPE_NAME,
-        body: EsQueryBuilder.getFilesStatsQuery(request, maxItemsToRetrieve)
-    })
-        .then(({ body }) => resolve(normalizeStatsAggregationResult(body)))
-        .catch(err => reject(err))
-})
-
-export const searchFiles = (esClient, request, from, size) => {
+export const searchFiles = async (esClient, request, from, size) => {
     const requests = [
-        { index: ES_FILE_INDEX_NAME, type: ES_FILE_TYPE_NAME },
+        { index: ES_FILE_INDEX },
         EsQueryBuilder.getFilesWithHighlightsQuery(request, from * size, size),
-        { index: ES_FILE_INDEX_NAME, type: ES_FILE_TYPE_NAME },
+        { index: ES_FILE_INDEX },
         EsQueryBuilder.getFilesWithoutHighlightsQuery(request, from * size, size)
     ]
 
-    return new Promise((resolve, reject) =>
-        esClient.msearch({
-            body: requests
-        })
-            .then(({ body }) => {
-                const result = body.responses
-                const maxScore = Math.max(result[0].hits.max_score, result[1].hits.max_score)
+    const body = await esClient.msearch({
+        body: requests
+    })
+    const [withHighlights, withoutHighlights] = body.responses
+    const maxScore = Math.max(withHighlights.hits.max_score, withoutHighlights.hits.max_score)
 
-                const resultHits = normalizeHitsScore(result[0].hits.hits, maxScore)
-                    .concat(normalizeHitsScore(result[1].hits.hits, maxScore))
-                    .sort((a, b) => b._score - a._score)
-                    .map((hit) => normalizeHitContentHighlights(transformHit(hit)))
-                    .filter((hit) => (hit.content.highlight &&
-                        hit.content.highlight.text &&
-                        hit.content.highlight.text.length > 0 &&
-                        !hit.content.highlight.text.some(text => /<em>/.test(text)) &&
-                        !hit.meta.highlight &&
-                        !hit.content.highlight.author &&
-                        request.content != '*' &&
-                        request.content != '')
-                        ? false
-                        : true)
+    const resultHits = normalizeHitsScore(withHighlights.hits.hits, maxScore)
+        .concat(normalizeHitsScore(withoutHighlights.hits.hits, maxScore))
+        .sort((a, b) => b._score - a._score)
+        .map((hit) => normalizeHitContentHighlights(transformHit(hit)))
+        .filter((hit) => (hit.content.highlight &&
+            hit.content.highlight.text &&
+            hit.content.highlight.text.length > 0 &&
+            !hit.content.highlight.text.some(text => /<em>/.test(text)) &&
+            !hit.meta.highlight &&
+            !hit.content.highlight.author &&
+            request.content != '*' &&
+            request.content != '')
+            ? false
+            : true)
 
-                resolve({
-                    total: result[0].hits.total + result[1].hits.total,
-                    hits: resultHits
-                })
-            })
-            .catch(err => reject(err))
-    )
+    return {
+        total: withHighlights.hits.total + withoutHighlights.hits.total,
+        hits: resultHits
+    }
 }
 
-export const getFileHighlightByFileId = (esClient, request, fileId) => new Promise((resolve, reject) => {
-    esClient.search({
-        index: ES_FILE_INDEX_NAME,
-        type: ES_FILE_TYPE_NAME,
-        body: EsQueryBuilder.getFileHighlightQuery(request, fileId)
+export const getFileHighlightByFileId = async (esClient, request, fileId) => {
+    const body = await esClient.search({
+        index: ES_FILE_INDEX,
+        ...(EsQueryBuilder.getFileHighlightQuery(request, fileId))
     })
-        .then(({ body }) => {
-            if (body.hits.hits && body.hits.hits.length === 1) {
-                resolve(
-                    normalizeHitContentHighlights(
-                        transformHit(body.hits.hits[0])
-                    )
-                )
-            }
-            else {
-                resolve({})
-            }
-        })
-        .catch(err => reject(err))
-})
+    if (body.hits.hits && body.hits.hits.length === 1) {
+        return normalizeHitContentHighlights(transformHit(body.hits.hits[0]))
+    }
+    else {
+        return {}
+    }
+}
 
-export const getFullFileHighlightByFileId = (esClient, request, fileId) => new Promise((resolve, reject) => {
-    esClient.search({
-        index: ES_FILE_INDEX_NAME,
-        type: ES_FILE_TYPE_NAME,
-        body: EsQueryBuilder.getFullFileHighlightQuery(request, fileId)
+export const getFullFileHighlightByFileId = async (esClient, request, fileId) => {
+    const body = await esClient.search({
+        index: ES_FILE_INDEX,
+        ...(EsQueryBuilder.getFullFileHighlightQuery(request, fileId))
     })
-        .then(({ body }) => {
-            if (body.hits.hits && body.hits.hits.length === 1) {
-                resolve(
-                    normalizeHitContentHighlights(transformHit(body.hits.hits[0]))
-                )
-            }
-            else {
-                resolve({})
-            }
-        })
-        .catch(err => reject(err))
-})
+    if (body.hits.hits && body.hits.hits.length === 1) {
+        return normalizeHitContentHighlights(transformHit(body.hits.hits[0]))
+    }
+    else {
+        return {}
+    }
+}
 
-export const checkIfFileExists = (esClient, fileId) => new Promise((resolve, reject) => {
-    esClient.get({
-        index: ES_FILE_INDEX_NAME,
-        type: ES_FILE_TYPE_NAME,
+export const checkIfFileExists = async (esClient, fileId) => {
+    const body = await esClient.search({
+        index: ES_FILE_INDEX,
         _source: false,
-        id: fileId
-    })
-        .then(({ body }) => resolve(body.found))
-        .catch(err => {
-            if (err.statusCode == 404) {
-                resolve(false)
-                return
-            }
-            reject(err)
-        })
-})
-
-export const getFileByFileId = (esClient, fileId, includeChildren = false) => new Promise((resolve, reject) => {
-    esClient.search({
-        index: ES_FILE_INDEX_NAME,
-        type: ES_FILE_TYPE_NAME,
-        body: {
-            query: {
-                bool: {
-                    must: [
-                        { term: { 'file_id': fileId } }
-                    ],
-                    should: includeChildren ? [
-                        {
-                            has_child: {
-                                type: 'ambar_file_tag',
-                                query: {
-                                    match_all: {}
-                                },
-                                inner_hits: {}
-                            }
-                        },
-                        {
-                            has_child: {
-                                type: 'ambar_file_hidden_mark',
-                                query: {
-                                    match_all: {}
-                                },
-                                inner_hits: {}
-                            }
-                        }
-                    ] : [],
-                    minimum_should_match: 0
-                }
-            }
+        query: {
+            term: { file_id: fileId }
         }
     })
-        .then(({ body }) => resolve(body.hits.total > 0 ? normalizeHitContentHighlights(transformHit(body.hits.hits[0])) : null))
-        .catch(err => reject(err))
-})
 
-export const hideFile = (esClient, fileId) => new Promise((resolve, reject) => {
-    const hiddenMark = {
-        id: getHiddenMarkId(fileId),
-        indexed_datetime: DateTimeService.getCurrentDateTime()
-    }
+    return body.hits.total > 0
+}
 
-    esClient.index({
-        index: ES_FILE_INDEX_NAME,
-        type: ES_FILE_HIDDEN_MARK_TYPE_NAME,
-        parent: fileId,
-        refresh: true,
-        id: hiddenMark.id,
-        body: hiddenMark
+export const getFileByFileId = async (esClient, fileId) => {
+    const body = await esClient.search({
+        index: ES_FILE_INDEX,
+        body: {
+            query: { term: { 'file_id': fileId } }
+        }
     })
-        .then(({ body }) => resolve(body))
-        .catch(err => reject(err))
-})
+    const file = body.hits.hits[0]
+    return file ? normalizeHitContentHighlights(transformHit(file)) : null
+}
 
-export const unHideFile = (esClient, fileId) => new Promise((resolve, reject) => {
-    const hiddenMarkId = getHiddenMarkId(fileId)
-
-    esClient.delete({
-        index: ES_FILE_INDEX_NAME,
-        type: ES_FILE_HIDDEN_MARK_TYPE_NAME,
-        routing: fileId,
+export const hideFile = async (esClient, fileId) => {
+    return await esClient.updateByQuery({
+        index: ES_FILE_INDEX,
         refresh: true,
-        id: hiddenMarkId
-    })
-        .then(({ body }) => resolve(body))
-        .catch(err => reject(err))
-})
-
-export const indexTag = (esClient, fileId, tag) => new Promise((resolve, reject) => {
-    tag.indexed_datetime = DateTimeService.getCurrentDateTime()
-    esClient.index({
-        index: ES_FILE_INDEX_NAME,
-        type: ES_FILE_TAG_TYPE_NAME,
-        parent: fileId,
-        refresh: true,
-        id: tag.id,
-        body: tag
-    })
-        .then(({ body }) => resolve(body))
-        .catch(err => reject(err))
-})
-
-export const deleteTag = (esClient, fileId, tagId) => new Promise((resolve, reject) => {
-    esClient.delete({
-        index: ES_FILE_INDEX_NAME,
-        type: ES_FILE_TAG_TYPE_NAME,
-        routing: fileId,
-        refresh: true,
-        id: tagId
-    })
-        .then(({ body }) => resolve(body))
-        .catch(err => reject(err))
-})
-
-export const indexLogItem = (esClient, logItem) => {
-    logItem.indexed_datetime = DateTimeService.getCurrentDateTime()
-    esClient.index({
-        index: ES_LOG_INDEX_NAME,
-        type: ES_LOG_TYPE_NAME,
-        body: logItem
+        query: {
+            term: { file_id: fileId }
+        },
+        script: {
+            lang: 'painless',
+            source: 'ctx._source.hidden = true'
+        }
     })
 }
 
-export const getLastLogRecords = (esClient, numberOfRecords) => new Promise((resolve, reject) => {
-    let query = {
+export const unHideFile = async (esClient, fileId) => {
+    return await esClient.updateByQuery({
+        index: ES_FILE_INDEX,
+        refresh: true,
+        query: {
+            term: { file_id: fileId }
+        },
+        script: {
+            lang: 'painless',
+            source: 'ctx._source.hidden = false'
+        }
+    })
+}
+
+export const indexTag = async (esClient, fileId, tag) => {
+    return await esClient.updateByQuery({
+        index: ES_FILE_INDEX,
+        refresh: true,
+        query: {
+            term: { file_id: fileId }
+        },
+        script: {
+            lang: 'painless',
+            source: 'ctx._source.tags.add(params.tag)',
+            params: { tag }
+        }
+    })
+}
+
+export const deleteTag = async (esClient, fileId, tag) => {
+    return await esClient.updateByQuery({
+        index: ES_FILE_INDEX,
+        refresh: true,
+        query: {
+            term: { file_id: fileId }
+        },
+        script: {
+            lang: 'painless',
+            source: 'ctx._source.tags.removeIf(tag -> tag.name == params.tag.name && tag.type == params.tag.type)',
+            params: { tag }
+        }
+    })
+}
+
+export const indexLogItem = async (esClient, logItem) => {
+    logItem.indexed_datetime = DateTimeService.getCurrentDateTime()
+    await esClient.index({
+        index: ES_LOG_INDEX,
+        document: logItem
+    })
+}
+
+export const getLastLogRecords = async (esClient, numberOfRecords) => {
+    const body = await esClient.search({
+        index: ES_LOG_INDEX,
         from: 0,
         size: numberOfRecords,
         query: { match_all: {} },
         sort: { created_datetime: { order: 'desc' } }
-    }
-
-    return esClient.search({
-        index: ES_LOG_INDEX_NAME,
-        type: ES_LOG_TYPE_NAME,
-        body: query
     })
-        .then(({ body }) => resolve(body.hits.hits.map(hit => hit._source).reverse()))
-        .catch(err => reject(err))
-})
+    return body.hits.hits.map(hit => hit._source).reverse()
+}
 
-export const getStats = (esClient) => new Promise((resolve, reject) =>
-    esClient.search({
-        index: ES_FILE_INDEX_NAME,
-        type: ES_FILE_TYPE_NAME,
-        body: EsQueryBuilder.getStatsQuery()
+export const getStats = async (esClient) => {
+    return await esClient.search({
+        index: ES_FILE_INDEX,
+        ...(EsQueryBuilder.getStatsQuery())
     })
-        .then(({ body }) => resolve(body))
-        .catch(err => reject(err))
-)
+}
 
 const normalizeProcessingStats = (esResponse) => {
     const ITEMS_COUNT = 10
@@ -574,12 +485,10 @@ const normalizeProcessingStats = (esResponse) => {
     return procRate
 }
 
-export const getProcessingStats = (esClient) => new Promise((resolve, reject) =>
-    esClient.search({
-        index: ES_FILE_INDEX_NAME,
-        type: ES_FILE_TYPE_NAME,
-        body: EsQueryBuilder.getProcessingStatsQuery()
+export const getProcessingStats = async (esClient) => {
+    const body = await esClient.search({
+        index: ES_FILE_INDEX,
+        ...(EsQueryBuilder.getProcessingStatsQuery())
     })
-        .then(({ body }) => resolve(normalizeProcessingStats(body)))
-        .catch(err => reject(err))
-)
+    return normalizeProcessingStats(body)
+}

@@ -26,22 +26,22 @@ app.use(morgan('dev'))
 StorageService.initializeStorage()
 	.then((storage) =>
 		MongoProxy.initDefaultTaggingRules(storage.mongoDb)			
-			.then(() => {
+			.then(async () => {
 				app.use('/api', api({ config, storage }))
 				app.use(ErrorHandlerService(storage.elasticSearch))
 				app.server.listen(process.env.PORT || config.localPort)
 
-				//eslint-disable-next-line no-console
 				console.log(`Started on ${app.server.address().address}:${app.server.address().port}`)
 
-				EsProxy.indexLogItem(
+				await EsProxy.createIndices(storage.elasticSearch)
+
+				await EsProxy.indexLogItem(
 					storage.elasticSearch,
 					createLogRecord('info', `Started on ${app.server.address().address}:${app.server.address().port}`)
 				)
 			})
 	)
 	.catch((err) => {
-		//eslint-disable-next-line no-console
 		console.log('Catastrophic failure!', err.toString())
 		process.exit(1)
 	})

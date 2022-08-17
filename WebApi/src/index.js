@@ -32,7 +32,6 @@ StorageService.initializeStorage()
 		app.use(ErrorHandlerService(storage.elasticSearch))
 		app.server.listen(process.env.PORT || config.localPort)
 
-		//eslint-disable-next-line no-console
 		console.log(`Started on ${app.server.address().address}:${app.server.address().port}`)
 
 		EsProxy.indexLogItem(
@@ -41,7 +40,6 @@ StorageService.initializeStorage()
 		)
 	})
 	.catch((err) => {
-		//eslint-disable-next-line no-console
 		console.log('Catastrophic failure!', err)
 		process.exit(1)
 	})

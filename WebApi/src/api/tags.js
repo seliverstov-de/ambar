@@ -1,15 +1,8 @@
 import { Router } from 'express'
 import ErrorResponse from '../utils/ErrorResponse.js'
-import {
-    CryptoService,
-    CacheProxy
-} from '../services/index.js'
+import { CacheProxy } from '../services/index.js'
 
 const MANUAL_TAG_TYPE = 'manual'
-
-const generateTagId = (fileId, tagType, tagName) => {
-    return CryptoService.getSha256(`tag_${fileId.trim().toLowerCase()}${tagType.trim().toLowerCase()}${tagName.trim().toLowerCase()}`)
-}
 
 export default ({ storage }) => {
     let api = Router()
@@ -61,7 +54,6 @@ export default ({ storage }) => {
         * 
         * @apiSuccessExample HTTP/1.1 200 OK     
    {  
-      "tagId":"e9536a83e64ff03617ab0379d835ac7bbf213bafb95cb42907a56e735472d4fc",
       "tags":[  
          {  
             "name":"ocr",
@@ -88,17 +80,15 @@ export default ({ storage }) => {
         }
 
         const type = tagType.toLowerCase()
-        const tagId = generateTagId(fileId, type, tagName)
 
         const tag = {
-            id: tagId,
             type: type.toLowerCase(),
             name: tagName.trim().toLowerCase()
         }
 
         CacheProxy.addTag(storage.redis, storage.elasticSearch, fileId, tag)
             .then(tags => {
-                res.status(200).json({ tagId: tagId, tags: tags })
+                res.status(200).json({ tags: tags })
             })
             .catch(next)
     })
@@ -142,10 +132,8 @@ export default ({ storage }) => {
         }
 
         const type = tagType.toLowerCase()
-        const tagId = generateTagId(fileId, type, tagName)
 
         const tag = {
-            id: tagId,
             type: type.toLowerCase(),
             name: tagName.trim().toLowerCase()
         }

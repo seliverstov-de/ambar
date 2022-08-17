@@ -10,7 +10,7 @@ export const hideFile = (fileId) => {
         const urls = stateValueExtractor.getUrls(getState())
         const defaultSettings = stateValueExtractor.getDefaultSettings(getState())
 
-        dispatch(toggleIsHiddenFile(fileId, true))
+        dispatch(toggleHiddenFile(fileId, true))
 
         fetch(urls.ambarWebApiHideFile(fileId), {
             method: 'PUT',
@@ -34,7 +34,7 @@ export const showFile = (fileId) => {
         const urls = stateValueExtractor.getUrls(getState())
         const defaultSettings = stateValueExtractor.getDefaultSettings(getState())
 
-        dispatch(toggleIsHiddenFile(fileId, false))
+        dispatch(toggleHiddenFile(fileId, false))
 
         fetch(urls.ambarWebApiUnhideFile(fileId), {
             method: 'PUT',
@@ -53,7 +53,7 @@ export const showFile = (fileId) => {
     }
 }
 
-const toggleIsHiddenFile = (fileId, value) => {
+const toggleHiddenFile = (fileId, value) => {
     return {
         type: TOGGLE_IS_HIDDEN_FILE,
         fileId: fileId,
@@ -64,7 +64,7 @@ const toggleIsHiddenFile = (fileId, value) => {
 export const ACTION_HANDLERS = {    
     [TOGGLE_IS_HIDDEN_FILE]: (state, action) => {
         const oldHit = hitsModel.getHit(state, action.fileId)
-        const hit = { ...oldHit, isHidden: action.value, hidden_mark: action.value ? {} : null }
+        const hit = { ...oldHit, hidden: action.value }
         return hitsModel.updateHits(state, action.fileId, hit)
     }
 }

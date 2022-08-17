@@ -1,17 +1,12 @@
 import { Router } from 'express'
 import ErrorResponse from '../utils/ErrorResponse.js'
 import {
-    CryptoService,
     MongoProxy,
     CacheProxy
 } from '../services/index.js'
 
 const AUTO_TAG_TYPE = 'auto'
 const SOURCE_TAG_TYPE = 'source'
-
-const generateTagId = (fileId, tagType, tagName) => {
-    return CryptoService.getSha256(`tag_${fileId.trim().toLowerCase()}${tagType.trim().toLowerCase()}${tagName.trim().toLowerCase()}`)
-}
 
 export default ({ storage }) => {
     let api = Router()
@@ -28,10 +23,8 @@ export default ({ storage }) => {
         }
 
         const type = tagType.toLowerCase()
-        const tagId = generateTagId(fileId, type, tagName)
 
         const tag = {
-            id: tagId,
             type: type,
             name: tagName.toLowerCase()
         }

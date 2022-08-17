@@ -1,5 +1,4 @@
 import * as CryptoService from './CryptoService.js'
-import * as EsLowLevelProxy from './EsLowLevelProxy.js'
 import * as EsProxy from './EsProxy/EsProxy.js'
 import * as MongoProxy from './MongoProxy.js'
 import FileUploader from './FileUploader.js'
@@ -12,7 +11,6 @@ import * as StorageService from './StorageService.js'
 
 export {
     CryptoService,
-    EsLowLevelProxy,
     EsProxy,
     MongoProxy,
     FileUploader,

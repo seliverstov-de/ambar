@@ -28,8 +28,7 @@ class DetailedCard extends Component {
             sha256: sha256,
             tags: tags,
             file_id: fileId,
-            isHidden: isHidden,
-            hidden_mark: hidden_mark
+            hidden: hidden
             },
             allTags,
             thumbnailUri,
@@ -61,7 +60,7 @@ class DetailedCard extends Component {
                         performSearchByAuthor={performSearchByAuthor}
                         localization={localization}
                     />
-                    {!isHidden && <div>
+                    {!hidden && <div>
                         <TagsInput
                             tags={tags}
                             onAddTag={(tagType, tagName) => addTagToFile(fileId, tagType, tagName)}
@@ -100,8 +99,8 @@ class DetailedCard extends Component {
                         </div>
                     </div>}
                     <CardActions className={classes.searchResultRowCardFooter}>
-                        <div style={{ display: 'flex', justifyContent: !isHidden ? 'space-between' : 'flex-end', width: '100%' }}>
-                            {!isHidden && !hidden_mark && meta.source_id != 'ui-upload' && !meta.extra.some(item => item.key === 'from_container') && <div>
+                        <div style={{ display: 'flex', justifyContent: !hidden ? 'space-between' : 'flex-end', width: '100%' }}>
+                            {!hidden && !hidden && meta.source_id != 'ui-upload' && !meta.extra.some(item => item.key === 'from_container') && <div>
                                 <FlatButton
                                     icon={<FileDownloadIcon />}
                                     label={localization.searchPage.downloadLabel}
@@ -111,7 +110,7 @@ class DetailedCard extends Component {
                                 />                                                  
                             </div>}
                             <div>
-                                {!hidden_mark && <FlatButton
+                                {!hidden && <FlatButton
                                     icon={<DeleteIcon />}
                                     secondary={true}
                                     label={localization.searchPage.removeLabel}

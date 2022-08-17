@@ -53,9 +53,3 @@ export const getExtension = (meta) => {
         : meta.extension
     return extension ? extension.replace('.', '').toLowerCase() : ''
 }
-
-export const doesFileContainText = (meta) => {
-    const extension = getExtension(meta)
-    const EXCLUDED_EXTENSIONS = ['zip'] // extensions that doesn't contain text
-    return EXCLUDED_EXTENSIONS.indexOf(extension) == -1
-}

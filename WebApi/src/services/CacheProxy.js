@@ -25,7 +25,7 @@ export const addTag = async (redis, elasticSearch, fileId, tag) => {
 }
 
 export const removeTag = async (redis, elasticSearch, fileId, tag) => {
-    await EsProxy.deleteTag(elasticSearch, fileId, tag.id)
+    await EsProxy.deleteTag(elasticSearch, fileId, tag)
     if (await hasTagsInRedis(redis)) {
         const filesCount = await getTagFilesCount(redis, tag.name, tag.type)
         await setTagFilesCount(redis, tag.name, tag.type, filesCount - 1)

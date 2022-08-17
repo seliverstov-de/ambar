@@ -1,17 +1,18 @@
-FROM elasticsearch:5.6.9
+FROM elasticsearch:8.3.3
 
 # Set a timezone
+USER root:root
 ENV TZ=UTC
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+USER elasticsearch:root
 
-COPY elasticsearch.yml ./config/elasticsearch.yml
-COPY elasticsearch-analysis-morphology-5.6.9.zip /elasticsearch-analysis-morphology-5.6.9.zip
-#RUN bin/elasticsearch-plugin install http://dl.bintray.com/content/imotov/elasticsearch-plugins/org/elasticsearch/elasticsearch-analysis-morphology/5.6.9/elasticsearch-analysis-morphology-5.6.9.zip
-RUN bin/elasticsearch-plugin install file:///elasticsearch-analysis-morphology-5.6.9.zip
 RUN bin/elasticsearch-plugin install analysis-stempel
 RUN bin/elasticsearch-plugin install analysis-smartcn
 
-CMD ["elasticsearch"]
+COPY elasticsearch.yml ./config/elasticsearch.yml
+
+EXPOSE 9200
+EXPOSE 9300
 
 HEALTHCHECK --interval=15s --timeout=30s --retries=50 \
   CMD curl -f http://localhost:9200/ || exit 1

@@ -13,7 +13,7 @@
   "author": "RD17 <hello@ambar.cloud>",
   "license": "MIT",
   "dependencies": {
-    "@elastic/elasticsearch": "^5.6.22",
+    "@elastic/elasticsearch": "^8.2.1",
     "amqplib": "^0.10.2",
     "body-parser": "^1.20.0",
     "combined-stream2": "^1.1.2",
