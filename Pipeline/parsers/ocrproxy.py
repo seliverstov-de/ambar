@@ -1,8 +1,6 @@
 from PIL import Image
 import pyocr
 import pyocr.builders
-import sys
-import re
 import io
 
 class OCRProxyResponse:

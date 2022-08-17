@@ -1,11 +1,7 @@
-from model import AmbarFileMeta, AmbarFileContent
-from datetime import datetime
+from model import AmbarFileMeta
 from hashlib import sha256
 from subprocess import call
 from os import walk, path
-import hashlib
-import re
-import io
 
 class PstProcessor():
     def __init__(self, Logger, ApiProxy):

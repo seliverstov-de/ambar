@@ -110,7 +110,7 @@ services:
     environment:
       - id=0
       - api_url=http://serviceapi:8081
-      - rabbit_host=amqp://rabbit
+      - rabbit_host=rabbit
   crawler0:
     depends_on: 
       serviceapi: 

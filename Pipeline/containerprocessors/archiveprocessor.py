@@ -1,9 +1,7 @@
-from model import AmbarFileMeta, AmbarFileContent
-from zipfile import ZipFile, ZipInfo
+from model import AmbarFileMeta
+from zipfile import ZipFile
 from datetime import datetime
 from hashlib import sha256
-import hashlib
-import re
 import io
 
 class ArchiveProcessor():

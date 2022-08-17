@@ -1,5 +1,5 @@
-# import jnius_config
-# jnius_config.add_options('-Xmx256m')
+import jnius_config
+jnius_config.add_classpath('./jars/tika-*', './jars/pdfbox-*', './jars/jai-imageio-*', './jars/jbig2-*')
 from apiproxy import ApiProxy
 from logger import AmbarLogger
 from parsers.fileparser import FileParser
@@ -9,26 +9,20 @@ from model import AmbarFileContent, AmbarFileMeta
 from containerprocessors.archiveprocessor import ArchiveProcessor
 from containerprocessors.pstprocessor import PstProcessor
 from datetime import datetime
-import gc
-import io
 import sys
 import os
-import time
-import hashlib
 import pika
 import json
-import base64
 from hashlib import sha256
 
 RABBIT_QUEUE_NAME = 'AMBAR_PIPELINE_QUEUE'
-RABBIT_HEARTBEAT = 0
 API_CALL_TIMEOUT_SECONDS = 1200
 PARSE_TIMEOUT_SECONDS = 1200
 
 pipelineId = os.getenv('id', '0')
 apiUrl = os.getenv('api_url', 'http://serviceapi:8081')
 webApiUrl = os.getenv('web_api_url', 'http://webapi:8080')
-rabbitHost = os.getenv('rabbit_host','amqp://ambar')
+rabbitHost = os.getenv('rabbit_host','ambar')
 
 ocrPdfSymbolsPerPageThreshold = int(os.getenv('ocrPdfSymbolsPerPageThreshold', 1000))
 ocrPdfMaxPageCount = int(os.getenv('ocrPdfMaxPageCount', 5))
@@ -56,10 +50,10 @@ logger.LogMessage('info', 'started')
 logger.LogMessage('info', 'connecting to Rabbit {0}...'.format(rabbitHost))
 
 try:
-    rabbitConnection = pika.BlockingConnection(pika.URLParameters(
-        '{0}?heartbeat={1}'.format(rabbitHost, RABBIT_HEARTBEAT)))
+    params = pika.ConnectionParameters(host=rabbitHost)
+    rabbitConnection = pika.BlockingConnection(params)
     rabbitChannel = rabbitConnection.channel()
-    rabbitChannel.basic_qos(prefetch_count=1, all_channels=True)
+    rabbitChannel.basic_qos(prefetch_count=1, global_qos=True)
     logger.LogMessage('info', 'connected to Rabbit!')
 except Exception as e:
     logger.LogMessage('error', 'error initializing connection to Rabbit {0}'.format(repr(e)))
@@ -333,10 +327,9 @@ def RabbitConsumeCallback(channel, method, properties, body):
         channel.basic_ack(delivery_tag=method.delivery_tag)
     else:
         channel.basic_nack(delivery_tag=method.delivery_tag, requeue=False)
-    gc.collect()
 
 
-rabbitChannel.basic_consume(RabbitConsumeCallback, queue=RABBIT_QUEUE_NAME)
+rabbitChannel.basic_consume(RABBIT_QUEUE_NAME, RabbitConsumeCallback)
 rabbitChannel.start_consuming()
 
 exit(0)

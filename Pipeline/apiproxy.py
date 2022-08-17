@@ -1,4 +1,3 @@
-import io
 import re
 import requests
 import urllib.parse

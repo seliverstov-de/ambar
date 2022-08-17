@@ -1,9 +1,7 @@
 from jnius import autoclass
-from jnius import cast
 from parsers.fileparserresponse import FileParserResponse
 from parsers.ocrproxy import OCRProxy, OCRProxyResponse
 from parsers.binarystringparser import BinaryStringParser
-import io
 import sys
 import re
 
@@ -33,8 +31,7 @@ class PDFParser:
         resp = FileParserResponse()
 
         try: 
-            inputStream = self.ByteArrayInputStream(FileData)
-            document = self.PDDocument.load(inputStream)
+            document = self.PDDocument.load(FileData)
             metadata = document.getDocumentInformation()
             resp.meta['Author'] = metadata.getAuthor()
             resp.meta['title'] = metadata.getTitle()
@@ -58,7 +55,8 @@ class PDFParser:
                 try:
                     parsedText = pdfStripper.getText(document)
                 except Exception as convEx:
-                    parsedText = BinaryStringParser.Parse(convEx.object)
+                    self.logger.LogMessage('error','Exceptions parsing pdf content {0}'.format(convEx))
+                    parsedText = BinaryStringParser.Parse(convEx)
 
                 if ((pageNumber < self.ocrMaxPageCount) or (self.ocrMaxPageCount == -1)) and ((self.GetSymbolsCount(parsedText) < self.ocrSymbolsPerPageThreshold) or (self.ocrSymbolsPerPageThreshold == -1)):
                     self.logger.LogMessage('info','performing ocr on page {0} of pdf {1}'.format(pageNumber + 1, FileName))
@@ -86,23 +84,19 @@ class PDFParser:
                         
                         if annotationsText != '':
                             parsedText = '{0}\r\n----Annotations start----\r\n{1}----Annotations end----'.format(parsedText, annotationsText[:-6])
-                    
-                    pdfPage = None
-                    pdfAnnotations = None
                 except Exception as ex:
                     self.logger.LogMessage('info','could not extract annotations from page {0} of pdf {1}'.format(pageNumber + 1, FileName))
 
                 parsedText = self.NormalizeText(parsedText)
                 resp.text = '{0}\r\n{1}'.format(resp.text, parsedText)
 
-            inputStream = None
-            document = None
-            self.System.gc()
-
             resp.success = True
         except Exception as ex:
             resp.message = str(ex)
             resp.success = False
+        finally:
+            if document is not None:
+                document.close()
 
         return resp
 
@@ -114,13 +108,6 @@ class PDFParser:
             imageStream = self.MemoryCacheImageOutputStream(byteStream)
             self.ImageIO.write(bufferedImage, "jpg", imageStream)   
             imageData = bytearray(byteStream.toByteArray())
-
-            pdfRenderer = None
-            bufferedImage = None
-            byteStream = None
-            imageStream = None
-            self.System.gc()
-
             return (imageData, 'image/jpeg')
         except Exception as ex:
             self.logger.LogMessage('info','unable to generate thumbnail for pdf {0}'.format(str(ex)))
@@ -138,12 +125,6 @@ class PDFParser:
             imageData = bytearray(byteStream.toByteArray())      
 
             ocrResp = self.ocrProxy.PerformOCR(imageData)
-
-            pdfRenderer = None
-            bufferedImage = None
-            byteStream = None
-            imageStream = None
-            self.System.gc()
         except Exception as ex:
             ocrResp.success = False
             ocrResp.message = str(ex)

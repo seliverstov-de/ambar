@@ -1,4 +1,5 @@
-FROM python:3.7.9-stretch
+FROM python:3.10-bullseye
+
 
 RUN apt-get update && apt-get install -y \
     curl \
@@ -6,8 +7,7 @@ RUN apt-get update && apt-get install -y \
     imagemagick \
     libleptonica-dev \
     tesseract-ocr \
-    tesseract-ocr-dev \
-    libtesseract3 \
+    libtesseract4 \
     libtesseract-dev \
     tesseract-ocr-eng \
     tesseract-ocr-rus \
@@ -16,7 +16,9 @@ RUN apt-get update && apt-get install -y \
     tesseract-ocr-pol \
     default-jre \
     default-jdk \
-    readpst
+    pst-utils \
+    maven \
+    && rm -rf /var/lib/apt/lists/*
 
 # Set timezone
 ENV TZ=UTC
@@ -29,7 +31,6 @@ RUN mvn dependency:copy-dependencies -DoutputDirectory=./jars
 
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
-RUN pip install git+https://github.com/kivy/pyjnius.git
 
 COPY . .
 

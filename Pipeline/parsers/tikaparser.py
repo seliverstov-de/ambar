@@ -13,28 +13,32 @@ class TikaParser:
         self.ocrProxy = OCRProxy()
         self.ByteArrayInputStream = autoclass('java.io.ByteArrayInputStream')
         self.Metadata = autoclass('org.apache.tika.metadata.Metadata')
+        self.TikaCoreProperties = autoclass('org.apache.tika.metadata.TikaCoreProperties')
         self.AutoDetectParser = autoclass('org.apache.tika.parser.AutoDetectParser')
         self.BodyContentHandler = autoclass('org.apache.tika.sax.BodyContentHandler')
         self.TikaConfig = autoclass('org.apache.tika.config.TikaConfig')
 
-        self.config = self.TikaConfig('/tika-config.xml')
+        self.config = self.TikaConfig('/pipeline/tika-config.xml')
         self.parser = self.AutoDetectParser(self.config)
 
     def Parse(self, FileName, FileData):
         resp = FileParserResponse()
+        self.logger.LogMessage('verbose','parsing {0}'.format(FileName))
 
         try:
             meta = self.Metadata()
             if FileName and FileName != '':
-                meta.set(self.Metadata.RESOURCE_NAME_KEY, FileName)
+                meta.set(self.TikaCoreProperties.RESOURCE_NAME_KEY, FileName)
             contentHandler = self.BodyContentHandler(-1)
             inputStream = self.ByteArrayInputStream(FileData)
             self.parser.parse(inputStream, contentHandler, meta)
 
+            self.logger.LogMessage('verbose','reading text for {0}'.format(FileName))
             try:
                 resp.text = contentHandler.toString()
             except Exception as convEx:
-                resp.text = BinaryStringParser.Parse(convEx.object)
+                self.logger.LogMessage('error','Exceptions parsing tika content {0}'.format(convEx))
+                resp.text = BinaryStringParser.Parse(convEx)
             
             for name in meta.names():
                 try:

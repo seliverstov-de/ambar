@@ -1,6 +1,4 @@
 from model import AmbarTaggingRule
-from apiproxy import ApiProxy
-from logger import AmbarLogger
 from parsers.contenttypeanalyzer import ContentTypeAnalyzer
 import re
 

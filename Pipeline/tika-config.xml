@@ -4,7 +4,6 @@
     <parser class="org.apache.tika.parser.DefaultParser">
       <parser-exclude class="org.apache.tika.parser.ocr.TesseractOCRParser"/>
       <parser-exclude class="org.apache.tika.parser.pkg.PackageParser"/>
-      <parser-exclude class="org.apache.tika.parser.mbox.OutlookPSTParser"/>
     </parser>
   </parsers>
 </properties>

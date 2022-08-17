@@ -2,10 +2,6 @@ from datetime import datetime
 from hashlib import sha256
 from os import path
 import re
-import io
-import hashlib
-import base64
-import json
 
 class ExternalNER:
     def __init__(self):
