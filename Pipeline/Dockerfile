@@ -22,12 +22,16 @@ RUN apt-get update && apt-get install -y \
 ENV TZ=UTC
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
-COPY . .
+WORKDIR /pipeline
 
+COPY pom.xml .
+RUN mvn dependency:copy-dependencies -DoutputDirectory=./jars
+
+COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 RUN pip install git+https://github.com/kivy/pyjnius.git
 
-RUN mv jars/* /usr/lib/jvm/default-java/jre/lib/ext/
+COPY . .
 
 RUN mkdir /pst-temp
 
