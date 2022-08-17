@@ -29,8 +29,7 @@
     "morgan": "^1.10.0",
     "multer": "^1.4.5-lts.1",
     "redis": "^4.2.0",
-    "resource-router-middleware": "^0.7.0",
-    "streamifier": "^0.1.1"
+    "resource-router-middleware": "^0.7.0"
   },
   "devDependencies": {
     "eslint": "^8.21.0",

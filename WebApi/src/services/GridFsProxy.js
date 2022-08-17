@@ -1,15 +1,15 @@
 import { GridFSBucket } from 'mongodb'
-import { createReadStream } from 'streamifier'
 
 export const uploadFile = (mongo, fileName, buffer) => new Promise((resolve, reject) => {
     const gfs = new GridFSBucket(mongo)
 
     const writeStream = gfs.openUploadStream(fileName)
 
-    writeStream.on('close', (result) => resolve(result))
+    writeStream.on('finish', (result) => resolve(result))
     writeStream.on('error', (error) => reject(error))
 
-    createReadStream(buffer).pipe(writeStream)
+    writeStream.write(buffer, 'binary')
+    writeStream.end()
 })
 
 export const checkIfFileExists = async (mongo, fileName) => {
