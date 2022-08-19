@@ -3,7 +3,7 @@
 FROM node:8 AS build
 
 ENV NODE_ENV=production
-COPY . .
+COPY ./ ./
 
 RUN set -exu \
     && npm install \
@@ -21,7 +21,7 @@ ENV TZ=UTC
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 COPY default /etc/nginx/conf.d/default.conf
-COPY --from=build dist /usr/share/nginx/html
+COPY --from=build dist/ /usr/share/nginx/html/
 
 CMD echo $api > /usr/share/nginx/html/apiUrl.txt && nginx -g "daemon off;"
 

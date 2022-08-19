@@ -26,13 +26,13 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 WORKDIR /pipeline
 
-COPY pom.xml .
+COPY pom.xml pom.xml
 RUN mvn dependency:copy-dependencies -DoutputDirectory=./jars
 
-COPY requirements.txt .
+COPY requirements.txt requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY . .
+COPY ./ ./
 
 RUN mkdir /pst-temp
 

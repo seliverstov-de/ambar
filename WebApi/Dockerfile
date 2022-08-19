@@ -6,10 +6,10 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 RUN apk add --no-cache curl
 
-COPY package*.json .
+COPY package*.json ./
 RUN npm ci
 
-COPY src src
+COPY src/ src/
 
 CMD npm start
 
