@@ -15,9 +15,8 @@ export const removeToken = (redis, token) => {
 }
 
 export const addTag = async (redis, elasticSearch, fileId, tag) => {
-    const esResult = await EsProxy.indexTag(elasticSearch, fileId, tag)
-    const hasTags = await hasTagsInRedis(redis)
-    if (hasTags && esResult.result == 'created') {
+    await EsProxy.indexTag(elasticSearch, fileId, tag)
+    if (await hasTagsInRedis(redis)) {
         const filesCount = await getTagFilesCount(redis, tag.name, tag.type)
         await setTagFilesCount(redis, tag.name, tag.type, filesCount + 1)
     }
