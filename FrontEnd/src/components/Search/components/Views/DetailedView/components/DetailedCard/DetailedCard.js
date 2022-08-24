@@ -100,7 +100,7 @@ class DetailedCard extends Component {
                     </div>}
                     <CardActions className={classes.searchResultRowCardFooter}>
                         <div style={{ display: 'flex', justifyContent: !hidden ? 'space-between' : 'flex-end', width: '100%' }}>
-                            {!hidden && !hidden && meta.source_id != 'ui-upload' && !meta.extra.some(item => item.key === 'from_container') && <div>
+                            {!hidden && !hidden && meta.source_id != 'ui-upload' && !meta.extra.from_container && <div>
                                 <FlatButton
                                     icon={<FileDownloadIcon />}
                                     label={localization.searchPage.downloadLabel}

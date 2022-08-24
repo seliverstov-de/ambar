@@ -79,7 +79,7 @@ const addTask = (event, pathToFile, stat) => {
         source_id: config.name,
         short_name: path.basename(normalizedPath),
         extension: path.extname(normalizedPath),
-        extra: []
+        extra: {}
     }
 
     QueueProxy.enqueueMessage({ event: event, meta: meta })

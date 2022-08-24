@@ -280,15 +280,7 @@ export const FileIndexMapping = {
           extension: { type: 'keyword' },
           extra: {
             type: 'object',
-            dynamic: 'strict',
-            properties: {
-              type: {
-                type: 'keyword'
-              },
-              value: {
-                type: 'text'
-              }
-            }
+            dynamic: true
           },
           source_id: { type: 'keyword' },
           created_datetime: { type: 'date', format: DATE_TIME_FORMAT },

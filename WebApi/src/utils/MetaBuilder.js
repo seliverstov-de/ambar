@@ -18,7 +18,7 @@ export const buildShortMeta = (shortName, sourceId) => {
     }
     const created_datetime = DateTimeService.getCurrentDateTime()
     const updated_datetime = DateTimeService.getCurrentDateTime()
-    const extra = []
+    const extra = {}
 
     const meta = {
         id: generateMetaId(source_id, full_name, created_datetime, updated_datetime),

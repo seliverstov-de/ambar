@@ -71,7 +71,7 @@ class ArchiveProcessor():
                         self.logger.LogMessage('verbose', 'content found {0}'.format(fullNameInArchive))   
 
                     ## sending meta back to queue
-                    fileMeta = AmbarFileMeta.InitWithoutId(createUpdateTime, createUpdateTime, unicodeName, fullNameInArchive, FileMeta.source_id, [{'key': 'from_container', 'value': 'true'}])
+                    fileMeta = AmbarFileMeta.InitWithoutId(createUpdateTime, createUpdateTime, unicodeName, fullNameInArchive, FileMeta.source_id, {'from_container': True})
 
                     apiResp = self.apiProxy.EnqueueAmbarFileMeta(fileMeta, sha, SourceId)
 

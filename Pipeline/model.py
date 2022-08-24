@@ -145,7 +145,7 @@ class AmbarFileMeta:
         self.full_name_parts = []
         self.short_name = ''
         self.extension = ''
-        self.extra = []
+        self.extra = {}
         self.source_id = ''
         self.created_datetime = ''
         self.updated_datetime = ''
@@ -185,7 +185,7 @@ class AmbarFileMeta:
 
     @classmethod
     def InitWithoutId(cls, CreateTime, UpdateTime, ShortName, FullName,
-                      AmbarCrawlerId, Extra = []):
+                      AmbarCrawlerId, Extra = {}):
         amFileMeta = cls()
         try:
             amFileMeta.full_name = FullName
@@ -218,10 +218,7 @@ class AmbarFileMeta:
         yield 'full_name_parts', self.full_name_parts
         yield 'short_name', self.short_name
         yield 'extension', self.extension
-        extraArr = []
-        for extra in self.extra:
-            extraArr.append(dict(extra))
-        yield 'extra', extraArr
+        yield 'extra', self.extra
         yield 'source_id', self.source_id
         yield 'created_datetime', self.created_datetime
         yield 'updated_datetime', self.updated_datetime
