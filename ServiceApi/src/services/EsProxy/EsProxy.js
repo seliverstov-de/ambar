@@ -99,12 +99,6 @@ const transformHit = (hit) => {
         })
     }
 
-    if (hit.inner_hits && hit.inner_hits.ambar_file_tag) {
-        transformedHit.tags = hit.inner_hits.ambar_file_tag.hits.hits.map(hit => {
-            return hit.highlight ? { ...hit._source, highlight: hit.highlight } : hit._source
-        })
-    }
-
     return transformedHit
 }
 

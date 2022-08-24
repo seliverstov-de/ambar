@@ -204,7 +204,6 @@ const isWildcardQuery = (query) => /[*?]/g.test(query)
 const getBoolSubqueries = (queries, onlySmallFiles, onlyLargeFiles, fileId = null) => {
     const mustList = []
     const contentShouldList = []
-    let tagQuery = undefined
 
     if (queries.content && queries.content != '') {
         contentShouldList.push({
@@ -264,19 +263,39 @@ const getBoolSubqueries = (queries, onlySmallFiles, onlyLargeFiles, fileId = nul
         mustList.push({ range: { 'meta.updated_datetime': { lte: queries.when.lte } } })
     }
 
-    if (queries.tags && queries.tags.length > 0) {
-        tagQuery = {
-            terms: {
-                'tags.name': queries.tags
+    const hasTags = queries.tags && queries.tags.length > 0
+    const hasNotTags = queries.notTags && queries.notTags.length > 0
+    if (hasTags || hasNotTags) {
+        const tagsPart = queries.tags?.map((tag) => ({
+            nested: {
+                path: 'tags',
+                query: {
+                    term: {
+                        'tags.name': tag
+                    }
+                }
+            }
+        })) ?? []
+
+        const notTagsPart = queries.notTags?.map((tag) => ({
+            nested: {
+                path: 'tags',
+                query: {
+                    term: {
+                        'tags.name': tag
+                    }
+                }
+            }
+        })) ?? []
+
+        const tagQuery = {
+            bool: {
+                must: tagsPart,
+                must_not: notTagsPart
             }
         }
 
-        mustList.push({
-            nested: {
-                path: 'tags',
-                query: tagQuery
-            },
-        })
+        mustList.push(tagQuery)
     }
 
     if (contentShouldList.length > 0) {
@@ -306,13 +325,12 @@ const getBoolSubqueries = (queries, onlySmallFiles, onlyLargeFiles, fileId = nul
 
     return {
         mustList,
-        contentShouldList,
-        tagQuery
+        contentShouldList
     }
 }
 
 const getFilesQuery = (queries, from, size, onlySmallFiles, onlyLargeFiles, includeContentHighlight, fileId = null, fullFileHighlight = false) => {
-    const { mustList, contentShouldList, tagQuery } = getBoolSubqueries(queries, onlySmallFiles, onlyLargeFiles, fileId)
+    const { mustList, contentShouldList } = getBoolSubqueries(queries, onlySmallFiles, onlyLargeFiles, fileId)
 
     let highlightFields = {
         'content.author': {
@@ -377,31 +395,6 @@ const getFilesQuery = (queries, from, size, onlySmallFiles, onlyLargeFiles, incl
         query: {
             bool: {
                 must: mustList,
-                should: [
-                    {
-                        nested: {
-                            path: 'tags',
-                            query: {
-                                match_all: {}
-                            },
-                            inner_hits: {
-                                from: 0,
-                                highlight: {
-                                    fields: {
-                                        'tags.name': {
-                                            pre_tags: [''],
-                                            post_tags: [''],
-                                            fragment_size: FRAGMENT_SIZE,
-                                            number_of_fragments: NUMBER_OF_FRAGMENTS,
-                                            highlight_query: tagQuery
-                                        }
-                                    },
-                                    require_field_match: true
-                                }
-                            }
-                        }
-                    },
-                ],
                 minimum_should_match: 0
             }
         },

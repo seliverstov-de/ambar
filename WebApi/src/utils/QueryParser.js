@@ -13,6 +13,8 @@ const WHEN_QUERY = /((^|\s)when:)((today)|(yesterday)|(thisweek)|(thismonth)|(th
 
 const TAGS_QUERY = /((^|\s)tags:)([^\s]*)/im
 
+const NOT_TAGS_QUERY = /((^|\s)-tags:)([^\s]*)/im
+
 const SHOW_QUERY = /((^|\s)show:)((removed)|(all))/im
 
 const normalizeString = (string) => string.replace(/[\s]+/gi, ' ').trim()
@@ -35,8 +37,9 @@ export const parseEsStringQuery = (query) => {
     var size = { gte: null, lte: null }
     var when = { gte: null, lte: null }
     var tags = []
-    
-    content = normalizeString(query.replace(FILE_NAME_QUERY, '').replace(SOURCE_QUERY, '').replace(SIZE_GTE_QUERY, '').replace(SIZE_LTE_QUERY, '').replace(AUTHOR_QUERY, '').replace(WHEN_QUERY, '').replace(TAGS_QUERY, '').replace(SHOW_QUERY, ''))    
+    var notTags = []
+
+    content = normalizeString(query.replace(FILE_NAME_QUERY, '').replace(SOURCE_QUERY, '').replace(SIZE_GTE_QUERY, '').replace(SIZE_LTE_QUERY, '').replace(AUTHOR_QUERY, '').replace(WHEN_QUERY, '').replace(TAGS_QUERY, '').replace(NOT_TAGS_QUERY, '').replace(SHOW_QUERY, ''))
 
     var authorMatch = query.match(AUTHOR_QUERY)
     if (authorMatch && authorMatch[3]) {
@@ -56,6 +59,11 @@ export const parseEsStringQuery = (query) => {
     var tagsMatch = query.match(TAGS_QUERY)
     if (tagsMatch && tagsMatch[3]) {
         tags = tagsMatch[3].split(',')
+    }
+
+    var notTagsMatch = query.match(NOT_TAGS_QUERY)
+    if (notTagsMatch && notTagsMatch[3]) {
+        notTags = notTagsMatch[3].split(',')
     }
 
     var whenMatch = query.match(WHEN_QUERY)
@@ -112,14 +120,15 @@ export const parseEsStringQuery = (query) => {
         }
     }
     return {
-        content: content,
-        name: name,
-        source: source,
-        size: size,
-        author: author,
-        when: when,
-        tags: tags,
-        withoutHiddenMarkOnly: withoutHiddenMarkOnly,
-        withHiddenMarkOnly: withHiddenMarkOnly
+        content,
+        name,
+        source,
+        size,
+        author,
+        when,
+        tags,
+        notTags,
+        withoutHiddenMarkOnly,
+        withHiddenMarkOnly
     }
 }

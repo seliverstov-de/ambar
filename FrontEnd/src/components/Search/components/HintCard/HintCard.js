@@ -49,7 +49,12 @@ const HintCard = (props) => {
                 <span className={classes.clickableSpan} onTouchTap={() => { performSearchByQuery('tags:ocr,ui-upload') }}>
                     tags:ocr,ui-upload
                 </span> - {localization.searchPage.tagsQueryLabel}
-            </li>          
+            </li>
+            <li>
+                <span className={classes.clickableSpan} onTouchTap={() => { performSearchByQuery('-tags:ocr,ui-upload') }}>
+                    -tags:ocr,ui-upload
+                </span> - {localization.searchPage.notTagsQueryLabel}
+            </li>
             <li>
                 <span className={classes.clickableSpan} onTouchTap={() => { performSearchByQuery('show:removed') }}>
                     show:removed
