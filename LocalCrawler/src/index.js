@@ -48,7 +48,7 @@ if (cluster.isPrimary) {
 
 	QueueProxy.initRabbit(rabbitErrorHandler)
 		.then(() => FileWatchService.startWatch())
-		.catch(err => {			
+		.catch(err => {
 			ApiProxy.logData(config.name, 'error', `Error: ${err}`)
 			process.exit(1)
 		})

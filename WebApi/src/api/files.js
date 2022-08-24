@@ -256,7 +256,6 @@ export default ({ storage }) => {
             })
             .then(() => QueueProxy.enqueuePipelineMessage(storage, { event: 'add', sha: sha, fileId: generateFileId(meta.source_id, meta.full_name), sourceId: sourceId, meta: meta }))
             .then(() => {
-                // CacheProxy.addMetaId(storage.redis, meta.id)
                 res.status(200).json({ fileId: generateFileId(meta.source_id, meta.full_name) })
             })
             .catch(next)

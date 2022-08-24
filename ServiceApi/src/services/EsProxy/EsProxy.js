@@ -153,7 +153,7 @@ export const checkIfMetaIdExists = async (esClient, metaId) => {
                 term: { 'meta.id': metaId }
             }
         })
-        return body.hits.total > 0
+        return body.hits.total.value > 0
     } catch (error) {
         if (error.statusCode !== 404) {
             console.error(error)
@@ -171,7 +171,7 @@ export const getFileBySha = async (esClient, sha) => {
             term: { 'sha256': sha }
         }
     })
-    return body.hits.total > 0 ? normalizeHitContentHighlights(transformHit(body.hits.hits[0])) : null
+    return body.hits.total.value > 0 ? normalizeHitContentHighlights(transformHit(body.hits.hits[0])) : null
 }
 
 export const indexTag = async (esClient, fileId, tag) => {

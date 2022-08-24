@@ -292,7 +292,7 @@ export const searchFiles = async (esClient, request, from, size) => {
             : true)
 
     return {
-        total: withHighlights.hits.total + withoutHighlights.hits.total,
+        total: withHighlights.hits.total.value + withoutHighlights.hits.total.value,
         hits: resultHits
     }
 }
@@ -332,7 +332,7 @@ export const checkIfFileExists = async (esClient, fileId) => {
         }
     })
 
-    return body.hits.total > 0
+    return body.hits.total.value > 0
 }
 
 export const getFileByFileId = async (esClient, fileId) => {

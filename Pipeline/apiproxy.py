@@ -23,9 +23,9 @@ class ApiProxy:
                 try:
                     apiResp.message = req.text
                 except:
-                    pass   
+                    pass
             apiResp.result = 'ok'
-            apiResp.code = req.status_code            
+            apiResp.code = req.status_code
         except requests.exceptions.RequestException as ex:
             apiResp.result = 'error'
             apiResp.message = str(ex)
@@ -41,19 +41,19 @@ class ApiProxy:
             except:
                 pass
             apiResp.result = 'ok'
-            apiResp.code = req.status_code            
+            apiResp.code = req.status_code
         except requests.exceptions.RequestException as ex:
             apiResp.result = 'error'
             apiResp.message = str(ex)
         return apiResp
-    
+
     def CheckIfParsedAmbarFileContentExists(self, Sha):
         apiResp = RestApiResponse()
         try:
             apiUri = '{0}/api/files/content/{1}/parsed'.format(self.apiUrl, Sha)
             req = requests.head(apiUri, timeout = self.apiCallTimeoutSeconds)
             apiResp.result = 'ok'
-            apiResp.code = req.status_code            
+            apiResp.code = req.status_code
         except requests.exceptions.RequestException as ex:
             apiResp.result = 'error'
             apiResp.message = str(ex)
@@ -65,7 +65,7 @@ class ApiProxy:
             apiUri = '{0}/api/files/meta/exists'.format(self.apiUrl)
             req = requests.post(apiUri, json = Meta, timeout = self.apiCallTimeoutSeconds)
             apiResp.result = 'ok'
-            apiResp.code = req.status_code            
+            apiResp.code = req.status_code
         except requests.exceptions.RequestException as ex:
             apiResp.result = 'error'
             apiResp.message = str(ex)
@@ -82,7 +82,7 @@ class ApiProxy:
             except:
                 pass
             apiResp.result = 'ok'
-            apiResp.code = req.status_code            
+            apiResp.code = req.status_code
         except requests.exceptions.RequestException as ex:
             apiResp.result = 'error'
             apiResp.message = str(ex)
@@ -109,7 +109,7 @@ class ApiProxy:
         try:
             apiUri = '{0}/api/files/content/{1}'.format(self.apiUrl, Sha)
             req = requests.get(apiUri, timeout = self.apiCallTimeoutSeconds)
-            if req.status_code == 200:                
+            if req.status_code == 200:
                 contentDispositionHeader = req.headers['content-disposition']
                 reRes = re.search("filename\*=UTF-8\'\'(.+)", contentDispositionHeader)
                 if reRes:
@@ -121,7 +121,7 @@ class ApiProxy:
                 except:
                     pass
             apiResp.result = 'ok'
-            apiResp.code = req.status_code            
+            apiResp.code = req.status_code
         except requests.exceptions.RequestException as ex:
             apiResp.result = 'error'
             apiResp.message = str(ex)
@@ -142,7 +142,7 @@ class ApiProxy:
             apiResp.result = 'error'
             apiResp.message = str(ex)
         return apiResp
-    
+
     def UnhideFile(self, FileId): 
         apiResp = RestApiResponse()
         try:
@@ -164,7 +164,7 @@ class ApiProxy:
         try:
             apiUri = '{0}/api/files/download?path={1}'.format(self.webApiUrl, urllib.parse.quote_plus(FullName))
             req = requests.get(apiUri, timeout = self.apiCallTimeoutSeconds)
-            if req.status_code == 200:                
+            if req.status_code == 200:
                 apiResp.payload = req.content
             else:
                 try:
@@ -172,7 +172,7 @@ class ApiProxy:
                 except:
                     pass
             apiResp.result = 'ok'
-            apiResp.code = req.status_code            
+            apiResp.code = req.status_code
         except requests.exceptions.RequestException as ex:
             apiResp.result = 'error'
             apiResp.message = str(ex)
@@ -183,7 +183,7 @@ class ApiProxy:
         try:
             apiUri = '{0}/api/files/download?sha={1}'.format(self.webApiUrl, urllib.parse.quote_plus(Sha))
             req = requests.get(apiUri, timeout = self.apiCallTimeoutSeconds)
-            if req.status_code == 200:                
+            if req.status_code == 200:
                 apiResp.payload = req.content
             else:
                 try:
@@ -191,18 +191,18 @@ class ApiProxy:
                 except:
                     pass
             apiResp.result = 'ok'
-            apiResp.code = req.status_code            
+            apiResp.code = req.status_code
         except requests.exceptions.RequestException as ex:
             apiResp.result = 'error'
             apiResp.message = str(ex)
         return apiResp
-    
+
     def GetParsedFileContent(self, Sha):
         apiResp = RestApiResponse()
         try:
             apiUri = '{0}/api/files/content/{1}/parsed'.format(self.apiUrl, Sha)
             req = requests.get(apiUri, timeout = self.apiCallTimeoutSeconds)
-            if req.status_code == 200:                
+            if req.status_code == 200:
                 contentDispositionHeader = req.headers['content-disposition']
                 reRes = re.search("filename\*=UTF-8\'\'(.+)", contentDispositionHeader)
                 if reRes:
@@ -214,12 +214,12 @@ class ApiProxy:
                 except:
                     pass
             apiResp.result = 'ok'
-            apiResp.code = req.status_code            
+            apiResp.code = req.status_code
         except requests.exceptions.RequestException as ex:
             apiResp.result = 'error'
             apiResp.message = str(ex)
         return apiResp
-    
+
     def GetParsedFileContentFields(self, Sha):
         apiResp = RestApiResponse()
         try:
@@ -235,9 +235,9 @@ class ApiProxy:
                 try:
                     apiResp.message = req.text
                 except:
-                    pass     
+                    pass
             apiResp.result = 'ok'
-            apiResp.code = req.status_code            
+            apiResp.code = req.status_code
         except requests.exceptions.RequestException as ex:
             apiResp.result = 'error'
             apiResp.message = str(ex)
@@ -253,12 +253,12 @@ class ApiProxy:
             except:
                 pass
             apiResp.result = 'ok'
-            apiResp.code = req.status_code            
+            apiResp.code = req.status_code
         except requests.exceptions.RequestException as ex:
             apiResp.result = 'error'
             apiResp.message = str(ex)
         return apiResp
-    
+
     def AddMetaIdToCache(self, MetaId):
         apiResp = RestApiResponse()
         try:
@@ -269,7 +269,7 @@ class ApiProxy:
             except:
                 pass
             apiResp.result = 'ok'
-            apiResp.code = req.status_code            
+            apiResp.code = req.status_code
         except requests.exceptions.RequestException as ex:
             apiResp.result = 'error'
             apiResp.message = str(ex)
@@ -286,12 +286,12 @@ class ApiProxy:
             except:
                 pass
             apiResp.result = 'ok'
-            apiResp.code = req.status_code            
+            apiResp.code = req.status_code
         except requests.exceptions.RequestException as ex:
             apiResp.result = 'error'
             apiResp.message = str(ex)
         return apiResp
-    
+
     def RemoveAutoTags(self, FileId):
         apiResp = RestApiResponse()
         try:
@@ -302,7 +302,7 @@ class ApiProxy:
             except:
                 pass
             apiResp.result = 'ok'
-            apiResp.code = req.status_code            
+            apiResp.code = req.status_code
         except requests.exceptions.RequestException as ex:
             apiResp.result = 'error'
             apiResp.message = str(ex)
@@ -318,7 +318,7 @@ class ApiProxy:
             except:
                 pass
             apiResp.result = 'ok'
-            apiResp.code = req.status_code            
+            apiResp.code = req.status_code
         except requests.exceptions.RequestException as ex:
             apiResp.result = 'error'
             apiResp.message = str(ex)
@@ -335,7 +335,7 @@ class ApiProxy:
             except:
                 pass
             apiResp.result = 'ok'
-            apiResp.code = req.status_code            
+            apiResp.code = req.status_code
         except requests.exceptions.RequestException as ex:
             apiResp.result = 'error'
             apiResp.message = str(ex)
@@ -348,7 +348,7 @@ class ApiProxy:
             apiUri = '{0}/api/thumbs/{1}'.format(self.apiUrl, ThumbId)
             req = requests.post(apiUri, files=files, timeout = self.apiCallTimeoutSeconds)
             apiResp.result = 'ok'
-            apiResp.code = req.status_code            
+            apiResp.code = req.status_code
         except requests.exceptions.RequestException as ex:
             apiResp.result = 'error'
             apiResp.message = str(ex)
@@ -370,13 +370,13 @@ class RestApiResponse:
 
     @property
     def Ok(self):
-        return True if self.code == 200 else False    
+        return True if self.code == 200 else False
     @property
     def Created(self):
         return True if self.code == 201 else False  
     @property
     def NoContent(self):
-        return True if self.code == 204 else False   
+        return True if self.code == 204 else False
     @property
     def Found(self):
         return True if self.code == 302 else False

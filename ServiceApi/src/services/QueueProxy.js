@@ -50,7 +50,7 @@ export const initRabbit = new Promise((resolve, reject) => {
 					.then(() => channel.bindQueue(AMBAR_PIPELINE_QUEUE,
 						AMBAR_PIPELINE_EXCHANGE))
 					.then(() => channel.bindQueue(AMBAR_PIPELINE_WAITING_QUEUE,
-						AMBAR_PIPELINE_WAITING_EXCHANGE))					
+						AMBAR_PIPELINE_WAITING_EXCHANGE))
 					.then(() => channel.close())
 				)
 				.then(() => resolve(conn))

@@ -17,7 +17,7 @@ export const startWatch = () => {
             if (event === 'add' || event === 'change' || event === 'unlink') {
                 addTask(event, pathToFile, stat)
             }
-        })       
+        })
 }
 
 const shouldIgnore = (pathToFile, stat) => {
