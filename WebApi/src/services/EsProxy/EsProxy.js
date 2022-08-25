@@ -317,18 +317,6 @@ export const getFullFileHighlightByFileId = async (esClient, request, fileId) =>
     }
 }
 
-export const checkIfFileExists = async (esClient, fileId) => {
-    const body = await esClient.search({
-        index: ES_FILE_INDEX,
-        _source: false,
-        query: {
-            term: { file_id: fileId }
-        }
-    })
-
-    return body.hits.total.value > 0
-}
-
 export const getFileByFileId = async (esClient, fileId) => {
     const body = await esClient.search({
         index: ES_FILE_INDEX,

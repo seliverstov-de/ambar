@@ -1,7 +1,7 @@
 import amqp from 'amqplib'
 import config from '../config.js'
 
-export const AMBAR_PIPELINE_EXCHANGE = "AMBAR_PIPELINE_EXCHANGE"
+const AMBAR_PIPELINE_EXCHANGE = "AMBAR_PIPELINE_EXCHANGE"
 
 const getPipelineMessagePriority = (storage, fileName) => new Promise((resolve) => {
 	const regex = /(\.jp[e]*g$)|(\.png$)|(\.bmp$)|(\.tif[f]*$)|(\.pdf$)/i

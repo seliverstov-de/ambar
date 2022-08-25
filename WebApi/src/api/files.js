@@ -80,7 +80,7 @@ export default ({ storage }) => {
 
             axios
                 .get(`http://${crawlerName}:${config.crawlerPort}/api/download?path=${encodeURIComponent(crawlerFilePath)}`, { responseType: 'stream' })
-                .then(response  => {
+                .then(response => {
                     response.data.pipe(res)
                     return promisify(stream.finished)
                 })

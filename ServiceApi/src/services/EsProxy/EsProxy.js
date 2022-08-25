@@ -4,18 +4,6 @@ import { FileIndexMapping, LogIndexMapping } from './IndexMappings.js'
 const ES_LOG_INDEX = 'ambar_log_record'
 const ES_FILE_INDEX = 'ambar_file'
 
-const transformTagsStat = (esResponse) => {
-    const resp = []
-
-    esResponse.aggregations.tags.tags.buckets.forEach(tag => {
-        tag.type.buckets.forEach(tagType => {
-            resp.push({ name: tag.key, type: tagType.key, filesCount: tagType.doc_count })
-        })
-    })
-
-    return resp
-}
-
 const normalizeHitContentHighlights = (hit) => {
     const ALLOWED_TAGS = ['br', 'em', 'em class="entity"']
     const SEPARATOR_TAG = '<br/>'
@@ -116,26 +104,6 @@ export const createIndices = async (esClient) => {
             ...FileIndexMapping
         })
     }
-}
-
-export const getTagsStat = async (esClient) => {
-    const body = await esClient.search({
-        index: ES_FILE_INDEX,
-        from: 0,
-        size: 0,
-        aggs: {
-            tags: {
-                nested: { path: 'tags' },
-                aggs: {
-                    tags: {
-                        terms: { field: 'tags.name' },
-                        aggs: { type: { terms: { field: 'tags.type' } } }
-                    }
-                }
-            }
-        }
-    })
-    return transformTagsStat(body)
 }
 
 export const checkIfMetaIdExists = async (esClient, metaId) => {

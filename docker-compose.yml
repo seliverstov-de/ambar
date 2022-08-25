@@ -83,7 +83,6 @@ services:
       - elasticSearchUrl=http://es:9200
       - redisHost=redis
       - redisPort=6379
-      - serviceApiUrl=http://serviceapi:8081
       - rabbitHost=amqp://rabbit
   frontend:
     depends_on:

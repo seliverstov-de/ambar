@@ -14,7 +14,7 @@ export {
     EsProxy,
     MongoProxy,
     FileUploader,
-    DateTimeService,    
+    DateTimeService,
     GridFsProxy,
     CacheProxy,
     ErrorHandlerService,

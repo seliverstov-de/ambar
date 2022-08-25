@@ -1,18 +1,8 @@
-import { EsProxy, DateTimeService } from './index.js'
+import { EsProxy } from './index.js'
 
 const TAGS_HASH_NAME = 'tags'
 
-export const addMetaId = (redis, metaId) => { redis.SET(`meta:${metaId}`, DateTimeService.getCurrentDateTime()) }
 export const removeMetaId = (redis, metaId) => { redis.DEL(`meta:${metaId}`) }
-
-export const checkIfTokenExists = (redis, token) => redis.GET(token)
-export const addToken = (redis, token, ttlSeconds) => {
-    redis.SET(token, DateTimeService.getCurrentDateTime())
-    redis.EXPIRE(token, ttlSeconds)
-}
-export const removeToken = (redis, token) => {
-    redis.DEL(token)
-}
 
 export const addTag = async (redis, elasticSearch, fileId, tag) => {
     await EsProxy.indexTag(elasticSearch, fileId, tag)
