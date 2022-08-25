@@ -1,0 +1,1009 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="1380px" preserveAspectRatio="none" style="width:1714px;height:1380px;background:#FFFFFF;" version="1.1" viewBox="0 0 1714 1380" width="1714px" zoomAndPan="magnify"><defs/><g><rect fill="none" height="26.2969" id="_title" style="stroke:none;stroke-width:1.0;" width="231" x="734.5" y="5"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="221" x="739.5" y="22.9951">Ambar - Container Diagram</text><!--MD5=[ee325d356cacbbcf5fc35140d631706d]
+cluster ambar--><g id="cluster_ambar"><rect fill="none" height="1107.0047" rx="2.5" ry="2.5" style="stroke:#444444;stroke-width:1.0;stroke-dasharray:7.0,7.0;" width="1415.5" x="280" y="161.7969"/><text fill="#444444" font-family="sans-serif" font-size="6" font-style="italic" lengthAdjust="spacing" textLength="38" x="968.75" y="169.3662">«boundary»</text><text fill="#444444" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="59" x="958.25" y="188.6484">Ambar</text><text fill="#444444" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="64" x="955.75" y="203.5605">[System]</text></g><!--MD5=[b1e3d2dcb3697de9e6328d1cb436cbc4]
+entity frontend--><g id="elem_frontend"><rect fill="#438DD5" height="160.4531" rx="2.5" ry="2.5" style="stroke:#3C7FC0;stroke-width:0.5;" width="182" x="296" y="737.8019"/><text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="71" x="351.5" y="758.9405">«container»</text><image height="45" width="51" x="361.5" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADMAAAAtCAIAAACMH8SWAAACpUlEQVR4XsVXwY1VMQx8vbkAGtgCaIACKIB/4siNI0du9IGQkFZCQvRBkFfD4LEdf/1ISHPYdcb2JM+x8y9793WC25dfwJtPP5TQ4O3nn+yuhBSXmhQc964c6jJ0tIkyj7X27f++ev+Nc8AewOfEHNjVJWCj7OnD9yoQ5w5LqaawunaoS4yNMo+y9OkSEzhTJRd4/fG5JzhGytSunAWkHLqonXFAmdVVVWES9owyvhbbArJZ2DPKIOsuvtoZB5SxoGFTmHAeVabnpBbFlmBDZVXpVCfkxuoqoCh1ibFR5rk1x+pwa3rieCosju6qihmwUYb9cV94BIijigM6ZRM11XjAWGvQH1uiLMxsjTIsFMvKNN1ten5RWfBZFtRT4ExeaToiucg0F+OvMiaFb8SeKrSHk7EN9eVpy0svyrCQnoQvuVwNbbu5CZfmTcU33S1/lAWTQsuZV8PSlrAOSVME5vr70lJIUWVNK/omJ1e5K5yzVF0TtpGCJmXAxD2FM6fK4JAaU6RMDatw5ouyqmEC1aZVEJC6B7sCzfJq7gujShnuPBDueOWucM7Sd9/dxNY1VkBDSBtTYNqpfsZtRQuDXVJ3yz73/58B4TUFezc3vdjdkws/JGug2+B64FzMcURllnX8mzTuNJbCadu3hjpaqgzQEIqlWN8wy1LdWUbfdTtlVrzVHgHOrJmejo0yhAv2pThUbor0RIcddKRMozu0wNlL9xMIameMlKk9EJijFsWWYI8rA8dp6ZBQTDgHlIEGVF8/8NXOOKMMzJvMjxSTsGeU8T1tCh+YhD2gDLWlvzIqTDgjZc0HghRwtuKGvzw2ypquqO8WAPb0y4adVNgoMzmDde/CVFYXk8ldRWuwV2bSFObR1WXoaENl9m+O9Bs1qN6GPX4DMEw1ry8aUNsAAAAASUVORK5CYII=" y="761.7706"/><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="83" x="345.5" y="821.6222">Frontend</text><text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="162" x="306" y="836.5343">[React, Material UI, Redux]</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4" x="385" y="852.3595"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="132" x="321" y="868.6564">SPA, provides user</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="80" x="347" y="884.9532">interaction</text></g><!--MD5=[08af8945a84acfe1eabc0963aa87c412]
+entity web--><g id="elem_web"><rect fill="#438DD5" height="177.4531" rx="2.5" ry="2.5" style="stroke:#3C7FC0;stroke-width:0.5;" width="184" x="676" y="729.3019"/><text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="71" x="732.5" y="750.4405">«container»</text><image height="62" width="102" x="717" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGYAAAA+CAIAAABWYPmvAAAD9klEQVR4Xu2aP4oVQRCH925zAC/gAbyAB/AAGhk9zAxeYLiZkZgJJgYiTxAWRFgQBBGMrbc1W9TUr7umev717LPhC5bu6p6ab2p6eubtVff888Vwuv377vQb25flCpseLqSMeXb9HXuX4jKVMY9efsGY+VyyMgbDZtKUFdOUFdOUFdOUFdOUFdOUFdOUFdOUFdOUFdOUFTOibPGjHt7fvnj7A9unQa/fOj30VZp8ZEhW2cxjIyRLOH74Of+dGdPDnONpf7z5ExyYUIZHjUzkoGWJMgaDI2BWDjjcwKWaJJnhQBmdDA5D4nfW0zc3FEw41pJp5cBaGAUn0WA8Ym6IXhm1YqiPf2dRL8uKKCNGLwPZxxwi4FQMRvrIwLMy7I6DqRBaVlAZQY2PX33F2SZcTg1OOKFUBRp+ha2lmISuP/2arAytHWJrhYNJDwNKWV4Z32UTlBGkm27AZc9wa2VPXn+jy47tGlSG1tZT5jzvmCJlnCq2a7LKaKQ+kjORyYlP/nC3ZS1SRr6KlNHllDAaiAGMSQ8DGPNrnrPepZUll2FKESNPkJMoWFUZppcLjsTI058T47+Tjx2SkFaG2eSmwGBRoAttVBn7CiqjEsD0csHxGJ0PBksZrqjsqArNVya+dqtMz7CiMlbw0JXhjn0tZaJgDWV4UCc4EiMHpaVKP1WSrK6MrS2uzByXJsEADItP6LCKMq2AQF+LKGNyWQkmPQzw45EtlCWtLaVsFJMeBiD+f1wVKOsyxzMx6KtIGc6GRywicgpJkpvTDpX5grvUOWAMGRm1llSGU3UzPvucUrmVTojDB8qwO0dklFF2vP9WkVSGww10LfF8HHI1IuC1d9ADe2U4Y4TI2FyhiS+zePngySCH4duxj/MuKZghgw/ZK0E7HbTGRYfBEfCsmNwWdxScKimL2UIZQ7szrQwDBClA7BJwPcKYIsxHB2dDu50yhmThK4juZVnkl//w/1GY16PRZSvOIfAz69bKclDVsCNdgFJuC0qZT31lVHT+nej3bk9lZaLDuVu7u4UGa7AW1ZTJauUstLkh/gK3NnWU8clPK5lIVa5KHWX8ZMR2DUmhaiJw7a9baDtSdrx/E5Cnp0Y/+5uyHlHGjkyXbmnKerQy3E8e1YOiKesxVcbicCHjgKbsjCjjvxEd2ZSd0co09OjkeNmUNGU9rCzZxb3S3pT1SJWZ25CgFa1VmadMXowMOrIpOyPKGNpSkBfShwvc/6hM9ve60ShLIl+KsGsz6ijrht9z5JmIYRq5Qyu+k3cVlTFm2cIAhoVGynADKisbhdYsKUbsrcKOlEkpScto9VVhR8q64e8ATN1lK8m+lDFcbvgxYyf8A+qCxDhLuGeRAAAAAElFTkSuQmCC" y="753.2706"/><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="75" x="730.5" y="830.1222">Web API</text><text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="112" x="712" y="845.0343">[Node.JS, Express]</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4" x="766" y="860.8595"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="156" x="690" y="877.1564">Provides REST-API for</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="66" x="735" y="893.4532">Frontend</text></g><!--MD5=[38bfa9dc6018363cafe15f923a4b8db9]
+entity service--><g id="elem_service"><rect fill="#438DD5" height="161.1563" rx="2.5" ry="2.5" style="stroke:#3C7FC0;stroke-width:0.5;" width="155" x="1524.5" y="607.3019"/><text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="71" x="1566.5" y="628.4405">«container»</text><image height="62" width="102" x="1551" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGYAAAA+CAIAAABWYPmvAAAD9klEQVR4Xu2aP4oVQRCH925zAC/gAbyAB/AAGhk9zAxeYLiZkZgJJgYiTxAWRFgQBBGMrbc1W9TUr7umev717LPhC5bu6p6ab2p6eubtVff888Vwuv377vQb25flCpseLqSMeXb9HXuX4jKVMY9efsGY+VyyMgbDZtKUFdOUFdOUFdOUFdOUFdOUFdOUFdOUFdOUFdOUFTOibPGjHt7fvnj7A9unQa/fOj30VZp8ZEhW2cxjIyRLOH74Of+dGdPDnONpf7z5ExyYUIZHjUzkoGWJMgaDI2BWDjjcwKWaJJnhQBmdDA5D4nfW0zc3FEw41pJp5cBaGAUn0WA8Ym6IXhm1YqiPf2dRL8uKKCNGLwPZxxwi4FQMRvrIwLMy7I6DqRBaVlAZQY2PX33F2SZcTg1OOKFUBRp+ha2lmISuP/2arAytHWJrhYNJDwNKWV4Z32UTlBGkm27AZc9wa2VPXn+jy47tGlSG1tZT5jzvmCJlnCq2a7LKaKQ+kjORyYlP/nC3ZS1SRr6KlNHllDAaiAGMSQ8DGPNrnrPepZUll2FKESNPkJMoWFUZppcLjsTI058T47+Tjx2SkFaG2eSmwGBRoAttVBn7CiqjEsD0csHxGJ0PBksZrqjsqArNVya+dqtMz7CiMlbw0JXhjn0tZaJgDWV4UCc4EiMHpaVKP1WSrK6MrS2uzByXJsEADItP6LCKMq2AQF+LKGNyWQkmPQzw45EtlCWtLaVsFJMeBiD+f1wVKOsyxzMx6KtIGc6GRywicgpJkpvTDpX5grvUOWAMGRm1llSGU3UzPvucUrmVTojDB8qwO0dklFF2vP9WkVSGww10LfF8HHI1IuC1d9ADe2U4Y4TI2FyhiS+zePngySCH4duxj/MuKZghgw/ZK0E7HbTGRYfBEfCsmNwWdxScKimL2UIZQ7szrQwDBClA7BJwPcKYIsxHB2dDu50yhmThK4juZVnkl//w/1GY16PRZSvOIfAz69bKclDVsCNdgFJuC0qZT31lVHT+nej3bk9lZaLDuVu7u4UGa7AW1ZTJauUstLkh/gK3NnWU8clPK5lIVa5KHWX8ZMR2DUmhaiJw7a9baDtSdrx/E5Cnp0Y/+5uyHlHGjkyXbmnKerQy3E8e1YOiKesxVcbicCHjgKbsjCjjvxEd2ZSd0co09OjkeNmUNGU9rCzZxb3S3pT1SJWZ25CgFa1VmadMXowMOrIpOyPKGNpSkBfShwvc/6hM9ve60ShLIl+KsGsz6ijrht9z5JmIYRq5Qyu+k3cVlTFm2cIAhoVGynADKisbhdYsKUbsrcKOlEkpScto9VVhR8q64e8ATN1lK8m+lDFcbvgxYyf8A+qCxDhLuGeRAAAAAElFTkSuQmCC" y="631.2706"/><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="101" x="1551.5" y="708.1222">Service API</text><text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="112" x="1546" y="723.0343">[Node.JS, Express]</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4" x="1600" y="738.8595"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="131" x="1538.5" y="755.1564">Provides REST-API</text></g><!--MD5=[7c08a4b85b718ec27cf058f21c70da75]
+entity crawler--><g id="elem_crawler"><rect fill="#438DD5" height="177.4531" rx="2.5" ry="2.5" style="stroke:#3C7FC0;stroke-width:0.5;" width="218" x="1068" y="799.3019"/><text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="71" x="1141.5" y="820.4405">«container»</text><image height="62" width="102" x="1126" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGYAAAA+CAIAAABWYPmvAAAD9klEQVR4Xu2aP4oVQRCH925zAC/gAbyAB/AAGhk9zAxeYLiZkZgJJgYiTxAWRFgQBBGMrbc1W9TUr7umev717LPhC5bu6p6ab2p6eubtVff888Vwuv377vQb25flCpseLqSMeXb9HXuX4jKVMY9efsGY+VyyMgbDZtKUFdOUFdOUFdOUFdOUFdOUFdOUFdOUFdOUFdOUFTOibPGjHt7fvnj7A9unQa/fOj30VZp8ZEhW2cxjIyRLOH74Of+dGdPDnONpf7z5ExyYUIZHjUzkoGWJMgaDI2BWDjjcwKWaJJnhQBmdDA5D4nfW0zc3FEw41pJp5cBaGAUn0WA8Ym6IXhm1YqiPf2dRL8uKKCNGLwPZxxwi4FQMRvrIwLMy7I6DqRBaVlAZQY2PX33F2SZcTg1OOKFUBRp+ha2lmISuP/2arAytHWJrhYNJDwNKWV4Z32UTlBGkm27AZc9wa2VPXn+jy47tGlSG1tZT5jzvmCJlnCq2a7LKaKQ+kjORyYlP/nC3ZS1SRr6KlNHllDAaiAGMSQ8DGPNrnrPepZUll2FKESNPkJMoWFUZppcLjsTI058T47+Tjx2SkFaG2eSmwGBRoAttVBn7CiqjEsD0csHxGJ0PBksZrqjsqArNVya+dqtMz7CiMlbw0JXhjn0tZaJgDWV4UCc4EiMHpaVKP1WSrK6MrS2uzByXJsEADItP6LCKMq2AQF+LKGNyWQkmPQzw45EtlCWtLaVsFJMeBiD+f1wVKOsyxzMx6KtIGc6GRywicgpJkpvTDpX5grvUOWAMGRm1llSGU3UzPvucUrmVTojDB8qwO0dklFF2vP9WkVSGww10LfF8HHI1IuC1d9ADe2U4Y4TI2FyhiS+zePngySCH4duxj/MuKZghgw/ZK0E7HbTGRYfBEfCsmNwWdxScKimL2UIZQ7szrQwDBClA7BJwPcKYIsxHB2dDu50yhmThK4juZVnkl//w/1GY16PRZSvOIfAz69bKclDVsCNdgFJuC0qZT31lVHT+nej3bk9lZaLDuVu7u4UGa7AW1ZTJauUstLkh/gK3NnWU8clPK5lIVa5KHWX8ZMR2DUmhaiJw7a9baDtSdrx/E5Cnp0Y/+5uyHlHGjkyXbmnKerQy3E8e1YOiKesxVcbicCHjgKbsjCjjvxEd2ZSd0co09OjkeNmUNGU9rCzZxb3S3pT1SJWZ25CgFa1VmadMXowMOrIpOyPKGNpSkBfShwvc/6hM9ve60ShLIl+KsGsz6ijrht9z5JmIYRq5Qyu+k3cVlTFm2cIAhoVGynADKisbhdYsKUbsrcKOlEkpScto9VVhR8q64e8ATN1lK8m+lDFcbvgxYyf8A+qCxDhLuGeRAAAAAElFTkSuQmCC" y="823.2706"/><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="70" x="1142" y="900.1222">Crawler</text><text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="112" x="1121" y="915.0343">[Node.JS, Express]</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4" x="1175" y="930.8595"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="194" x="1082" y="947.1564">Provides REST-API, handles</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="99" x="1127.5" y="963.4532">business logic</text></g><!--MD5=[60a7d49912a5e26523681947c411f52d]
+entity pipeline--><g id="elem_pipeline"><rect fill="#438DD5" height="150.1563" rx="2.5" ry="2.5" style="stroke:#3C7FC0;stroke-width:0.5;" width="121" x="326.5" y="1052.8019"/><text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="71" x="351.5" y="1073.9405">«container»</text><image height="51" width="51" x="361.5" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADMAAAAzCAIAAAC1w6d9AAACAklEQVR4Xu3XMUrEQBSA4dwtB/ACOcBewAN4AK2sxM7CwnI7SztLCxEEQRBBEDyDsztrnN3/zZv3JpPYCH8VzHufazYxXX/6WNfxzev64Uvp4u6DZ9nreEjv7PadiGKcU8wn40p71/efHKjkkHFZRRybyyoTp3NxMU7O5ZalB4fLZ+4uxuFik2RH509cXIzDxdyy9ELmVkscLuaWTY/Dxf5lSRwuZpWtrl6KGR8PHC5mlVkqPkmnyjirbf32Rsg0GafMUU4WCjdIQcYRM6XIhuST28l4/nzpshG3kQ1Vj7/qdFn4jkfcRsaTZ02RjTegP5DFxy5NKWsnM96EWhW/fTorFH6s48mzFq9unRVbVBZZBzKalpa5WEvIVtvL2ctyy9IdFdlZDtnBC3e6oyI6mFXWyjTYWFbZ8iyfjGu8cb1Sd7J+IyVtfI3jJlfcrdRbnpvx2ucmb1yvtJyMu/V2svD3IqihjIv14sVT/p92ooyLi+3JFNwUGbcWGz2/siHzP3e1jFuLjZg9WayVjFuV0pe5rCwXdzOeNaWWshg/koM4XKyxjA7G4WItZUSIcbhYMxkFo4NHLLWREbT6edUeT/8DGU2iIHc811QZQaIg3LHE40pWWS/hqMnhxiOD+bbnkIXf28US49hcDlmf4LjSEgcq+WSxChmHFKuRpSlK8Tlt7xsitAD5Ha4gmgAAAABJRU5ErkJggg==" y="1076.7706"/><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="71" x="351.5" y="1142.6222">Pipeline</text><text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="91" x="341.5" y="1157.5343">[Python, Tikka]</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4" x="385" y="1173.3595"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="97" x="340.5" y="1189.6564">Analyzes files</text></g><!--MD5=[dab304f5ddff789061afb7df96f8505e]
+entity rabbit--><g id="elem_rabbit"><path d="M1084,1039.8019 L1270,1039.8019 C1275,1039.8019 1275,1127.6769 1275,1127.6769 C1275,1127.6769 1275,1215.5519 1270,1215.5519 L1084,1215.5519 C1079,1215.5519 1079,1127.6769 1079,1127.6769 C1079,1127.6769 1079,1039.8019 1084,1039.8019 " fill="#438DD5" style="stroke:#3C7FC0;stroke-width:0.5;"/><path d="M1270,1039.8019 C1265,1039.8019 1265,1127.6769 1265,1127.6769 C1265,1215.5519 1270,1215.5519 1270,1215.5519 " fill="none" style="stroke:#3C7FC0;stroke-width:0.5;"/><text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="71" x="1136.5" y="1055.9405">«container»</text><image height="54" width="51" x="1146.5" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADMAAAA2CAIAAADlDjbOAAAA6klEQVR4Xu3YQQrCMBSE4d6tB/ACHsDL6MpVcOctXHoHEQSXQo/hg4KEjM3LKGlDGfh2vti/hWrTrt/fwnWYYp9mbE8PXDLanZ84T+nwS2OHywvXfOB8DOcpTlnmAJvjHYdjNoCryqmMpzKeyngq46mMpzKeyngq462xzJ70cTj251bAL7OtgJ19ws0a2ZjtYlilZYuwy9FomVEZT2U8lfFUxpujzH7QEziD6pZlHjdwOFG3DIPK4yqW5d9XquwblfHaLQvN3pshW+ZuveqWhYk4NyvMUPYzlfFUxlMZT2W8hst67591EVb1BgGXj7OI7+saAAAAAElFTkSuQmCC" y="1058.7706"/><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="143" x="1100.5" y="1127.6222">Message Queue</text><text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="72" x="1136" y="1142.5343">[Rabbit MQ]</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4" x="1170" y="1158.3595"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="158" x="1093" y="1174.6564">Message bus between</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="172" x="1084" y="1190.9532">services, notify pipeline</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="109" x="1117.5" y="1207.2501">about new files</text></g><!--MD5=[0469bbe7e3c83ced3406d336948e0e21]
+entity mongo--><g id="elem_mongo"><path d="M1079.5,233.2969 C1079.5,223.2969 1177,223.2969 1177,223.2969 C1177,223.2969 1274.5,223.2969 1274.5,233.2969 L1274.5,350.4531 C1274.5,360.4531 1177,360.4531 1177,360.4531 C1177,360.4531 1079.5,360.4531 1079.5,350.4531 L1079.5,233.2969 " fill="#438DD5" style="stroke:#3C7FC0;stroke-width:0.5;"/><path d="M1079.5,233.2969 C1079.5,243.2969 1177,243.2969 1177,243.2969 C1177,243.2969 1274.5,243.2969 1274.5,233.2969 " fill="none" style="stroke:#3C7FC0;stroke-width:0.5;"/><text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="71" x="1141.5" y="258.4355">«container»</text><image height="29" width="102" x="1126" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGYAAAAdCAIAAADXWI43AAACrElEQVR4Xu2ZPWocQRCF9259AF9AB9AFfAAfQIoULc42cOBQmSKhTKBEgTBjWFgwBoHBIASK9bRPqq2pV9Mzu8ZaL254CHV1dU3319U/MzsrJ3dNW2kWyseL5ZfrX+rXZOoh+3T+Y351T6lrE7VBdvT5O2GdXvxEojVqQ9ogs/wiMggQtUHTKzLj5ZG1TS3VCLK2PFUvyDyvgKwlmmocWUu0oNmHs291ZC3RgmaBV0M2qknIPn5dacsDUhiO11y2HfWh7Mo1CRks2o+DE8fiLUgFGjUngrN3m4RMp+IQpci8Pdzb1dksCTLov0KGA1CrKpZJyNKFeX77m8+77B68A/xZpUJiw/lm9Yj3f621iYFDd/+EyOqDXEAExLekCNmBKrRN0SiFSlWwECv/n4TMd+t4sUSfIA6Mfyl21+R7AMGCtmX9vSQ4hAgWUyOQI2bImhhZNvQBw8Qol1Dlh0kLImCauVNZVXIvU2T6jHTMVkTMrj/VKFoSlXVqhCbEZEWNWS8i9erNy07IMBAYAc6jGL/9p4/p3JSW9Yqr9Fhrg0P5Y2QKiJnoE21oLFbltwJ1pgV8xpHpAVwEGVdrcDALl5tG8MYdkPkOKDIa/bCVQqVKLWYc+ZKhzaitkCFm97aRpQ5lAjIudsbRORhCNj3L5v1bQercQxZ2tDqvIsh06YUx6JCCZRSZGQP6IWedxaERpXY1MpMAavNVFibyst0uvVtQoYs8BCsOLPqAwX8UmZ3U3qfi3/UPnOI2I7Nga1c0Jbup8Vck5mzv5xKPLDzPZIedddEX2So4UP4K4jM0+LMqjeCNFA5Kq7WVS/m93F6MgtLroboFzx4yRudlRGPtXR4EtwIP9N0UkZX1KlPj3pXSSY1/Ww3Z1jokZAHQXniVFNk/K7+7D735v4OeAZrF00TOo9gmAAAAAElFTkSuQmCC" y="261.2656"/><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="110" x="1122" y="305.1172">File Storage</text><text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="69" x="1142.5" y="320.0293">[mongoDB]</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4" x="1175" y="335.8545"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="171" x="1093.5" y="352.1514">Stores raw indexed files</text></g><!--MD5=[ded6a69210fbbc7961dee7b773232267]
+entity es--><g id="elem_es"><path d="M1074.5,405.3019 C1074.5,395.3019 1177,395.3019 1177,395.3019 C1177,395.3019 1279.5,395.3019 1279.5,405.3019 L1279.5,566.755 C1279.5,576.755 1177,576.755 1177,576.755 C1177,576.755 1074.5,576.755 1074.5,566.755 L1074.5,405.3019 " fill="#438DD5" style="stroke:#3C7FC0;stroke-width:0.5;"/><path d="M1074.5,405.3019 C1074.5,415.3019 1177,415.3019 1177,415.3019 C1177,415.3019 1279.5,415.3019 1279.5,405.3019 " fill="none" style="stroke:#3C7FC0;stroke-width:0.5;"/><text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="71" x="1141.5" y="430.4405">«container»</text><image height="57" width="51" x="1151.5" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADMAAAA5CAIAAAAUWIQbAAAB7UlEQVR4Xu2YvUoEMRSF593yAL6AD7AvMA/gA2hlJXYWFpbbWYmdpYXICoIgAwvCio1g55XomM25+bs381MMfNXCnvNtkkk205jjBz2ri+f26iXE4fkTfiVJgx9lErcJkW8pMcM+ARjrUWaGBUqwoifX7Gj9SmB0FbDO5JgdnD5arZHlEmau09ByNAS5Zug0tBw972kztBlHrv2bWd4MPVgwtAp25BgzNIiAuVWgNeebeU9iEgytAg2bb4bdSTBXiT3B9sywNRNMF9PLzMjM3TL2zLCvCGzKxBNizObGYlbOvM1uNh9VwMeCJbTkGbPu/asKl3dvRcTvBFOaEWe3W3T6NdtsP7FDBk0odicJyTVYIIZ+JBbngFqVzTrRhFoWs3IWs3IWs3KGNau8n9HGjR0yZGdAy73U+DEzk56bkf8dU5qhjW9G4lWgW3QOKMEy7/+082QxK+ffbH2/03By3Ymha0vMTCNHWwD2Cahvhh0aGDOZXK0Bc2HMBHKYWwXGjHZzrA9BdzIM1cOPGUF9KIEMMY+EPcF4M4JaUcUDQ/X0rxSCZiY1chiqxz3vY2YmvOYwVI9XnTCzjK9lMs2Ms+wwVEnoXVWumQVzlWBFT5mZBQtKYY9wD4lZD1YmwZAQKjMXupyhB7EK347ifAOlh3LjsXAcPAAAAABJRU5ErkJggg==" y="433.2706"/><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="127" x="1113.5" y="505.1222">Index Storage</text><text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="89" x="1132.5" y="520.0343">[Elasticsearch]</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4" x="1175" y="535.8595"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="177" x="1088.5" y="552.1564">Stores log messages and</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="152" x="1101" y="568.4532">analyzed file content</text></g><!--MD5=[de5dc476b5cd49b5a92d294ad2af7d70]
+entity redis--><g id="elem_redis"><path d="M1078,621.8019 C1078,611.8019 1177,611.8019 1177,611.8019 C1177,611.8019 1276,611.8019 1276,621.8019 L1276,753.9581 C1276,763.9581 1177,763.9581 1177,763.9581 C1177,763.9581 1078,763.9581 1078,753.9581 L1078,621.8019 " fill="#438DD5" style="stroke:#3C7FC0;stroke-width:0.5;"/><path d="M1078,621.8019 C1078,631.8019 1177,631.8019 1177,631.8019 C1177,631.8019 1276,631.8019 1276,621.8019 " fill="none" style="stroke:#3C7FC0;stroke-width:0.5;"/><text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="71" x="1141.5" y="646.9405">«container»</text><image height="44" width="51" x="1151.5" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADMAAAAsCAIAAABHQxczAAACZ0lEQVR4Xq2YMUpDQRCG391yAC/gAbyAB/AAWlmJnYWFZTqrYCeksRCJIAREEARBBGsnTtis8+3Ozr48+Bp35//nd5O32bfD7PRxEuYPn4vVl3Jx986CXgYOdSEhUiByePlMSZDxyZjDgfIm3cnyTy1v7PyZOJm/0rBGNJl8LuyURzGwxq8n7WT0zZElpKSpUs5u3yhMVJPJytOLXN9/HF29UK4c36wpIRTOismoDNKUL9ffq/cfjivyT5aTydqy2llwFi/q333JpEgyhTWJg/OnbTLOKUxDqMpJgZisGXHgkOKsVjAZYzGZjFCoDM4ccxiKe5uhloyVRrJJ5oRb/O0L+sEngo+tIYXjFGt2ySKyJrJHpPSc9TExCsmC+cwTbghuYwq7e8kUuhiYSWElYTvDIM8gRw30zTFHHRYY6G9Qw+1Oy2nCHjn6A+o/HPSstdgky78TLC3Clj50IFSVd1oqCVWEKkKVCr2dli6Eqqm0u2eTFabUp7eSmLLCrkFNUTkCejrOhWQjXJrQp+lWTabQK2K6v1zOyZv9jBOE1n4DVvr1ObrF7k6OrCDsRC1nWVMjr7f7GasJu/rQIWJY3c+oJ1RN4qBTjZMjvchUKiO0zyarg52C0LzWwibr1cehm+9ZTqbQxfeqQYeIySDnKo4a6Bt0pySi0ovBCU6OrKwVs8yQv+T+u9eIiJeVrg50IObF0SZT5BhOJWECQhVhgGqyBF0I0wQz1S7eEl4yJfJytcwicsoQvFZuJ0uwRy/0dOhIpkRWhdCnSXcyRU52bE+6LrMNI5MlmEZxLm+D7JtMyX9IODuOX8BjY90zLwN4AAAAAElFTkSuQmCC" y="649.7706"/><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="55" x="1149.5" y="708.6222">Cache</text><text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="42" x="1156" y="723.5343">[Redis]</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4" x="1175" y="739.3595"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="174" x="1092" y="755.6564">Stores tags and metaIds</text></g><!--MD5=[8fc3522a43f8c7199df5e09e5bb0188e]
+entity user--><g id="elem_user"><rect fill="#08427B" height="100.5938" rx="2.5" ry="2.5" style="stroke:#073B6F;stroke-width:0.5;" width="126" x="7" y="767.3019"/><text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="55" x="42.5" y="788.4405">«person»</text><image height="48" width="48" x="46" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAIAAADYYG7QAAACD0lEQVR4Xu2YoU4EMRCGT+4j8Ai8AhaH4QHgAUjQuFMECUgMIUgwJAgMhgQsAYUiJCiQIBBY+EITsjfTdme6V24v4c8vyGbb+ZjOtN0bNcvjQXmkH83WvYBWto6PLm6v7p7uH1/w2fXD+PBycX1Pv2l3IdDm/vn7x+dXQiAubRzoURa7gRZWd0iGRIiJbOnhnfYBQZNJjNbuyY2eJG8fkDE3bbG4ep6MHUAsgYxmE3nVs6VsBWJSGccsOlFPmLIViMzLOB7pCVO2AtHJMohH7Fh6zqitQK7m0rJvAVYgGcEpe//PLdDz65sM4pF9N7ICcXDKIB5Nv6j7tD0NoSdM2QrU9Gg0ewE1LqBhHR3BBdvj2vapnidjHxD/q6vd7Pvhr31AwcY8eXMTXAKECZZJFXuEq27aLgQK5uLMohCenGGuGewOxSjBvYBqeG6B+Nqiblggdjnc+ZXDy+FNFpFzw76O3UBAROuXh6FoiAcf5g9eTvUgzy0nWg6I8cXHRUpg5bOVBCo+KDpFajOf23GgPme7RSQ+lacIENUgJ6gg1k6HjgOlqnLqip4tEuhv0hNEMXUD0clyXE3p6pZA0S2nnvTlXwLJEZWlb7cTQH1+USgTN4VhAenm/wea1OCAOmqo6fE1WCb9WSKBah+rbUWPWAmE2Rvk0ApiB45eOyNAzU8xcTvj8KvkKEoOaIYeHNA3ZuygAvFMUO0AAAAASUVORK5CYII=" y="791.2706"/><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="106" x="17" y="854.1222">Ambar User</text></g><!--MD5=[31021d34eca147fafb8355324c9d51aa]
+entity other--><g id="elem_other"><rect fill="#999999" height="101.4844" rx="2.5" ry="2.5" style="stroke:#8A8A8A;stroke-width:0.5;" width="212" x="1496" y="44.2969"/><text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="112" x="1546" y="65.4355">«external_system»</text><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacing" textLength="153" x="1525.5" y="83.1172">Custom Services</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="4" x="1600" y="99.8857"> </text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="184" x="1510" y="116.1826">Optional: User Developed</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="60" x="1572" y="132.4795">Services</text></g><!--MD5=[122aa4dd056032f23668896f93924b57]
+link user to frontend--><g id="link_user_frontend"><path d="M133.234,817.8019 C177.314,817.8019 237.341,817.8019 287.837,817.8019 " fill="none" id="user-to-frontend" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="295.856,817.8019,287.856,814.8019,287.856,820.8019,295.856,817.8019" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="95" x="164" y="786.9405">Interact with</text><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="57" x="185" y="800.9093">website</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="60" x="183.5" y="814.878">[HTTP/80]</text></g><!--MD5=[f718eb1359a1956da94174b67b660207]
+reverse link service to other--><g id="link_service_other"><path d="M1602,599.0589 C1602,473.0619 1602,246.4469 1602,145.5969 " fill="none" id="service-backto-other" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="1602,607.2099,1605,599.2099,1599,599.2099,1602,607.2099" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="95" x="1528" y="366.9405">Interact with</text><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="64" x="1545.5" y="380.9093">REST-API</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="76" x="1539.5" y="394.878">[HTTP/8081]</text></g><!--MD5=[19384318aa60aa4d7e63e050b05b0ef1]
+link frontend to web--><g id="link_frontend_web"><path d="M478.298,817.8019 C535.281,817.8019 608.93,817.8019 667.578,817.8019 " fill="none" id="frontend-to-web" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="675.75,817.8019,667.75,814.8019,667.75,820.8019,675.75,817.8019" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="107" x="523.5" y="800.9405">Sends API calls</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="76" x="539" y="814.9093">[HTTP/8080]</text></g><!--MD5=[677fc5158cef52132ff1318e3b6aab18]
+link web to mongo--><g id="link_web_mongo"><path d="M792.91,729.0109 C812.38,667.4319 844.194,585.6929 890,523.8019 C939.533,456.8749 1012.68,398.0019 1072.6,356.3089 " fill="none" id="web-to-mongo" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="1079.47,351.5649,1071.1817,353.6396,1074.5896,358.5779,1079.47,351.5649" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="138" x="893" y="368.9405">Upload &amp; Download</text><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="130" x="899" y="382.9093">files for Frontend</text></g><!--MD5=[2492e80e26379bde87cdd9489535e918]
+link web to es--><g id="link_web_es"><path d="M842.927,729.1909 C857.863,713.0919 873.932,696.9399 890,682.8019 C944.911,634.4849 1012,587.7229 1067.4,551.8919 " fill="none" id="web-to-es" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="1074.44,547.3549,1066.0892,549.1617,1069.3364,554.2071,1074.44,547.3549" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="132" x="896" y="543.9405">Query documents,</text><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="142" x="891" y="557.9093">tags and statistics,</text><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="72" x="928" y="571.878">write logs</text></g><!--MD5=[04ba01ee4f699d7e400f0ef7d9a8a340]
+link web to redis--><g id="link_web_redis"><path d="M860.085,788.7079 C922.233,768.8579 1004.764,742.4959 1069.89,721.6959 " fill="none" id="web-to-redis" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="1077.74,719.1879,1069.2068,718.7588,1071.0287,724.4755,1077.74,719.1879" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="112" x="906" y="702.9405">Cache tags and</text><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="127" x="898.5" y="716.9093">metaIds for quick</text><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="50" x="939" y="730.878">access</text></g><!--MD5=[bbb7a097e20fcb2ae558ab6ff5ad9685]
+link web to rabbit--><g id="link_web_rabbit"><path d="M860.085,887.1789 C922.952,935.0619 1006.676,998.8329 1072.14,1048.6929 " fill="none" id="web-to-rabbit" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="1078.82,1053.7799,1074.2703,1046.548,1070.6369,1051.3228,1078.82,1053.7799" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="137" x="893.5" y="900.9405">Publishes event on</text><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="94" x="917" y="914.9093">UI file upload</text></g><!--MD5=[66a301cf1e6655e55717f7a731c04d11]
+link web to crawler--><g id="link_web_crawler"><path d="M860.085,833.4679 C919.073,843.6129 996.424,856.9159 1059.82,867.8199 " fill="none" id="web-to-crawler" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="1067.88,869.2059,1060.5049,864.8923,1059.487,870.8053,1067.88,869.2059" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="129" x="897.5" y="808.9405">Download original</text><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="24" x="952" y="822.9093">file</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="76" x="926" y="836.878">[HTTP/8082]</text></g><!--MD5=[8bf32600348f3c49a8033d4eb02d2483]
+reverse link mongo to service--><g id="link_mongo_service"><path d="M1281.55,358.2389 C1339.11,397.7379 1410.15,450.9309 1466,506.8019 C1496.21,537.0229 1525.17,574.3219 1548.46,607.1929 " fill="none" id="mongo-backto-service" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="1274.6,353.4899,1279.5116,360.481,1282.8974,355.5276,1274.6,353.4899" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="138" x="1320" y="370.9405">Upload &amp; Download</text><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="120" x="1331" y="384.9093">files for Pipeline</text></g><!--MD5=[7b594e91dd73f1fe5a93d46a00c75186]
+reverse link es to service--><g id="link_es_service"><path d="M1287.17,537.9349 C1361.55,573.4539 1458.17,619.5949 1524.44,651.2419 " fill="none" id="es-backto-service" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="1279.59,534.3139,1285.5193,540.4656,1288.1022,535.05,1279.59,534.3139" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="109" x="1334.5" y="526.9405">Create indices,</text><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="144" x="1317" y="540.9093">write tags, logs and</text><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="86" x="1348" y="554.878">file content</text></g><!--MD5=[e42f61119f8e9f7fa1a08297aac3efdf]
+reverse link redis to service--><g id="link_redis_service"><path d="M1284.17,687.8019 C1358.84,687.8019 1457.02,687.8019 1524.18,687.8019 " fill="none" id="redis-backto-service" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="1276.11,687.8019,1284.11,690.8019,1284.11,684.8019,1276.11,687.8019" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="112" x="1333" y="656.9405">Cache tags and</text><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="127" x="1325.5" y="670.9093">metaIds for quick</text><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="50" x="1366" y="684.878">access</text></g><!--MD5=[c8237dbb2c26f7f6f400695f4b1f7713]
+reverse link rabbit to service--><g id="link_rabbit_service"><path d="M1281.11,1035.6659 C1337.44,983.8799 1407.44,917.0989 1466,853.8019 C1490.85,826.9429 1516.56,796.1779 1538.79,768.4879 " fill="none" id="rabbit-backto-service" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="1275.01,1041.2659,1282.9311,1038.0634,1278.8722,1033.6446,1275.01,1041.2659" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="137" x="1320.5" y="836.9405">Publishes event on</text><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="138" x="1322" y="850.9093">Pipeline file upload</text></g><!--MD5=[86d73c91bb1eb95518c30a5e5331d44b]
+link pipeline to rabbit--><g id="link_pipeline_rabbit"><path d="M455.693,1127.8019 C593.269,1127.8019 906.387,1127.8019 1070.77,1127.8019 " fill="none" id="pipeline-rabbit" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="1078.97,1127.8019,1070.97,1124.8019,1070.97,1130.8019,1078.97,1127.8019" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="447.551,1127.8019,455.551,1130.8019,455.551,1124.8019,447.551,1127.8019" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="127" x="702.5" y="1110.9405">Subscribe for file</text><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="57" x="739.5" y="1124.9093">uploads</text></g><!--MD5=[ffa0e4e033f234419fb082f3c020edc1]
+link pipeline to service--><g id="link_pipeline_service"><path d="M447.585,1156.0269 C597.155,1222.5492 997.128,1373.4084 1286,1233.8016 C1465.39,1147.1049 1548.94,907.5659 1582.24,776.4319 " fill="none" id="pipeline-to-service" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="1584.27,768.3399,1579.415,775.3705,1585.235,776.8292,1584.27,768.3399" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="128" x="898" y="1252.9402">Use API to publish</text><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="115" x="906.5" y="1266.909">analysis results</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="76" x="926" y="1280.8777">[HTTP/8081]</text></g><!--MD5=[62b49da72c887a20f5b3a273f6c781ea]
+link pipeline to web--><g id="link_pipeline_web"><path d="M447.636,1079.0229 C507.127,1030.3619 599.522,954.7889 669.655,897.4239 " fill="none" id="pipeline-to-web" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="675.943,892.2809,667.8516,895.0249,671.6511,899.6686,675.943,892.2809" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="125" x="512.5" y="886.9405">Use API to unhide</text><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="136" x="509" y="900.9093">and download files</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="76" x="539" y="914.878">[HTTP/8080]</text></g><!--MD5=[788e55747f81eaee920cafef2e219b7d]
+reverse link rabbit to crawler--><g id="link_rabbit_crawler"><path d="M1177,1031.5229 C1177,1013.3849 1177,994.4949 1177,976.5989 " fill="none" id="rabbit-backto-crawler" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="1177,1039.7969,1180,1031.7969,1174,1031.7969,1177,1039.7969" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="137" x="1089" y="1005.6905">Publishes event on</text><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="138" x="1090.5" y="1019.6593">Pipeline file upload</text></g><!--MD5=[63b0f5334dc43b6a67d2c6736b721a03]
+link crawler to service--><g id="link_crawler_service"><path d="M1286.11,836.6859 C1357.88,802.7529 1450.71,758.8589 1516.95,727.5409 " fill="none" id="crawler-to-service" style="stroke:#666666;stroke-width:1.0;"/><polygon fill="#666666" points="1524.49,723.9769,1515.9749,724.6796,1518.5366,730.1053,1524.49,723.9769" style="stroke:#666666;stroke-width:1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacing" textLength="86" x="1348" y="735.9405">Publish logs</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="76" x="1353" y="749.9093">[HTTP/8081]</text></g><!--MD5=[aab2ad66de68e3e06bb4c5dcfdf7d422]
+@startuml
+!include <C4/C4_Container>
+
+!include <logos/react>
+!include <logos/nodejs>
+!include <logos/python>
+!include <logos/mongodb>
+!include <logos/rabbitmq>
+!include <logos/elasticsearch>
+!include <logos/redis>
+
+LAYOUT_LANDSCAPE()
+
+title Ambar - Container Diagram
+
+Person(user, "Ambar User", "")
+System(ambar, "Ambar", "Document Search Engine")
+System_Ext(other, "Custom Services", "Optional: User Developed Services")
+
+System_Boundary(ambar, "Ambar") {
+    Container(frontend, "Frontend", "React, Material UI, Redux", "SPA, provides user interaction", $sprite="react")
+    Container(web, "Web API", "Node.JS, Express", "Provides REST-API for Frontend", $sprite="nodejs")
+    Container(service, "Service API", "Node.JS, Express", "Provides REST-API", $sprite="nodejs")
+    Container(crawler, "Crawler", "Node.JS, Express", "Provides REST-API, handles business logic", $sprite="nodejs")
+    Container(pipeline, "Pipeline", "Python, Tikka", "Analyzes files", $sprite="python")
+    ContainerQueue(rabbit, "Message Queue", "Rabbit MQ", "Message bus between services, notify pipeline about new files", $sprite="rabbitmq")
+    ContainerDb(mongo, "File Storage", "mongoDB", "Stores raw indexed files", $sprite="mongodb")
+    ContainerDb(es, "Index Storage", "Elasticsearch", "Stores log messages and analyzed file content", $sprite="elasticsearch")
+    ContainerDb(redis, "Cache", "Redis", "Stores tags and metaIds", $sprite="redis")
+}
+
+Rel(user, frontend, "Interact with website", "HTTP/80")
+Rel_U(other, service, "Interact with REST-API", "HTTP/8081")
+Rel(frontend, web, "Sends API calls", "HTTP/8080")
+
+Rel(web, mongo, "Upload & Download files for Frontend")
+Rel(web, es, "Query documents, tags and statistics, write logs")
+Rel(web, redis, "Cache tags and metaIds for quick access")
+Rel(web, rabbit, "Publishes event on UI file upload")
+Rel(web, crawler, "Download original file", "HTTP/8082")
+
+Rel_L(service, mongo, "Upload & Download files for Pipeline")
+Rel_L(service, es, "Create indices, write tags, logs and file content")
+Rel_L(service, redis, "Cache tags and metaIds for quick access")
+Rel_L(service, rabbit, "Publishes event on Pipeline file upload")
+
+BiRel(pipeline, rabbit, "Subscribe for file uploads")
+Rel(pipeline, service, "Use API to publish analysis results", "HTTP/8081")
+Rel(pipeline, web, "Use API to unhide and download files", "HTTP/8080")
+
+Rel_U(crawler, rabbit, "Publishes event on Pipeline file upload")
+Rel(crawler, service, "Publish logs", "HTTP/8081")
+@enduml
+
+@startuml
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+skinparam defaultTextAlignment center
+
+skinparam wrapWidth 200
+skinparam maxMessageSize 150
+
+skinparam LegendBorderColor transparent
+skinparam LegendBackgroundColor transparent
+skinparam LegendFontColor #FFFFFF
+
+skinparam shadowing<<legendArea>> false
+skinparam rectangle<<legendArea>> {
+    backgroundcolor #00000000
+    bordercolor #00000000
+}
+
+skinparam rectangle {
+    StereotypeFontSize 12
+    shadowing false
+}
+
+skinparam database {
+    StereotypeFontSize 12
+    shadowing false
+}
+
+skinparam queue {
+    StereotypeFontSize 12
+    shadowing false
+}
+
+skinparam arrow {
+    Color #666666
+    FontColor #666666
+    FontSize 12
+}
+
+skinparam actor {
+    StereotypeFontSize 12
+    shadowing false
+    style awesome
+}
+
+skinparam person {
+    StereotypeFontSize 12
+    shadowing false
+}
+
+skinparam package {
+    StereotypeFontSize 6
+    StereotypeFontColor transparent
+    FontStyle plain
+    BackgroundColor transparent
+}
+
+skinparam rectangle<<boundary>> {
+    Shadowing false
+    StereotypeFontSize 6
+    StereotypeFontColor transparent
+    FontColor #444444
+    BorderColor #444444
+    BackgroundColor transparent
+    BorderStyle dashed
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+skinparam rectangle<<person>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #08427B
+    BorderColor #073B6F
+}
+skinparam database<<person>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #08427B
+    BorderColor #073B6F
+}
+skinparam queue<<person>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #08427B
+    BorderColor #073B6F
+}
+skinparam actor<<person>> {
+    StereotypeFontColor #08427B
+    FontColor #08427B
+    BackgroundColor #08427B
+    BorderColor #073B6F
+}
+skinparam person<<person>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #08427B
+    BorderColor #073B6F
+}
+
+
+skinparam rectangle<<external_person>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #686868
+    BorderColor #8A8A8A
+}
+skinparam database<<external_person>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #686868
+    BorderColor #8A8A8A
+}
+skinparam queue<<external_person>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #686868
+    BorderColor #8A8A8A
+}
+skinparam actor<<external_person>> {
+    StereotypeFontColor #686868
+    FontColor #686868
+    BackgroundColor #686868
+    BorderColor #8A8A8A
+}
+skinparam person<<external_person>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #686868
+    BorderColor #8A8A8A
+}
+
+
+skinparam rectangle<<system>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #1168BD
+    BorderColor #3C7FC0
+}
+skinparam database<<system>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #1168BD
+    BorderColor #3C7FC0
+}
+skinparam queue<<system>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #1168BD
+    BorderColor #3C7FC0
+}
+skinparam actor<<system>> {
+    StereotypeFontColor #1168BD
+    FontColor #1168BD
+    BackgroundColor #1168BD
+    BorderColor #3C7FC0
+}
+skinparam person<<system>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #1168BD
+    BorderColor #3C7FC0
+}
+
+
+skinparam rectangle<<external_system>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #999999
+    BorderColor #8A8A8A
+}
+skinparam database<<external_system>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #999999
+    BorderColor #8A8A8A
+}
+skinparam queue<<external_system>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #999999
+    BorderColor #8A8A8A
+}
+skinparam actor<<external_system>> {
+    StereotypeFontColor #999999
+    FontColor #999999
+    BackgroundColor #999999
+    BorderColor #8A8A8A
+}
+skinparam person<<external_system>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #999999
+    BorderColor #8A8A8A
+}
+
+
+
+
+
+sprite $person [48x48/16] {
+000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000
+0000000000000000000049BCCA7200000000000000000000
+0000000000000000006EFFFFFFFFB3000000000000000000
+00000000000000001CFFFFFFFFFFFF700000000000000000
+0000000000000001EFFFFFFFFFFFFFF80000000000000000
+000000000000000CFFFFFFFFFFFFFFFF6000000000000000
+000000000000007FFFFFFFFFFFFFFFFFF100000000000000
+00000000000001FFFFFFFFFFFFFFFFFFF900000000000000
+00000000000006FFFFFFFFFFFFFFFFFFFF00000000000000
+0000000000000BFFFFFFFFFFFFFFFFFFFF40000000000000
+0000000000000EFFFFFFFFFFFFFFFFFFFF70000000000000
+0000000000000FFFFFFFFFFFFFFFFFFFFF80000000000000
+0000000000000FFFFFFFFFFFFFFFFFFFFF80000000000000
+0000000000000DFFFFFFFFFFFFFFFFFFFF60000000000000
+0000000000000AFFFFFFFFFFFFFFFFFFFF40000000000000
+00000000000006FFFFFFFFFFFFFFFFFFFE00000000000000
+00000000000000EFFFFFFFFFFFFFFFFFF800000000000000
+000000000000007FFFFFFFFFFFFFFFFFF100000000000000
+000000000000000BFFFFFFFFFFFFFFFF5000000000000000
+0000000000000001DFFFFFFFFFFFFFF70000000000000000
+00000000000000000BFFFFFFFFFFFF500000000000000000
+0000000000000000005DFFFFFFFFA1000000000000000000
+0000000000000000000037ABB96100000000000000000000
+000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000
+000000000000025788300000000005886410000000000000
+000000000007DFFFFFFD9643347BFFFFFFFB400000000000
+0000000004EFFFFFFFFFFFFFFFFFFFFFFFFFFB1000000000
+000000007FFFFFFFFFFFFFFFFFFFFFFFFFFFFFD200000000
+00000006FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE10000000
+0000003FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFB0000000
+000000BFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF5000000
+000003FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFD000000
+000009FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF200000
+00000DFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF600000
+00000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF800000
+00001FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFA00000
+00001FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFB00000
+00001FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFB00000
+00001FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFB00000
+00001FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFA00000
+00000EFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF700000
+000006FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE100000
+0000008FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFD3000000
+000000014555555555555555555555555555555300000000
+000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000
+}
+
+sprite $person2 [48x48/16] {
+0000000000000000000049BCCA7200000000000000000000
+0000000000000000006EFFFFFFFFB3000000000000000000
+00000000000000001CFFFFFFFFFFFF700000000000000000
+0000000000000001EFFFFFFFFFFFFFF80000000000000000
+000000000000000CFFFFFFFFFFFFFFFF6000000000000000
+000000000000007FFFFFFFFFFFFFFFFFF100000000000000
+00000000000001FFFFFFFFFFFFFFFFFFF900000000000000
+00000000000006FFFFFFFFFFFFFFFFFFFF00000000000000
+0000000000000BFFFFFFFFFFFFFFFFFFFF40000000000000
+0000000000000EFFFFFFFFFFFFFFFFFFFF70000000000000
+0000000000000FFFFFFFFFFFFFFFFFFFFF80000000000000
+0000000000000FFFFFFFFFFFFFFFFFFFFF80000000000000
+0000000000000DFFFFFFFFFFFFFFFFFFFF60000000000000
+0000000000000AFFFFFFFFFFFFFFFFFFFF40000000000000
+00000000000006FFFFFFFFFFFFFFFFFFFE00000000000000
+00000000000000EFFFFFFFFFFFFFFFFFF800000000000000
+000000000000007FFFFFFFFFFFFFFFFFF100000000000000
+000000000000000BFFFFFFFFFFFFFFFF5000000000000000
+0000000000000001DFFFFFFFFFFFFFF70000000000000000
+00000000000000000BFFFFFFFFFFFF500000000000000000
+0000000000000000005DFFFFFFFFA1000000000000000000
+0000000000000000000037ABB96100000000000000000000
+000000000002578888300000000005888864100000000000
+0000000007DFFFFFFFFD9643347BFFFFFFFFFB4000000000
+00000004EFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFB10000000
+0000007FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFD2000000
+000006FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE100000
+00003FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFB00000
+0000BFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF50000
+0003FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFD0000
+0009FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF2000
+000DFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF6000
+000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF8000
+001FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFB000
+001FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFB000
+001FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFB000
+001FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFA000
+000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF8000
+000DFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF6000
+0009FFFFFFFF8FFFFFFFFFFFFFFFFFFFFFF8FFFFFFFF2000
+0003FFFFFFFF8FFFFFFFFFFFFFFFFFFFFFF8FFFFFFFD0000
+0000BFFFFFFF8FFFFFFFFFFFFFFFFFFFFFF8FFFFFFF50000
+00003FFFFFFF8FFFFFFFFFFFFFFFFFFFFFF8FFFFFFB00000
+000006FFFFFF8FFFFFFFFFFFFFFFFFFFFFF8FFFFFE100000
+0000007FFFFF8FFFFFFFFFFFFFFFFFFFFFF8FFFFD2000000
+00000004EFFF8FFFFFFFFFFFFFFFFFFFFFF8FFFB10000000
+0000000007DF8FFFFFFFFFFFFFFFFFFFFFF8FB4000000000
+000000000002578888888888888888888864100000000000
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+skinparam rectangle<<container>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #438DD5
+    BorderColor #3C7FC0
+}
+skinparam database<<container>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #438DD5
+    BorderColor #3C7FC0
+}
+skinparam queue<<container>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #438DD5
+    BorderColor #3C7FC0
+}
+skinparam actor<<container>> {
+    StereotypeFontColor #438DD5
+    FontColor #438DD5
+    BackgroundColor #438DD5
+    BorderColor #3C7FC0
+}
+skinparam person<<container>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #438DD5
+    BorderColor #3C7FC0
+}
+
+
+skinparam rectangle<<external_container>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #B3B3B3
+    BorderColor #A6A6A6
+}
+skinparam database<<external_container>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #B3B3B3
+    BorderColor #A6A6A6
+}
+skinparam queue<<external_container>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #B3B3B3
+    BorderColor #A6A6A6
+}
+skinparam actor<<external_container>> {
+    StereotypeFontColor #B3B3B3
+    FontColor #B3B3B3
+    BackgroundColor #B3B3B3
+    BorderColor #A6A6A6
+}
+skinparam person<<external_container>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #B3B3B3
+    BorderColor #A6A6A6
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+sprite $react [51x45/16] {
+000000000000066664000000000000000566660000000000000
+000000000000666666660000000000066666666000000000000
+000000000006650016666500000005666500056600000000000
+000000000026600000056660000066650000006610000000000
+000000000066200000000666100666000000003660000000000
+000000000066000000000066636660000000000660000000000
+000000000066000000000005666500000000000660000000000
+000000000066000000000001666100000000000660000000000
+000000000066000000000006666600000000000660000000000
+000000000066000000000066605660000000000660000000000
+000000000066000000000666000666000000000660000000000
+000000000066100000005660000066500000001660000000000
+000000000056500000246666666666641000005650000000000
+000000000016656666666666666666666666656610000000000
+000000000566666666666200000002666666666665000000000
+000000166666650001660000000000066100056666661000000
+000006666604660006640000000000036600056506666600000
+000666620000660046600000000000006640066000036666000
+006664000000662066000005666500000660266000000466600
+066600000000266666000066666660000666663000000006660
+366000000000066660000566666665000066660000000000663
+660000000000056650000666666666000056650000000000066
+660000000000006600000666666666000006600000000000066
+662000000000056650000666666666000056660000000000166
+266000000000066660000366666664000066660000000000661
+066600000000266566000066666660000666664000000006660
+006664000000662066000002666200000660066000000566600
+000666620000660046600000000000006640066000046666000
+000006666504650006640000000000046600056606666600000
+000000266666630000660000000000066100056666660000000
+000000000666666666666310000013666666666665000000000
+000000000016666666666666666666666666656630000000000
+000000000066500000146666666666631000002660000000000
+000000000066100000004660000066500000000660000000000
+000000000066000000000666000666000000000660000000000
+000000000066000000000066605660000000000660000000000
+000000000066000000000006666610000000000660000000000
+000000000066000000000000666200000000000660000000000
+000000000066000000000004666500000000000660000000000
+000000000066000000000056646660000000000660000000000
+000000000066200000000666200666000000003660000000000
+000000000026600000056660000066650000006620000000000
+000000000006660015666600000005666600066600000000000
+000000000000666666660000000000066666666000000000000
+000000000000066665000000000000000466660000000000000
+}
+sprite $nodejs [102x62/16] {
+00000000000000000000000000000000000000000000000000000000000000000000CA00000000000000000000000000000000
+00000000000000000000000000000000000000000000000000000000000000000000CCC5000000000000000000000000000000
+00000000000000000000000000000000000000000000000000000000000000000000CCCCC10000000000000000000000000000
+00000000000000000000000000000000000000000000000000000000000000000000CCCCCCC000000000000000000000000000
+00000000000000000000000000000000000000000000000000000000000000000000CCCCCCC000000000000000000000000000
+00000000000000000000000000000000000000000000000000000000000000000000CCCCCCC000000000000000000000000000
+00000000000000000000000000000000000000000000000000000000000000000000CCCCCCC000000000000000000000000000
+00000000000000000000000000000000000000000000000000000000000000000000CCCCCCC000000000000000000000000000
+00000000000000000000000000000000000000000000000000000000000000000000CCCCCCC000000000000000000000000000
+00000000000000000000000000000000000000000000000000000000000000000000CCCCCCC000000000000000000000000000
+00000000000000000000000000000000000000000000000000000000000000000000CCCCCCC000000000000000000000000000
+00000000000000000000000000000000000000000000000000000000000000000000CCCCCCC000000000000000000000000000
+00000000000000000000000000000000000000000000000000000000000000000000CCCCCCC000000000000000000000000000
+00000000000000000000000000000000000000000000000000000000000000000000CCCCCCC000000000000000000000000000
+0000000000CC0000000000000000000000000760000000000000000000000005C000CCCCCCC000000000000000CC0000000000
+00000000CCCCCC000000000000000000000777781000000000000000000000CCCCC0CCCCCCC0000000000000BCCCCC00000000
+000000CCCCCCCCCC00000000000000000777777888000000000000000000CCCCCCCCCCCCCCC000000000005CCCCCCCC8000000
+00007CCCCCCCCCCCC60000000000000466777777888800000000000000BCCCCCCCCCCCCCCCC0000000000CCCCCCCCCCCC10000
+001CCCCCCCCCCCCCCCC10000000001666677777788888600000000004CCCCCCCCCCCCCCCCCC00000000CCCCCCCCCCCCCCCC000
+0CCCCCCCCCCCCCCCCCCCC0000000666666777777888888720000001CCCCCCCCCCCCCCCCCCCC000000BCCCCCCCCCCCCCCCCCCC0
+CCCCCCCCCCCCCCCCCCCCCC00000966666677777788888877200007CCCCCCCCCCCCCCCCCCCCC00000CCCCCCCCCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCCCCCCCCC0000086666667777778888888940000CCCCCCCCCCCCCCCCCCCCCC00000CCCCCCCCCCCCCCCCCCCCCC
+CCCCCCCCCC32CCCCCCCCCC0000088666667777778888888940000CCCCCCCCCCC5CCCCCCCCCC00000CCCCCCCCCC67CCCCCCCCCC
+CCCCCCCC700007CCCCCCCC0000088766667777778888889940000CCCCCCCCC30009CCCCCCCC00000CCCCCCCCA0000BCCCCCCCC
+CCCCCCC20000003CCCCCCC0000088866667777778888889940000CCCCCCCC0000000CCCCCCC00000CCCCCCC10078001CCCCCC3
+CCCCCCC00000001CCCCCCC0000088876667777778888899940000CCCCCCCB0000000CCCCCCC00000CCCCCCC00888800CCCCA00
+CCCCCCC00000001CCCCCCC0000088886667777778888999940000CCCCCCCB0000000CCCCCCC00000CCCCCCC00888800CCC0000
+CCCCCCC00000001CCCCCCC0000088899667777778888999940000CCCCCCCB0000000CCCCCCC00000CCCCCCC00888800C100000
+CCCCCCC00000001CCCCCCC0000088999667777778888999940000CCCCCCCC0000000CCCCCCC00000CCCCCCC400330000000000
+CCCCCCC00000001CCCCCCC0000088999967777778888999940000CCCCCCCCC00008CCCCCCCC00000CCCCCCCCC0000000000000
+CCCCCCC00000001CCCCCCC0000089999977777778888999940000CCCCCCCCCCC1CCCCCCCCCC00000CCCCCCCCCCC00000000000
+CCCCCCC00000001CCCCCCC0000089999997777778888999940000CCCCCCCCCCCCCCCCCCCCCC00000CCCCCCCCCCCCA000000000
+CCCCCCC00000000CCCCCCC00000999999977777788889999000009CCCCCCCCCCCCCCCCCCCCC00000CCCCCCCCCCCCCC20000000
+CCCCCA00000000009CCCCC000000799999977777888899900000004CCCCCCCCCCCCCCCCCCC00000004CCCCCCCCCCCCCC000000
+CCCC00000000000000CCCC0000000099999877778888900000000000ACCCCCCCCCCCCCCC200000000009CCCCCCCCCCCCCC0000
+CC000000000000000000CC000000000099997777888400000000000000CCCCCCCCCCCC700000000000000BCCCCCCCCCCC00000
+000000000000000000000000000000000399977787000000000000000000CCCCCCCCB000000000000000000CCCCCCCC0000000
+00000000000000000000000000000000000697770000000008880000000004CCCCC0000000000000000000003CCCC300000000
+0000000000000000000000000000000000000710000000078868850000000009C2000000000000000000000000760000000000
+000000000000000000000000000000000000000000000488700088820000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000018880000000888000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000888100000000038870000000000000000000000000000000000000000000
+000000000000000000000000000000000000000068830000000000000688500000000000000000000000000000000000000000
+000000000000000000000000000000000000000687000000000000000008810000000000000000000000000000000000000000
+000000000000000000000000000000000000000780000000000155200000850000000000000000000000000000000000000000
+000000000000000000000000000000000000000780000084048888886000850000000000000000000000000000000000000000
+000000000000000000000000000000000000000780000084088000088000850000000000000000000000000000000000000000
+000000000000000000000000000000000000000780000084086000008300850000000000000000000000000000000000000000
+000000000000000000000000000000000000000780000084088862000000850000000000000000000000000000000000000000
+000000000000000000000000000000000000000780000084008888888000850000000000000000000000000000000000000000
+000000000000000000000000000000000000000780000084000000178700850000000000000000000000000000000000000000
+000000000000000000000000000000000000000780000084780000008800850000000000000000000000000000000000000000
+000000000000000000000000000000000000000780000084088000028700850000000000000000000000000000000000000000
+000000000000000000000000000000000000000780000084068888888000850000000000000000000000000000000000000000
+000000000000000000000000000000000000000780000084000356400000850000000000000000000000000000000000000000
+000000000000000000000000000000000000000488000084000000000018800000000000000000000000000000000000000000
+000000000000000000000000000000000000000038871780000000000888100000000000000000000000000000000000000000
+000000000000000000000000000000000000000000688880000000078840000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000005887000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000078800088800000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000001888881000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000078600000000000000000000000000000000000000000000000000
+}
+sprite $python [51x51/16] {
+000000000000000000049999999999700000000000000000000
+000000000000000069999999999999999900000000000000000
+000000000000000999999999999999999998000000000000000
+000000000000009999999999999999999999900000000000000
+000000000000099990009999999999999999900000000000000
+000000000000099900002999999999999999990000000000000
+000000000000099900001999999999999999990000000000000
+000000000000099980009999999999999999990000000000000
+000000000000099999999999999999999999990000000000000
+000000000000099999999999999999999999990000000000000
+000000000000099999999999999999999999990000000000000
+000000000000033333333333369999999999990000000000000
+000000000000000000000000049999999999990000000000000
+000000999999999999999999999999999999990222222200000
+000099999999999999999999999999999999990222222221000
+000999999999999999999999999999999999990222222222000
+009999999999999999999999999999999999990222222222200
+029999999999999999999999999999999999990222222222320
+099999999999999999999999999999999999990222222223330
+099999999999999999999999999999999999980222222233330
+499999999999999999999999999999999999910222222333331
+999999999999999999999999999999999999900222223333333
+999999999999999999999999999999999999000222233333333
+999999999999999999999999999999999990002222333333333
+999999999999999999999999999999993000022223333333333
+999999999999999000000000000000000000222233333333333
+999999999999970000222222222222222222222333333333333
+999999999999900022222222222222222222223333333333333
+999999999999000222222222222222222222233333333333333
+999999999999002222222222222222222222333333333333333
+599999999998002222222222222222222223333333333333330
+099999999997022222222222222222222223333333333333330
+099999999997022222222222222222222233333333333333330
+089999999997022222222222222222222333333333333333300
+009999999997022222222222222222223333333333333333300
+000999999997022222222222222222233333333333333333000
+000299999997022222222222222222333333333333333330000
+000009999997022222222222222223333333333333331000000
+000000000000022222222222200000000000000000000000000
+000000000000022222222222222333333333330000000000000
+000000000000022222222222223333333333330000000000000
+000000000000022222222222233333333333330000000000000
+000000000000022222222222333333330333330000000000000
+000000000000022222222223333333200023330000000000000
+000000000000022222222233333333000003330000000000000
+000000000000022222222333333333000013330000000000000
+000000000000002222223333333333300033320000000000000
+000000000000001222233333333333333333300000000000000
+000000000000000122333333333333333333000000000000000
+000000000000000002333333333333333300000000000000000
+000000000000000000000233333333100000000000000000000
+}
+sprite $mongodb [102x29/16] {
+000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+000003800000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+000057770000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+000277687000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+000777688200000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+007777688800000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+007777688870000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+077777688880000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+077777688887000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+177777688888000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+777777688888000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+777777688888400000000000000000000000000000000000000000000000000000000000000088888888870000088888888200
+777777688888600000000000000000000000000000000000000000000000000000000000000000880000488400000880008840
+777777688888700000000000000000000000000000000000000000000000000000000000000000880000008820000880000880
+777777788888700000000000000000000000000000000000000000000000000000000000000000880000001880000880000880
+7777777888886000000901A60008900000004AB5000000700BC10000002A9200200009C8000000880000000880000880001800
+77777778888820003CCBCBCCC9CCCC00000C305CC000CCC9CBCC00000C106CCC100CB00CC50000880000000882000885468000
+177777788888000000CC000CC0001C8000C70002CC000BC0000CC000CC000CC000AC0000CC0000880000000882000881258880
+077777688888000000CB0004C0000CC004C00000CC000BC0000CC000CC000CC000CC00006C5000880000000881000880000887
+077777688884000000CB0003C0000CC009C00000CC000BC0000CC000CC000CB000CC00000C8000880000000880000880000088
+007777688880000000CB0003C0000CC007C30000CC000BC0000CC0001CC39C0000CC00000C5000880000000870000880000088
+001777788800000000CB0004C0000CC000CC0000CC000BC0000CC00000C3000000CC00003C0000880000008800000880000681
+000677588600000000CC0005C0000CC000CC6000C0000BC0000CC0003CC00000000CC000C70000887000288000001880003850
+00007758700000002CCCC0CCCC70CCCC0009CCCB0000CCCCB0CCCC000CCCCCCA0001CCCC100048888888500000088888885000
+000004540000000000000000000000000000000000000000000000000C1004CC00000000000000000000000000000000000000
+00000050000000000000000000000000000000000000000000000000C000000C00000000000000000000000000000000000000
+00000050000000000000000000000000000000000000000000000000C000000C00000000000000000000000000000000000000
+00000050000000000000000000000000000000000000000000000000CC0000C000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000000CCCC90000000000000000000000000000000000000000
+}
+sprite $rabbitmq [51x54/16] {
+077777777700000000002777777773000000000000000000000
+777777777760000000007777777777000000000000000000000
+777777777770000000017777777777100000000000000000000
+777777777770000000017777777777100000000000000000000
+777777777770000000017777777777100000000000000000000
+777777777770000000017777777777100000000000000000000
+777777777770000000017777777777100000000000000000000
+777777777770000000017777777777100000000000000000000
+777777777770000000017777777777100000000000000000000
+777777777770000000017777777777100000000000000000000
+777777777770000000017777777777100000000000000000000
+777777777770000000017777777777100000000000000000000
+777777777770000000017777777777100000000000000000000
+777777777770000000017777777777100000000000000000000
+777777777770000000017777777777100000000000000000000
+777777777770000000017777777777100000000000000000000
+777777777770000000017777777777100000000000000000000
+777777777770000000017777777777100000000000000000000
+777777777770000000017777777777100000000000000000000
+777777777770000000017777777777100000000000000000000
+777777777770000000037777777777300000000000000000000
+777777777776111111377777777777732222222222222222200
+777777777777777777777777777777777777777777777777776
+777777777777777777777777777777777777777777777777777
+777777777777777777777777777777777777777777777777777
+777777777777777777777777777777777777777777777777777
+777777777777777777777777777777777777777777777777777
+777777777777777777777777777777777777777777777777777
+777777777777777777777777777777777777777777777777777
+777777777777777777777777777777777777777777777777777
+777777777777777777777777777777777777777777777777777
+777777777777777777777777777777777777777777777777777
+777777777777777777777777777777777666666777777777777
+777777777777777777777777777777710000000077777777777
+777777777777777777777777777777700000000007777777777
+777777777777777777777777777777600000000007777777777
+777777777777777777777777777777600000000007777777777
+777777777777777777777777777777600000000007777777777
+777777777777777777777777777777600000000007777777777
+777777777777777777777777777777600000000007777777777
+777777777777777777777777777777700000000007777777777
+777777777777777777777777777777700000000017777777777
+777777777777777777777777777777770000000177777777777
+777777777777777777777777777777777777777777777777777
+777777777777777777777777777777777777777777777777777
+777777777777777777777777777777777777777777777777777
+777777777777777777777777777777777777777777777777777
+777777777777777777777777777777777777777777777777777
+777777777777777777777777777777777777777777777777777
+777777777777777777777777777777777777777777777777777
+777777777777777777777777777777777777777777777777777
+777777777777777777777777777777777777777777777777777
+777777777777777777777777777777777777777777777777777
+077777777777777777777777777777777777777777777777770
+}
+sprite $elasticsearch [51x57/16] {
+000000000000000000000003444444444200000000000000000
+000000000000000000034444444444444444420000000000000
+000000000000000004444444444444444444444400000000000
+000000000000000444444444444444444444444444000000000
+000000000000055444444444444444444444444444440000000
+000000000001555544444444444444444444444444444000000
+000000000055555554444444444444444444444444444410000
+000000000555555555444444444444444444444444444443000
+000000005555555555544444444444444444444444444444400
+000000055555555555554444444444444444444444444444430
+000000555555555555555444444444444444444444444444441
+000001555555555555555444444444444444444444444444443
+000005555555555555555544444444444444444444444444420
+000055555555555555555554444444444444444444444444000
+000055555555555555555554444444444444444444444430000
+000555555555555555555555444444444444444444430000000
+000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000
+0AAAAAAAAAAAAAAAAAAAAAAAA55555555555553000000000000
+0DDDDDDDDDDDDDDDDDDDDDDDD88888888888888882000000000
+0DDDDDDDDDDDDDDDDDDDDDDDD88888888888888888700000000
+CDDDDDDDDDDDDDDDDDDDDDDDDA8888888888888888870000000
+DDDDDDDDDDDDDDDDDDDDDDDDDC8888888888888888880000000
+DDDDDDDDDDDDDDDDDDDDDDDDDD8888888888888888888000000
+DDDDDDDDDDDDDDDDDDDDDDDDDD8888888888888888888000000
+DDDDDDDDDDDDDDDDDDDDDDDDDD8888888888888888888000000
+DDDDDDDDDDDDDDDDDDDDDDDDDD8888888888888888888000000
+DDDDDDDDDDDDDDDDDDDDDDDDDD8888888888888888888000000
+DDDDDDDDDDDDDDDDDDDDDDDDDD8888888888888888888000000
+DDDDDDDDDDDDDDDDDDDDDDDDDD8888888888888888888000000
+DDDDDDDDDDDDDDDDDDDDDDDDDC8888888888888888880000000
+ADDDDDDDDDDDDDDDDDDDDDDDDA8888888888888888840000000
+0DDDDDDDDDDDDDDDDDDDDDDDD88888888888888888300000000
+0DDDDDDDDDDDDDDDDDDDDDDDD88888888888888880000000000
+033333333333333333333333311111111111110000000000000
+000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000
+000999999999999999999999666666666666666666665000000
+000099999999999999999998666666666666666666666660000
+000099999999999999999996666666666666666666666666600
+000009999999999999999986666666666666666666666666660
+000000999999999999999966666666666666666666666666666
+000000399999999999999766666666666666666666666666660
+000000079999999999998666666666666666666666666666610
+000000008999999999996666666666666666666666666666200
+000000000799999999966666666666666666666666666661000
+000000000039999999666666666666666666666666666600000
+000000000000999996666666666666666666666666666000000
+000000000000089966666666666666666666666666620000000
+000000000000000666666666666666666666666666000000000
+000000000000000006666666666666666666666500000000000
+000000000000000000006666666666666666600000000000000
+000000000000000000000000466666663000000000000000000
+}
+sprite $redis [51x44/16] {
+0000000000000000000000009AAA70000000000000000000000
+0000000000000000000007AAAAAAAAA20000000000000000000
+0000000000000000000AAAAAAAAAAAAAAA00000000000000000
+00000000000000009AAAAAA0AAAA0AAAAAAA500000000000000
+00000000000002AAAAAAAAA000000AAAAAAAAAA000000000000
+00000000000AAAAAAAAAA90000000AAAAAAAAAAAA6000000000
+000000005AAAAAAAAAAAA83000000004AAAAAAAAAAAA0000000
+000000AAAAAAAAAAAAAAAAAAA00AAAAAAAAABCAAAAAAAA80000
+0006AAAAAA600000000AAAAAAA0AAAAAAABBBCCCAAAAAAAAA10
+0AAAAAAAA000000000000AAAAAAAAAABBBBBBCCCCCCAAAAAAAA
+AAAAAAAA6000000000000AAAAAAAAABBBBBBBCCCCCBAAAAAAAA
+BAAAAAAAA000000000009AAAAAAAAAAABBBBBCCCAAAAAAAAABB
+BBAAAAAAAAA9100005AAAAAAAAAAAAAAAAABBBAAAAAAAAABBBB
+BBBBBAAAAAAAAAAAAAAAAAAAA4000AAAAAAAAAAAAAAAABBBBBB
+BBBBBBBAAAAAAAAAAA80000000004AAAAAAAAAAAAAABBBBBBBB
+BBBBBBBBBAAAAAAAAAAA00000000AAAAAAAAAAAABBBBBBBBBBB
+6BBBBBBBBBBBAAAAAAAAAA20000AAAAAAAAAAABBBBBBBBBBB20
+00BBBBBBBBBBBBAAAAAAAAAA905AAAAAAAAABBBBBBBBBBBAAA0
+4AAABBBBBBBBBBBBBAAAAAAAAAAAAAAAABBBBBBBBBBBBAAAAAA
+AAAAAAABBBBBBBBBBBBAAAAAAAAAAAABBBBBBBBBBBBAAAAAAAB
+BAAAAAAAABBBBBBBBBBBBAAAAAAAABBBBBBBBBBBBAAAAAAAABB
+BBBAAAAAAAAABBBBBBBBBBBBAABBBBBBBBBBBBAAAAAAAABBBBB
+BBBBBBAAAAAAAABBBBBBBBBBBBBBBBBBBBBBAAAAAAAABBBBBBB
+BBBBBBBBAAAAAAAABBBBBBBBBBBBBBBBBBAAAAAAAABBBBBBBBB
+BBBBBBBBBBAAAAAAAAABBBBBBBBBBBBAAAAAAAAABBBBBBBBBB3
+0BBBBBBBBBBBBAAAAAAAABBBBBBBBAAAAAAAABBBBBBBBBBBB00
+0AABBBBBBBBBBBBAAAAAAAABBBBAAAAAAAABBBBBBBBBBBBAAAA
+AAAAABBBBBBBBBBBBAAAAAAAAAAAAAAAABBBBBBBBBBBAAAAAAA
+BAAAAAAABBBBBBBBBBBBAAAAAAAAAABBBBBBBBBBBBAAAAAAABB
+BBAAAAAAAABBBBBBBBBBBBAAAAAABBBBBBBBBBBBAAAAAAABBBB
+BBBBBAAAAAAABBBBBBBBBBBBBBBBBBBBBBBBBAAAAAAAABBBBBB
+BBBBBBBAAAAAAAABBBBBBBBBBBBBBBBBBBBAAAAAAAABBBBBBBB
+BBBBBBBBBAAAAAAAABBBBBBBBBBBBBBBBAAAAAAABBBBBBBBBBB
+9BBBBBBBBBBBAAAAAAAABBBBBBBBBBBAAAAAAABBBBBBBBBBB70
+00BBBBBBBBBBBBAAAAAAAABBBBBBBAAAAAAABBBBBBBBBBB6000
+0000ABBBBBBBBBBBBAAAAAAAAAAAAAAAABBBBBBBBBBBB100000
+0000002BBBBBBBBBBBBAAAAAAAAAAAABBBBBBBBBBBB00000000
+000000000BBBBBBBBBBBBAAAAAAAABBBBBBBBBBB90000000000
+000000000006BBBBBBBBBBBBAAABBBBBBBBBBB2000000000000
+00000000000000BBBBBBBBBBBBBBBBBBBBBB000000000000000
+0000000000000000ABBBBBBBBBBBBBBBBB00000000000000000
+0000000000000000003BBBBBBBBBBBB50000000000000000000
+000000000000000000000BBBBBBBB3000000000000000000000
+000000000000000000000009BBB000000000000000000000000
+}
+
+left to right direction
+
+title Ambar - Container Diagram
+
+rectangle "<$person>\n==Ambar User" <<person>> as user 
+rectangle "==Ambar\n\n Document Search Engine" <<system>> as ambar 
+rectangle "==Custom Services\n\n Optional: User Developed Services" <<external_system>> as other 
+
+rectangle "==Ambar\n<size:12>[System]</size>" <<boundary>> as ambar  {
+    rectangle "<$react>\n==Frontend\n//<size:12>[React, Material UI, Redux]</size>//\n\n SPA, provides user interaction" <<container>> as frontend 
+    rectangle "<$nodejs>\n==Web API\n//<size:12>[Node.JS, Express]</size>//\n\n Provides REST-API for Frontend" <<container>> as web 
+    rectangle "<$nodejs>\n==Service API\n//<size:12>[Node.JS, Express]</size>//\n\n Provides REST-API" <<container>> as service 
+    rectangle "<$nodejs>\n==Crawler\n//<size:12>[Node.JS, Express]</size>//\n\n Provides REST-API, handles business logic" <<container>> as crawler 
+    rectangle "<$python>\n==Pipeline\n//<size:12>[Python, Tikka]</size>//\n\n Analyzes files" <<container>> as pipeline 
+    queue "<$rabbitmq>\n==Message Queue\n//<size:12>[Rabbit MQ]</size>//\n\n Message bus between services, notify pipeline about new files" <<container>> as rabbit 
+    database "<$mongodb>\n==File Storage\n//<size:12>[mongoDB]</size>//\n\n Stores raw indexed files" <<container>> as mongo 
+    database "<$elasticsearch>\n==Index Storage\n//<size:12>[Elasticsearch]</size>//\n\n Stores log messages and analyzed file content" <<container>> as es 
+    database "<$redis>\n==Cache\n//<size:12>[Redis]</size>//\n\n Stores tags and metaIds" <<container>> as redis 
+}
+
+user - ->> frontend : **Interact with website**\n//<size:12>[HTTP/80]</size>//
+other -LEFT->> service : **Interact with REST-API**\n//<size:12>[HTTP/8081]</size>//
+frontend - ->> web : **Sends API calls**\n//<size:12>[HTTP/8080]</size>//
+
+web - ->> mongo : **Upload & Download files for Frontend**
+web - ->> es : **Query documents, tags and statistics, write logs**
+web - ->> redis : **Cache tags and metaIds for quick access**
+web - ->> rabbit : **Publishes event on UI file upload**
+web - ->> crawler : **Download original file**\n//<size:12>[HTTP/8082]</size>//
+
+service -UP->> mongo : **Upload & Download files for Pipeline**
+service -UP->> es : **Create indices, write tags, logs and file content**
+service -UP->> redis : **Cache tags and metaIds for quick access**
+service -UP->> rabbit : **Publishes event on Pipeline file upload**
+
+pipeline <<- ->> rabbit : **Subscribe for file uploads**
+pipeline - ->> service : **Use API to publish analysis results**\n//<size:12>[HTTP/8081]</size>//
+pipeline - ->> web : **Use API to unhide and download files**\n//<size:12>[HTTP/8080]</size>//
+
+crawler -LEFT->> rabbit : **Publishes event on Pipeline file upload**
+crawler - ->> service : **Publish logs**\n//<size:12>[HTTP/8081]</size>//
+@enduml
+
+PlantUML version 1.2022.7beta11(Unknown compile time)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

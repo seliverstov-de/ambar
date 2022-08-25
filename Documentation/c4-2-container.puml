@@ -1,0 +1,54 @@
+@startuml ContainerDiagram
+!include <C4/C4_Container>
+
+!include <logos/react>
+!include <logos/nodejs>
+!include <logos/python>
+!include <logos/mongodb>
+!include <logos/rabbitmq>
+!include <logos/elasticsearch>
+!include <logos/redis>
+
+LAYOUT_LANDSCAPE()
+
+title Ambar - Container Diagram
+
+Person(user, "Ambar User", "")
+System(ambar, "Ambar", "Document Search Engine")
+System_Ext(other, "Custom Services", "Optional: User Developed Services")
+
+System_Boundary(ambar, "Ambar") {
+    Container(frontend, "Frontend", "React, Material UI, Redux", "SPA, provides user interaction", $sprite="react")
+    Container(web, "Web API", "Node.JS, Express", "Provides REST-API for Frontend", $sprite="nodejs")
+    Container(service, "Service API", "Node.JS, Express", "Provides REST-API", $sprite="nodejs")
+    Container(crawler, "Crawler", "Node.JS, Express", "Provides REST-API, handles business logic", $sprite="nodejs")
+    Container(pipeline, "Pipeline", "Python, Tikka", "Analyzes files", $sprite="python")
+    ContainerQueue(rabbit, "Message Queue", "Rabbit MQ", "Message bus between services, notify pipeline about new files", $sprite="rabbitmq")
+    ContainerDb(mongo, "File Storage", "mongoDB", "Stores raw indexed files", $sprite="mongodb")
+    ContainerDb(es, "Index Storage", "Elasticsearch", "Stores log messages and analyzed file content", $sprite="elasticsearch")
+    ContainerDb(redis, "Cache", "Redis", "Stores tags and metaIds", $sprite="redis")
+}
+
+Rel(user, frontend, "Interact with website", "HTTP/80")
+Rel_U(other, service, "Interact with REST-API", "HTTP/8081")
+Rel(frontend, web, "Sends API calls", "HTTP/8080")
+
+Rel(web, mongo, "Upload & Download files for Frontend")
+Rel(web, es, "Query documents, tags and statistics, write logs")
+Rel(web, redis, "Cache tags and metaIds for quick access")
+Rel(web, rabbit, "Publishes event on UI file upload")
+Rel(web, crawler, "Download original file", "HTTP/8082")
+
+Rel_L(service, mongo, "Upload & Download files for Pipeline")
+Rel_L(service, es, "Create indices, write tags, logs and file content")
+Rel_L(service, redis, "Cache tags and metaIds for quick access")
+Rel_L(service, rabbit, "Publishes event on Pipeline file upload")
+
+BiRel(pipeline, rabbit, "Subscribe for file uploads")
+Rel(pipeline, service, "Use API to publish analysis results", "HTTP/8081")
+Rel(pipeline, web, "Use API to unhide and download files", "HTTP/8080")
+
+Rel_U(crawler, rabbit, "Publishes event on Pipeline file upload")
+Rel(crawler, service, "Publish logs", "HTTP/8081")
+
+@enduml

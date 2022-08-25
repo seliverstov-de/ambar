@@ -1,0 +1,13 @@
+@startuml SystemContextDiagram
+!include <C4/C4_Context>
+
+title Ambar - System Context Diagram
+
+Person(user, "Ambar User", "")
+System(ambar, "Ambar", "Document Search Engine")
+System_Ext(other, "Custom Services", "Optional: User Developed Services")
+
+BiRel(user, ambar, "Use Admin UI", "HTTP")
+BiRel_R(other, ambar, "Use REST-API", "HTTP")
+
+@enduml

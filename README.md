@@ -67,6 +67,13 @@ All the images required to run Ambar can be built locally. In general, each imag
 docker compose up --build
 ```
 
+## Architecture
+
+![System Context Diagram](./Documentation/c4-1-system-context.svg)
+![Context Diagram](./Documentation/c4-2-container.svg)
+
+Hint: Run plantuml to generate the updated PNG (or an online tool like [PlantText](https://www.planttext.com/)).
+
 ## FAQ
 ### Is it open-source?
 Yes, it's fully open-source.
