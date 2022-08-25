@@ -27,6 +27,7 @@ export default ({ storage }) => {
      *     curl -i http://ambar_api_address/api/search?query=John
      * 
      * @apiSuccessExample {json} HTTP/1.1 200 OK
+     * {}
      *
      * @apiErrorExample {json} HTTP/1.1 400 BadRequest
      * HTTP/1.1 400 BadRequest
@@ -75,7 +76,8 @@ export default ({ storage }) => {
      * 
      *     curl -i http://ambar_api_address/api/search/tree?query=John
      * 
-     * @apiSuccessExample {json} HTTP/1.1 200 OK
+     * @apiSuccessExample {json} HTTP/1.1 200 OK.
+     * {}
      *
      * @apiErrorExample {json} HTTP/1.1 400 BadRequest
      * HTTP/1.1 400 BadRequest
@@ -108,6 +110,7 @@ export default ({ storage }) => {
      *     curl -i http://ambar_api_address/api/search/stats?query=John
      * 
      * @apiSuccessExample {json} HTTP/1.1 200 OK
+     * {}
      *
      * @apiErrorExample {json} HTTP/1.1 400 BadRequest
      * HTTP/1.1 400 BadRequest
@@ -144,6 +147,7 @@ export default ({ storage }) => {
      *     curl -i http://ambar:8004/api/search/318be2290125e0a6cfb7229133ba3c4632068ae04942ed5c7c660718d9d41eb3?query=John
      *  
      * @apiSuccessExample {json} HTTP/1.1 200 OK
+     * {}
      *
      * @apiErrorExample {json} HTTP/1.1 400 BadRequest
      * HTTP/1.1 400 BadRequest

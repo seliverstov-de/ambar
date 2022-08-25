@@ -270,7 +270,7 @@ export default ({ storage }) => {
         * @apiHeader {String} ambar-email-token User token
         * 
         * @apiSuccessExample {json} HTTP/1.1 200 OK     
-        * HTTP/1.1 200 OK
+        * {}
         * 
         * @apiErrorExample {json} HTTP/1.1 404 NotFound
         * File not found
@@ -302,7 +302,7 @@ export default ({ storage }) => {
         * @apiHeader {String} ambar-email-token User token
         * 
         * @apiSuccessExample {json} HTTP/1.1 200 OK     
-        * HTTP/1.1 200 OK
+        * {}
         * 
         * @apiErrorExample {json} HTTP/1.1 404 NotFound
         * File not found
