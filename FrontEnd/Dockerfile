@@ -25,5 +25,5 @@ COPY --from=build dist/ /usr/share/nginx/html/
 
 CMD echo $api > /usr/share/nginx/html/apiUrl.txt && nginx -g "daemon off;"
 
-HEALTHCHECK --interval=15s --timeout=30s --retries=50 \
+HEALTHCHECK --interval=10s --timeout=30s --retries=50 \
   CMD curl -f localhost:80 || exit 1

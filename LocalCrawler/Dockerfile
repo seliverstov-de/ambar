@@ -15,5 +15,5 @@ CMD npm start
 
 EXPOSE 8082
 
-HEALTHCHECK --interval=15s --timeout=30s --retries=50 \
+HEALTHCHECK --interval=10s --timeout=30s --retries=50 \
   CMD curl -f localhost:8082/api/ || exit 1

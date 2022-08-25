@@ -14,5 +14,5 @@ COPY elasticsearch.yml ./config/elasticsearch.yml
 EXPOSE 9200
 EXPOSE 9300
 
-HEALTHCHECK --interval=15s --timeout=30s --retries=50 \
+HEALTHCHECK --interval=10s --timeout=30s --retries=50 \
   CMD curl -f http://localhost:9200/ || exit 1

@@ -8,5 +8,5 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 COPY --chown=rabbitmq:rabbitmq rabbitmq.conf /etc/rabbitmq/rabbitmq.conf
 
-HEALTHCHECK --interval=15s --timeout=30s --retries=50 \
+HEALTHCHECK --interval=10s --timeout=30s --retries=50 \
   CMD curl -f localhost:15672 || exit 1
