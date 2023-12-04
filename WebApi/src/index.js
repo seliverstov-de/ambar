@@ -17,7 +17,7 @@ let app = express()
 
 app.server = http.createServer(app)
 
-app.use(cors({ origin: 'http://localhost', credentials: true }))
+app.use(cors({ origin: 'http://<IP>>', credentials: true }))
 
 app.use(bodyParser.json({
 	limit: config.bodyLimit

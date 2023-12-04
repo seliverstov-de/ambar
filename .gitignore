@@ -375,7 +375,7 @@ doc/
 *.swp
 
 # Directory where containers store data
-data/
+container-data/
 
 # Directory where files can be placed for intake
 intake/
